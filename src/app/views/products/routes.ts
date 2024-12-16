@@ -12,9 +12,5 @@ export const routes: Routes = [
           ),
       },
     ],
-  },
-
-  // { path: 'create', component: ProductFormComponent },         // Create a product
-  // { path: 'edit/:id', component: ProductFormComponent },       // Edit a product
-  // { path: ':id', component: ProductDetailsComponent },         // View product details
+  },       // View product details
 ];
