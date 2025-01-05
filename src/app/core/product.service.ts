@@ -15,7 +15,7 @@ export class ProductsDataService {
 
   allProducts(numOfPage: number = 1): Observable<any> {
     return this._httpclient
-      .get(`${baseUrl}/api/v1/products`, {
+      .get(`${baseUrl}/products`, {
         params: { page: numOfPage }
       })
       .pipe(catchError(this._handelErorrService.logErorr));
