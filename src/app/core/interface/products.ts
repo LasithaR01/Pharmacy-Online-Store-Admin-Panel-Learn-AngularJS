@@ -1,23 +1,25 @@
 export interface Product {
-  sold: number;
-  images: string[];
-  subcategory: Subcategory[];
-  ratingsQuantity: number;
-  _id: string;
-  title: string;
-  slug: string;
-  description: string;
-  quantity: number;
-  price: number;
-  imageCover: string;
-  category: Category;
-  brand: Brand;
-  priceAfterDiscount: number;
-  ratingsAverage: number;
-  createdAt: string;
-  updatedAt: string;
+  // sold: number;
+  // images: string[];
+  // subcategory: Subcategory[];
+  // ratingsQuantity: number;
+  // _id: string;
+  // title: string;
+  // slug: string;
+  // description: string;
+  // quantity: number;
+  // price: number;
+  // imageCover: string;
+  // category: Category;
+  // brand: Brand;
+  // priceAfterDiscount: number;
+  // ratingsAverage: number;
+  // createdAt: string;
+  // updatedAt: string;
+  // offer: number;
   id: string;
-  offer: number;
+  name: string;
+  categoryName: string;
 }
 
 export interface Subcategory {
