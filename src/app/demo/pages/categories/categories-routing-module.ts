@@ -7,15 +7,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./all-products/all-products.component').then(m => m.AllProductsComponent) // Access the component correctly
+        loadComponent: () => import('./all-categories/all-categories.component').then(m => m.AllCategoriesComponent) // Access the component correctly
       },
       {
         path: 'create',
         loadComponent: () => import('./create/create.component').then(m => m.CreateComponent) // Access the component correctly
-      },
-      {
-        path: 'create/:slug', // For editing an existing product (based on the product slug)
-        loadComponent: () => import('./create/create.component').then(m => m.CreateComponent),
       },
     ]
   }
@@ -25,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ProductsRoutingModule {}
+export class CategoriesRoutingModule {}

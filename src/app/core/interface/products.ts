@@ -19,6 +19,7 @@ export interface Product {
   // offer: number;
   id: string;
   name: string;
+  slug: string;
   categoryName: string;
 }
 
@@ -30,7 +31,7 @@ export interface Subcategory {
 }
 
 export interface Category {
-  _id: string;
+  id: string;
   name: string;
   slug: string;
   image: string;

@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { ProductsDataService } from 'src/app/core/product.service';
 import { Product } from 'src/app/core/interface/products';
+import { MatDialog } from '@angular/material/dialog';
+
+import { ModalComponent } from 'src/app/theme/shared/components/modal/modal.component';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -19,10 +23,14 @@ export interface PeriodicElement {
   styleUrl: './all-products.component.scss'
 })
 export class AllProductsComponent implements OnInit {
-  constructor(private _productsDataService: ProductsDataService) {}
+  constructor(
+    private _productsDataService: ProductsDataService,
+    private router: Router
+  ) {}
+  readonly dialog = inject(MatDialog);
 
   // Define the columns to be displayed in the table
-  displayedColumns: string[] = ['id', 'name', 'categoryName'];
+  displayedColumns: string[] = ['id', 'name', 'slug', 'categoryName', 'actions'];
 
   // Initialize the dataSource without data
   dataSource = new MatTableDataSource<Product>([]);
@@ -44,6 +52,16 @@ export class AllProductsComponent implements OnInit {
       error: (err) => {
         console.error('Error fetching products:', err);
       }
+    });
+  }
+
+  onEditClick(product: Product): void {
+    this.router.navigate(['/products/create', product.slug]);
+  }
+
+  onButtonClick(element: Product): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      data: { productId: element.id }
     });
   }
 }
