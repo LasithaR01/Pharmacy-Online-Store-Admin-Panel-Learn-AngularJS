@@ -1,12 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
-import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { ProductsDataService } from 'src/app/core/product.service';
 import { Product } from 'src/app/core/interface/products';
-import { MatDialog } from '@angular/material/dialog';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
-import { ModalComponent } from 'src/app/theme/shared/components/modal/modal.component';
+// import { ModalComponent } from 'src/app/theme/shared/components/modal/modal.component';
 import { Router } from '@angular/router';
+import { ProductsDataService } from 'src/app/core/product.service';
 
 export interface PeriodicElement {
   name: string;
@@ -27,7 +26,7 @@ export class AllProductsComponent implements OnInit {
     private _productsDataService: ProductsDataService,
     private router: Router
   ) {}
-  readonly dialog = inject(MatDialog);
+  // readonly dialog = inject(MatDialog);
 
   // Define the columns to be displayed in the table
   displayedColumns: string[] = ['id', 'name', 'slug', 'categoryName', 'actions'];
@@ -60,8 +59,8 @@ export class AllProductsComponent implements OnInit {
   }
 
   onButtonClick(element: Product): void {
-    const dialogRef = this.dialog.open(ModalComponent, {
-      data: { productId: element.id }
-    });
+    // const dialogRef = this.dialog.open(ModalComponent, {
+    //   data: { productId: element.id }
+    // });
   }
 }

@@ -30,14 +30,6 @@ const routes: Routes = [
         loadChildren: () => import('./demo/pages/tables/tables.module').then((m) => m.TablesModule)
       },
       {
-        path: 'products',
-        loadChildren: () => import('./demo/pages/products/products.module').then((m) => m.ProductsModule)
-      },
-      {
-        path: 'categories',
-        loadChildren: () => import('./demo/pages/categories/categories.module').then((m) => m.CategoriesModule)
-      },
-      {
         path: 'apexchart',
         loadComponent: () => import('./demo/chart/apex-chart/apex-chart.component')
       },
@@ -45,7 +37,14 @@ const routes: Routes = [
         path: 'sample-page',
         loadComponent: () => import('./demo/extra/sample-page/sample-page.component')
       },
-
+      {
+        path: 'products',
+        loadChildren: () => import('./demo/pages/products/products.module').then((m) => m.ProductsModule)
+      },
+      {
+        path: 'categories',
+        loadChildren: () => import('./demo/pages/categories/categories.module').then((m) => m.CategoriesModule)
+      },
     ]
   },
   {

@@ -16,4 +16,12 @@ export class AuthService {
   login(loginData: any): Observable<any> {
     return this._httpclient.post(`${baseUrl}/api/auth/login`, loginData).pipe(catchError(this._handelErorrService.logErorr));
   }
+
+  signup(signupData: any): Observable<any> {
+    return this._httpclient.post(`${baseUrl}/api/auth/register`, signupData).pipe(catchError(this._handelErorrService.logErorr));
+  }
+
+  logout(loginData: any): Observable<any> {
+    return this._httpclient.post(`${baseUrl}/api/auth/logout`, loginData).pipe(catchError(this._handelErorrService.logErorr));
+  }
 }

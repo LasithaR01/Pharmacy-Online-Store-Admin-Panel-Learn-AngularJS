@@ -11,17 +11,11 @@ import { HandelErorrService } from './handel-erorr.service';
 export class CategoryDataService {
   constructor(
     private _httpclient: HttpClient,
-    private _handelErorrService: HandelErorrService,
+    private _handelErorrService: HandelErorrService
   ) {}
 
-  /**
-   * Create a new category
-   * @param categoryData - The category object (e.g., { name: 'Category 1', description: 'Some description' })
-   */
-  createCategory(categoryData: any): Observable<any> {
-    return this._httpclient
-      .post(`${baseUrl}/api/categories`, categoryData)
-      .pipe(catchError(this._handelErorrService.logErorr));
+  saveOrUpdateCategory(categoryData: any): Observable<any> {
+    return this._httpclient.post(`${baseUrl}/api/categories`, categoryData).pipe(catchError(this._handelErorrService.logErorr));
   }
 
   allCategories(numOfPage: number = 1): Observable<any> {
@@ -34,5 +28,9 @@ export class CategoryDataService {
 
   deleteCategory(id: string) {
     return this._httpclient.delete(`${baseUrl}/categories/${id}`).pipe(catchError(this._handelErorrService.logErorr));
+  }
+
+  getCategoryBySlug(slug: string) {
+    return this._httpclient.get(`${baseUrl}/api/categories/slug/${slug}`).pipe(catchError(this._handelErorrService.logErorr));
   }
 }

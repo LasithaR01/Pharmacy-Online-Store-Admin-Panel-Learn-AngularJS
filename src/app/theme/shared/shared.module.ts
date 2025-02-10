@@ -14,7 +14,6 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 // third party
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [SpinnerComponent],
@@ -26,8 +25,7 @@ import { ModalComponent } from './components/modal/modal.component';
     NgbModule,
     NgScrollbarModule,
     NgbCollapseModule,
-    BreadcrumbsComponent,
-    ModalComponent,
+    BreadcrumbsComponent
   ],
   exports: [
     CommonModule,

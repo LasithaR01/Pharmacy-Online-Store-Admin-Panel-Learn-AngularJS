@@ -11,7 +11,11 @@ const routes: Routes = [
       },
       {
         path: 'create',
-        loadComponent: () => import('./create/create.component').then(m => m.CreateComponent) // Access the component correctly
+        loadComponent: () => import('./create-update/create-update.component').then(m => m.CreateComponent) // Access the component correctly
+      },
+      {
+        path: 'create/:slug', // For editing an existing product (based on the product slug)
+        loadComponent: () => import('./create-update/create-update.component').then(m => m.CreateComponent),
       },
     ]
   }

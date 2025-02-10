@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { CategoryDataService } from 'src/app/core/category.service';
 import { Category } from 'src/app/core/interface/products';
-import { ModalComponent } from 'src/app/theme/shared/components/modal/modal.component';
+// import { ModalComponent } from 'src/app/theme/shared/components/modal/modal.component';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 
 @Component({
@@ -14,7 +15,10 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
   styleUrl: './all-categories.component.scss'
 })
 export class AllCategoriesComponent {
-  constructor(private _categoryDataService: CategoryDataService) {}
+  constructor(
+    private _categoryDataService: CategoryDataService,
+    private router: Router
+  ) {}
   readonly dialog = inject(MatDialog);
 
   // Define the columns to be displayed in the table
@@ -43,18 +47,21 @@ export class AllCategoriesComponent {
     });
   }
 
+  onEditClick(element: Category): void {
+    this.router.navigate(['/categories/create', element.slug]);
+  }
+
   // Open Modal and Handle Delete
   onButtonClick(element: Category): void {
-    const dialogRef = this.dialog.open(ModalComponent, {
-      data: { title: 'Delete', message: 'Are you sure you want to delete this category?' }
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // If user confirmed deletion
-        this.deleteCategory(element.id);
-      }
-    });
+    // const dialogRef = this.dialog.open(ModalComponent, {
+    //   data: { title: 'Delete', message: 'Are you sure you want to delete this category?' }
+    // });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     // If user confirmed deletion
+    //     this.deleteCategory(element.id);
+    //   }
+    // });
   }
 
   // Perform Delete and Refresh Table

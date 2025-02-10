@@ -8,8 +8,8 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
   selector: 'app-create',
   standalone: true,
   imports: [SharedModule],
-  templateUrl: './create.component.html',
-  styleUrl: './create.component.scss'
+  templateUrl: './create-update.component.html',
+  styleUrl: './create-update.component.scss'
 })
 export class CreateComponent {
   productData = {
@@ -64,11 +64,8 @@ export class CreateComponent {
   }
 
   onSubmit() {
-    console.log('Submitting product:', this.productData);
-    this.productService.createProduct(this.productData).subscribe({
+    this.productService.saveOrUpdateProduct(this.productData).subscribe({
       next: (response) => {
-        console.log('Product created successfully:', response);
-        this.productData = { name: '', categoryId: '', description: '', price: 0, stocks: 0, expiry: '' }; // Reset form
         this.router.navigate(['/products']);
       },
       error: (error) => {

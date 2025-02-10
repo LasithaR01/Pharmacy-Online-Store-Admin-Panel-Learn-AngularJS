@@ -29,22 +29,19 @@ export default class AuthSigninComponent {
   }
 
   onSubmit() {
-    console.log('values: ', this.loginForm.value);
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          console.log('Category created successfully:', response);
-
           if (response && response.accessToken) {
             this.cookieService.set('accessToken', response.accessToken, {
               expires: 1,
               secure: true,
-              sameSite: 'Lax',
-            })
+              sameSite: 'Lax'
+            });
             this.router.navigate(['/dashboard']);
           }
         }
-      })
+      });
     }
   }
 }
