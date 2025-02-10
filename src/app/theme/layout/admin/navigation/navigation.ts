@@ -39,6 +39,54 @@ const NavigationItems = [
     ]
   },
   {
+    id: 'products',
+    title: 'Products Management',
+    type: 'group',
+    icon: 'icon-ui',
+    children: [
+      {
+        id: 'product',
+        title: 'Product',
+        type: 'collapse',
+        icon: 'feather icon-box',
+        children: [
+          {
+            id: 'all-products',
+            title: 'All Products',
+            type: 'item',
+            url: '/products'
+          },
+          {
+            id: 'create-product',
+            title: 'Create Product',
+            type: 'item',
+            url: '/products/create'
+          },
+        ]
+      },
+      {
+        id: 'category',
+        title: 'Category',
+        type: 'collapse',
+        icon: 'feather icon-box',
+        children: [
+          {
+            id: 'all-categories',
+            title: 'All Categories',
+            type: 'item',
+            url: '/categories'
+          },
+          {
+            id: 'create-category',
+            title: 'Create Category',
+            type: 'item',
+            url: '/categories/create'
+          },
+        ]
+      }
+    ]
+  },
+  {
     id: 'ui-element',
     title: 'UI ELEMENT',
     type: 'group',
@@ -112,30 +160,6 @@ const NavigationItems = [
         classes: 'nav-item',
         icon: 'feather icon-server'
       }
-    ]
-  },
-  {
-    id: 'products',
-    title: 'Products Management',
-    type: 'group',
-    icon: 'icon-group',
-    children: [
-      {
-        id: 'all-products',
-        title: 'All Products',
-        type: 'item',
-        url: '/products',
-        classes: 'nav-item',
-        icon: 'feather icon-file-text'
-      },
-      // {
-      //   id: 'tables',
-      //   title: 'Tables',
-      //   type: 'item',
-      //   url: '/tables/bootstrap',
-      //   classes: 'nav-item',
-      //   icon: 'feather icon-server'
-      // }
     ]
   },
   {

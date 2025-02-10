@@ -28,6 +28,7 @@
     "apexcharts": "^3.49.2",
     "bootstrap": "^5.3.3",
     "ng-apexcharts": "^1.11.0",
+    "ngx-cookie-service": "^19.1.0",
     "ngx-scrollbar": "^15.0.1",
     "rxjs": "~7.8.1",
     "screenfull": "^6.0.2",
