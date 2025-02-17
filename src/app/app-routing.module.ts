@@ -45,6 +45,10 @@ const routes: Routes = [
         path: 'categories',
         loadChildren: () => import('./demo/pages/categories/categories.module').then((m) => m.CategoriesModule)
       },
+      {
+        path: 'suppliers',
+        loadChildren: () => import('./demo/pages/suppliers/suppliers.module').then((m) => m.SuppliersModule)
+      },
     ]
   },
   {
