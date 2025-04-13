@@ -1,22 +1,51 @@
+/* Importing Bootstrap SCSS file. */
+// @import '~bootstrap/scss/bootstrap';
+
 /* You can add global styles to this file, and also import other style files */
+.modal-holder {
+  animation-name: example;
+  animation-duration: 0.3s;
+}
 
-@import 'scss/variables';
+@keyframes example {
+  0% {
+    transform: scale(0.5)
+  }
 
-/* fonts-icon */
-@import 'scss/fonts/fontawesome/scss/fontawesome';
-@import 'scss/fonts/feather/iconfont';
+  100% {
+    transform: scale(1)
+  }
+}
 
-@import 'scss/general';
-@import 'scss/generic';
-@import 'scss/mixins/function';
+.carousel-item {
+  transition: opacity 0.7s ease !important;
+  position: absolute !important;
+  display: block !important;
+  opacity: 0;
+}
 
-/* important element */
-@import 'scss/menu/menu-lite';
+.carousel-item.active {
+  position: relative !important;
+  opacity: 1;
+}
 
-/* basic elements */
-@import 'scss/theme-elements/theme-elements';
+ngx-dropzone{
+  border:2px dashed var(--bs-border-color) !important;
+}
 
-/* third party modules style*/
-@import 'scss/plugins/plugins';
+ngx-dropzone-preview {
+  max-width: none !important;
+  justify-content: normal !important;
+  height: 80px !important;
+  min-height: 80px !important;
+  background-image: none !important;
+  img {
+    opacity: 1 !important;
+  }
 
-@import 'scss/custom';
+  ngx-dropzone-label {
+    position: unset !important;
+  }
+}
+
+

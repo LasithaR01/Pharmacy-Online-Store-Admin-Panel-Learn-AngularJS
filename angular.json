@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "datta-able-free-angular-admin-template": {
+    "skote": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,38 +17,58 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["apexcharts"],
-            "outputPath": "dist",
+            "allowedCommonJsDependencies": [
+              "rxjs", "core-js", "chart.js", "chartist","leaflet","sweetalert2","apexcharts","dropzone","file-saver","lodash","detect-passive-events",
+              "ev-emitter/ev-emitter","can-use-dom","lodash.debounce","lodash.memoize","lodash.throttle","metismenujs/dist/metismenujs","sweetalert2",
+              "@ckeditor/ckeditor5-build-classic"
+            ],
+            "outputPath": "dist/skote",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets", "src/fake-data"],
-            "styles": ["node_modules/bootstrap/scss/bootstrap.scss", "src/styles.scss"],
-            "scripts": ["node_modules/apexcharts/dist/apexcharts.min.js"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+            "node_modules/chartist/dist/index.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "./node_modules/ngx-ui-switch/ui-switch.component.css",
+              "src/styles.scss",
+              "node_modules/@ctrl/ngx-emoji-mart/picker.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "src/assets/scss/bootstrap.scss",
+              "src/assets/scss/app.scss",
+              "src/assets/scss/icons.scss",
+              "./node_modules/ngx-toastr/toastr.css",
+              "./node_modules/ngx-toastr/toastr-old.css"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "2mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -59,16 +79,19 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "skote:build"
+          },
           "configurations": {
             "production": {
-              "buildTarget": "datta-able-free-angular-admin-template:build:production"
+              "browserTarget": "skote:build:production"
             },
             "development": {
-              "buildTarget": "datta-able-free-angular-admin-template:build:development"
+              "browserTarget": "skote:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +99,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "datta-able-free-angular-admin-template:build"
+            "browserTarget": "skote:build"
           }
         },
         "test": {
@@ -87,8 +110,13 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         }
@@ -96,6 +124,6 @@
     }
   },
   "cli": {
-    "analytics": "0eaad924-6e2a-434b-aad5-51d9f46776fc"
+    "analytics": "58f4e6be-d419-4d8a-b1cb-8cc152c2b1b7"
   }
 }

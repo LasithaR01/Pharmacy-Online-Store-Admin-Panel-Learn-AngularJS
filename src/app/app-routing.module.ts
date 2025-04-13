@@ -1,70 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './theme/layout/admin/admin.component';
-import { GuestComponent } from './theme/layout/guest/guest.component';
+
+import { AuthGuard } from './core/guards/auth.guard';
+import { LayoutComponent } from './layouts/layout.component';
+import { CyptolandingComponent } from './cyptolanding/cyptolanding.component';
+import { Page404Component } from './extrapages/page404/page404.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AdminComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
-        loadComponent: () => import('./demo/dashboard/dashboard.component')
-      },
-      {
-        path: 'basic',
-        loadChildren: () => import('./demo/ui-elements/ui-basic/ui-basic.module').then((m) => m.UiBasicModule)
-      },
-      {
-        path: 'forms',
-        loadChildren: () => import('./demo/pages/form-elements/form-elements.module').then((m) => m.FormElementsModule)
-      },
-      {
-        path: 'tables',
-        loadChildren: () => import('./demo/pages/tables/tables.module').then((m) => m.TablesModule)
-      },
-      {
-        path: 'apexchart',
-        loadComponent: () => import('./demo/chart/apex-chart/apex-chart.component')
-      },
-      {
-        path: 'sample-page',
-        loadComponent: () => import('./demo/extra/sample-page/sample-page.component')
-      },
-      {
-        path: 'products',
-        loadChildren: () => import('./demo/pages/products/products.module').then((m) => m.ProductsModule)
-      },
-      {
-        path: 'categories',
-        loadChildren: () => import('./demo/pages/categories/categories.module').then((m) => m.CategoriesModule)
-      },
-      {
-        path: 'suppliers',
-        loadChildren: () => import('./demo/pages/suppliers/suppliers.module').then((m) => m.SuppliersModule)
-      },
-    ]
-  },
-  {
-    path: '',
-    component: GuestComponent,
-    children: [
-      {
-        path: 'auth',
-        loadChildren: () => import('./demo/pages/authentication/authentication.module').then((m) => m.AuthenticationModule)
-      }
-    ]
-  }
+  { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
+  // tslint:disable-next-line: max-line-length
+  { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard] },
+  { path: 'pages', loadChildren: () => import('./extrapages/extrapages.module').then(m => m.ExtrapagesModule), canActivate: [AuthGuard] },
+  { path: 'crypto-ico-landing', component: CyptolandingComponent },
+  { path: '**', component: Page404Component },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+
+export class AppRoutingModule { }

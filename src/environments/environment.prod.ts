@@ -1,6 +1,14 @@
-import packageInfo from '../../package.json';
-
 export const environment = {
-  appVersion: packageInfo.version,
-  production: true
+  production: true,
+  defaultauth: 'fackbackend',
+  firebaseConfig: {
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: '',
+    appId: '',
+    measurementId: ''
+  }
 };
