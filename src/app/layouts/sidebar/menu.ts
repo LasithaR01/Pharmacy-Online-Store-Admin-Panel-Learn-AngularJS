@@ -49,6 +49,37 @@ export const MENU: MenuItem[] = [
     },
     {
         id: 9,
+        label: 'Product Management',
+        isTitle: true
+    },
+    {
+        id: 13,
+        label: 'Category',
+        icon: 'bx-store',
+        subItems: [
+            {
+                id: 14,
+                label: 'Category list',
+                link: '/categories/list',
+                parentId: 13
+            },
+        ]
+    },
+    {
+        id: 13,
+        label: 'Product',
+        icon: 'bx-store',
+        subItems: [
+            {
+                id: 14,
+                label: 'Product list',
+                link: '/products/list',
+                parentId: 13
+            },
+        ]
+    },
+    {
+        id: 9,
         label: 'MENUITEMS.APPS.TEXT',
         isTitle: true
     },
