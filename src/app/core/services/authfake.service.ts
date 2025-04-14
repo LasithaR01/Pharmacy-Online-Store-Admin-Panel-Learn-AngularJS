@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '../models/auth.models';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthfakeauthenticationService {
@@ -19,11 +20,13 @@ export class AuthfakeauthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(email: string, password: string) {
-        return this.http.post<any>(`/users/authenticate`, { email, password })
+    login(username: string, password: string) {
+        // return this.http.post<any>(`/users/authenticate`, { email, password })
+        return this.http.post<any>(`${environment.apiUrl}/auth/login`, { username, password })
             .pipe(map(user => {
+                console.log('login success response: ', user)
                 // login successful if there's a jwt token in the response
-                if (user && user.token) {
+                if (user && user.accessToken) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
