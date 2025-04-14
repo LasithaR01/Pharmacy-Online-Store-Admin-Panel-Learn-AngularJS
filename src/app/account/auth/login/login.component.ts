@@ -34,8 +34,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['admin@themesbrand.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required]],
+      // email: ['admin@themesbrand.com', [Validators.required, Validators.email]],
+      // password: ['123456', [Validators.required]],
+      username: ['kethaka', Validators.required],
+      password: ['password', Validators.required]
     });
 
     // reset login status
@@ -66,7 +68,7 @@ export class LoginComponent implements OnInit {
             this.error = error ? error : '';
           });
       } else {
-        this.authFackservice.login(this.f.email.value, this.f.password.value)
+        this.authFackservice.login(this.f.username.value, this.f.password.value)
           .pipe(first())
           .subscribe(
             data => {
