@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ListComponent } from './list/list.component';
+import { CreatecategoryComponent } from './createcategory/createcategory.component';
 // import { KanbanboardComponent } from './kanbanboard/kanbanboard.component';
 // import { CreatetaskComponent } from './createtask/createtask.component';
 
@@ -14,10 +15,10 @@ const routes: Routes = [
     //     path: 'kanban',
     //     component: KanbanboardComponent
     // },
-    // {
-    //     path: 'create',
-    //     component: CreatetaskComponent
-    // }
+    {
+        path: 'create',
+        component: CreatecategoryComponent
+    }
 ];
 
 @NgModule({

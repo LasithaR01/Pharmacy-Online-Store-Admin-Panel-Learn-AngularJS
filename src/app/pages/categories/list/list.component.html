@@ -110,3 +110,55 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div
+  bsModal
+  #removeCategoryModal="bs-modal"
+  class="modal fade"
+  id="removeCategoryModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body px-4 py-5 text-center">
+        <button
+          type="button"
+          class="btn-close position-absolute end-0 top-0 m-3"
+          (click)="removeCategoryModal.hide()"
+        ></button>
+        <div class="avatar-sm mb-4 mx-auto">
+          <div
+            class="avatar-title bg-primary text-primary bg-opacity-10 font-size-20 rounded-3"
+          >
+            <i class="mdi mdi-trash-can-outline"></i>
+          </div>
+        </div>
+        <p class="text-muted font-size-16 mb-4">
+          Are you Sure You want to Remove this Order ?
+        </p>
+
+        <div class="hstack gap-2 justify-content-center mb-0">
+          <button
+            type="button"
+            class="btn btn-danger"
+            id="remove-item"
+            (click)="deleteCategory()"
+          >
+            Remove Now
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="close-removeOrderModal"
+            (click)="removeCategoryModal.hide()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end removeCategoryModal -->

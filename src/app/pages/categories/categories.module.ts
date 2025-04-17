@@ -15,11 +15,12 @@ import { TasksRoutingModule } from './categories-routing.module';
 import { UIModule } from '../../shared/ui/ui.module';
 
 import { ListComponent } from './list/list.component';
+import { CreatecategoryComponent } from './createcategory/createcategory.component';
 // import { KanbanboardComponent } from './kanbanboard/kanbanboard.component';
 // import { CreatetaskComponent } from './createtask/createtask.component';
 
 @NgModule({
-  declarations: [ListComponent],
+  declarations: [ListComponent, CreatecategoryComponent],
   imports: [
     CommonModule,
     FormsModule,
