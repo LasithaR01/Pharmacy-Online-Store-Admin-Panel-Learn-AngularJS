@@ -29,4 +29,12 @@ export class ListComponent implements OnInit {
 
     console.log('cat: ', this.categories)
   }
+
+  editModal(i: number) {
+
+  }
+
+  deleteModal(i: number) {
+
+  }
 }
