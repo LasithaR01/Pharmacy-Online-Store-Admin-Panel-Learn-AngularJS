@@ -63,6 +63,12 @@ export const MENU: MenuItem[] = [
                 link: '/categories/list',
                 parentId: 13
             },
+            {
+                id: 14,
+                label: 'Create Category',
+                link: '/categories/create',
+                parentId: 13
+            },
         ]
     },
     {

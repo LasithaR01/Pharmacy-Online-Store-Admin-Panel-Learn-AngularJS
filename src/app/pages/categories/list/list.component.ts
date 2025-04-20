@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ModalDirective } from "ngx-bootstrap/modal";
 import { Category } from "src/app/core/models/category.models";
 import { CategoryService } from "src/app/core/services/category.service";
 
@@ -11,11 +12,17 @@ export class ListComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
   categories: Category[] = [];
+  @ViewChild("removeCategoryModal", { static: false })
+  removeCategoryModal?: ModalDirective;
+  deletId: any;
 
-  constructor (private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: "Home" }, { label: "Categories", active: true }];
+    this.breadCrumbItems = [
+      { label: "Home" },
+      { label: "Categories", active: true },
+    ];
 
     this.categoryService.getAll().subscribe({
       next: (data) => {
@@ -24,10 +31,30 @@ export class ListComponent implements OnInit {
       },
       error: (err) => {
         console.error("Failed to load categories", err);
-      }
+      },
     });
 
-    console.log('cat: ', this.categories)
+    console.log("cat: ", this.categories);
+  }
+
+  // Delete Data
+  confirm(id: any) {
+    this.deletId = id;
+    this.removeCategoryModal.show();
+  }
+
+  deleteCategory() {
+    this.categoryService.delete(this.deletId).subscribe({
+      next: () => {
+        console.log("Category deleted successfully");
+        // Optionally refresh the list
+      },
+      error: (err) => {
+        console.error("Failed to delete category", err);
+      },
+    });
+
+    this.removeCategoryModal.hide();
   }
 
   editModal(i: number) {

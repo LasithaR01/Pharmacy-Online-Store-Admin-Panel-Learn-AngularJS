@@ -12,8 +12,6 @@ export class CategoryService {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const token = currentUser?.accessToken;
 
-    console.log('token: ', token)
-
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -22,4 +20,27 @@ export class CategoryService {
       headers,
     });
   }
+
+  create(category: { name: string; description: string }) {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const token = currentUser?.accessToken;
+  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  
+    return this.http.post(`${environment.apiUrl}/categories`, category, { headers });
+  }
+
+  delete(categoryId: number) {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const token = currentUser?.accessToken;
+  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  
+    return this.http.delete(`${environment.apiUrl}/categories/${categoryId}`, { headers });
+  }
+  
 }

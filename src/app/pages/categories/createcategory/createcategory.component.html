@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    title="Create Category"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Create New Category</h4>
+          <form
+            [formGroup]="categoryForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="taskname" class="col-form-label col-lg-2"
+                    >Category Name</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="name"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Category Name..."
+                    />
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2"
+                    >Category Description</label
+                  >
+                  <div class="col-lg-10">
+                    <ckeditor
+                      [editor]="Editor"
+                      formControlName="description"
+                    ></ckeditor>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  Create Category
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
