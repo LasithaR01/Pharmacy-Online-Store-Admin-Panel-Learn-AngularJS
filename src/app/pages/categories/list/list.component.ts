@@ -38,7 +38,7 @@ export class ListComponent implements OnInit {
   }
 
   // Delete Data
-  confirm(id: any) {
+  deleteModal(id: any) {
     this.deletId = id;
     this.removeCategoryModal.show();
   }
@@ -61,7 +61,5 @@ export class ListComponent implements OnInit {
 
   }
 
-  deleteModal(i: number) {
 
-  }
 }
