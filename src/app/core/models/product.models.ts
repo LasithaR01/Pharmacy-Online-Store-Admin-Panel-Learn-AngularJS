@@ -4,4 +4,5 @@ export class Product {
     slug: string;
     batchNumber: string;
 
+
 }
