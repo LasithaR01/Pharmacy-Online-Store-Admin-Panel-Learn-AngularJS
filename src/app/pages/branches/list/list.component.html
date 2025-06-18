@@ -57,14 +57,14 @@
                       <a
                         href="javascript:void(0);"
                         class="text-success"
-                        (click)="editModal(i)"
+                        (click)="edit(data.id)"
                       >
                         <i class="mdi mdi-pencil font-size-18"></i>
                       </a>
                       <a
                         href="javascript:void(0);"
                         class="text-danger"
-                        (click)="deleteModal(i)"
+                        (click)="showDeleteModal(data.id)"
                       >
                         <i class="mdi mdi-delete font-size-18"></i>
                       </a>
@@ -80,3 +80,55 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div
+  bsModal
+  #removeItemModal="bs-modal"
+  class="modal fade"
+  id="removeItemModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body px-4 py-5 text-center">
+        <button
+          type="button"
+          class="btn-close position-absolute end-0 top-0 m-3"
+          (click)="removeItemModal.hide()"
+        ></button>
+        <div class="avatar-sm mb-4 mx-auto">
+          <div
+            class="avatar-title bg-primary text-primary bg-opacity-10 font-size-20 rounded-3"
+          >
+            <i class="mdi mdi-trash-can-outline"></i>
+          </div>
+        </div>
+        <p class="text-muted font-size-16 mb-4">
+          Are you Sure You want to Remove this Branch ?
+        </p>
+
+        <div class="hstack gap-2 justify-content-center mb-0">
+          <button
+            type="button"
+            class="btn btn-danger"
+            id="remove-item"
+            (click)="delete()"
+          >
+            Remove Now
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="close-removeOrderModal"
+            (click)="removeItemModal.hide()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end removeItemModal -->
