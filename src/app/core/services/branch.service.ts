@@ -1,45 +1,31 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Branch } from "../models/branch.models";
-import { environment } from "src/environments/environment";
+import { BaseService } from "./base.service";
 
 @Injectable({ providedIn: "root" })
-export class BranchService {
-  constructor(private http: HttpClient) {}
+export class BranchService extends BaseService {
+  constructor(protected override http: HttpClient) {
+    super(http);
+  }
 
   getAll() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const token = currentUser?.accessToken;
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
-    return this.http.get<Branch[]>(`${environment.apiUrl}/branches`, {
-      headers,
-    });
+    return this.get<Branch[]>("branches");
   }
 
-  create(category: { name: string; description: string }) {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const token = currentUser?.accessToken;
-  
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-  
-    return this.http.post(`${environment.apiUrl}/branches`, category, { headers });
+  getById(id: string) {
+    return this.get<Branch>(`branches/${id}`);
   }
 
-  delete(categoryId: number) {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const token = currentUser?.accessToken;
-  
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-  
-    return this.http.delete(`${environment.apiUrl}/branches/${categoryId}`, { headers });
+  create(branch: Partial<Branch>) {
+    return this.post("branches", branch);
   }
-  
+
+  update(id: string, branch: Partial<Branch>) {
+    return this.put(`branches/${id}`, branch);
+  }
+
+  remove(id: string) {
+    return this.delete(`branches/${id}`);
+  }
 }

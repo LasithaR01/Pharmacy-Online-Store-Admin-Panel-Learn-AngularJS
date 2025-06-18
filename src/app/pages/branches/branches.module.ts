@@ -14,10 +14,10 @@ import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { UIModule } from "../../shared/ui/ui.module";
 import { ListComponent } from "./list/list.component";
 import { BranchesRoutingModule } from "./branches-routing.module";
-import { CreateBranchComponent } from './create-branch/create-branch.component';
+import { CreateOrUpdateBranchComponent } from './create-or-update/create-branch.component';
 
 @NgModule({
-  declarations: [ListComponent, CreateBranchComponent],
+  declarations: [ListComponent, CreateOrUpdateBranchComponent],
   imports: [
     CommonModule,
     FormsModule,

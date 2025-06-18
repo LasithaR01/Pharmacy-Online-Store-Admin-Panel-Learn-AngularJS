@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <!-- start page title -->
   <app-page-title
-    title="Create Branch"
+    [title]="isEditMode ? 'Update Branch' : 'Create Branch'"
     [breadcrumbItems]="breadCrumbItems"
   ></app-page-title>
   <!-- end page title -->
@@ -10,7 +10,7 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">Create New Branch</h4>
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Branch' : 'Create New Branch' }}</h4>
           <form
             [formGroup]="branchForm"
             (ngSubmit)="onSubmit()"
@@ -79,7 +79,7 @@
             <div class="row justify-content-end">
               <div class="col-lg-10">
                 <button type="submit" class="btn btn-primary">
-                  Create Branch
+                  {{ isEditMode ? 'Update Branch' : 'Create Branch' }}
                 </button>
               </div>
             </div>

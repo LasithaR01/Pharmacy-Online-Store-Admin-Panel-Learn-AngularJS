@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { ListComponent } from "./list/list.component";
-import { CreateBranchComponent } from "./create-branch/create-branch.component";
+import { CreateOrUpdateBranchComponent } from "./create-or-update/create-branch.component";
 
 const routes: Routes = [
   {
@@ -11,7 +11,11 @@ const routes: Routes = [
   },
   {
     path: "create",
-    component: CreateBranchComponent,
+    component: CreateOrUpdateBranchComponent,
+  },
+    {
+    path: "update/:id",
+    component: CreateOrUpdateBranchComponent,
   },
 ];
 
