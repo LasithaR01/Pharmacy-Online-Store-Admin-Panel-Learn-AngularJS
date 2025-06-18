@@ -8,6 +8,7 @@ import { CategoryService } from "src/app/core/services/category.service";
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.scss"],
 })
+
 export class ListComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
