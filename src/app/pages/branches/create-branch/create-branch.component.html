@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    title="Create Branch"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Create New Branch</h4>
+          <form
+            [formGroup]="branchForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="taskname" class="col-form-label col-lg-2"
+                    >Name</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="name"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          branchForm.get('name')?.invalid &&
+                          branchForm.get('name')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        branchForm.get('name')?.hasError('required') &&
+                        branchForm.get('name')?.touched
+                      "
+                    >
+                      Name is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Location</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="location"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Contact No.</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="contactNumber"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Opening Hours</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="openingHours"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  Create Branch
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
