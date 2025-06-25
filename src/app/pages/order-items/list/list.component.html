@@ -1,0 +1,143 @@
+<!-- src/app/order-items/list/list.component.html -->
+<div class="container-fluid">
+  <app-page-title
+    title="Order Items"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-sm-4">
+              <div class="search-box me-2 mb-2 d-inline-block">
+                <div class="position-relative">
+                  <input
+                    type="text"
+                    class="form-control"
+                    autocomplete="off"
+                    id="searchTableList"
+                    placeholder="Search..."
+                    [(ngModel)]="searchTerm"
+                    (keyup)="applyFilter()"
+                  />
+                  <i class="bx bx-search-alt search-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="text-sm-end">
+                <button
+                  type="button"
+                  class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"
+                  (click)="router.navigate(['/order-items/create'])"
+                >
+                  <i class="mdi mdi-plus me-1"></i> New Order Item
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive mb-0">
+            <table class="table align-middle table-nowrap dt-responsive nowrap w-100 table-check">
+              <thead class="table-light">
+                <tr>
+                  <th class="align-middle">ID</th>
+                  <th class="align-middle">Product</th>
+                  <th class="align-middle">Barcode</th>
+                  <th class="align-middle">Quantity</th>
+                  <th class="align-middle">Price</th>
+                  <th class="align-middle">Discount</th>
+                  <th class="align-middle">Total</th>
+                  <th class="align-middle">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of filteredOrderItems">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.productName }}</td>
+                  <td>{{ item.productBarcode }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.price | currency }}</td>
+                  <td>{{ item.discountAmount | currency }}</td>
+                  <td>{{ item.totalPrice | currency }}</td>
+                  <td>
+                    <div class="d-flex gap-3">
+                      <a
+                        href="javascript:void(0);"
+                        class="text-success"
+                        (click)="edit(item.id)"
+                      >
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </a>
+                      <a
+                        href="javascript:void(0);"
+                        class="text-danger"
+                        (click)="showDeleteModal(item.id)"
+                      >
+                        <i class="mdi mdi-delete font-size-18"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="filteredOrderItems.length === 0">
+                  <td colspan="8" class="text-center">No order items found</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  bsModal
+  #removeItemModal="bs-modal"
+  class="modal fade"
+  id="removeItemModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body px-4 py-5 text-center">
+        <button
+          type="button"
+          class="btn-close position-absolute end-0 top-0 m-3"
+          (click)="removeItemModal.hide()"
+        ></button>
+        <div class="avatar-sm mb-4 mx-auto">
+          <div
+            class="avatar-title bg-primary text-primary bg-opacity-10 font-size-20 rounded-3"
+          >
+            <i class="mdi mdi-trash-can-outline"></i>
+          </div>
+        </div>
+        <p class="text-muted font-size-16 mb-4">
+          Are you sure you want to remove this order item?
+        </p>
+
+        <div class="hstack gap-2 justify-content-center mb-0">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="delete()"
+          >
+            Remove Now
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="removeItemModal.hide()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
