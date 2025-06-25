@@ -1,0 +1,252 @@
+<!-- src/app/stocks/create-or-update-stock/create-or-update-stock.component.html -->
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Stock' : 'Create Stock'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Stock' : 'Create New Stock Entry' }}</h4>
+          <form
+            [formGroup]="stockForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="productId" class="col-form-label col-lg-2"
+                    >Product</label
+                  >
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="productId"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          stockForm.get('productId')?.invalid &&
+                          stockForm.get('productId')?.touched
+                      }"
+                    >
+                      <option value="">Select Product</option>
+                      <!-- Options would be populated from a products service -->
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        stockForm.get('productId')?.hasError('required') &&
+                        stockForm.get('productId')?.touched
+                      "
+                    >
+                      Product is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="supplierId" class="col-form-label col-lg-2"
+                    >Supplier</label
+                  >
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="supplierId"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          stockForm.get('supplierId')?.invalid &&
+                          stockForm.get('supplierId')?.touched
+                      }"
+                    >
+                      <option value="">Select Supplier</option>
+                      <!-- Options would be populated from a suppliers service -->
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        stockForm.get('supplierId')?.hasError('required') &&
+                        stockForm.get('supplierId')?.touched
+                      "
+                    >
+                      Supplier is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="quantityAdded" class="col-form-label col-lg-2"
+                    >Quantity</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="quantityAdded"
+                      type="number"
+                      min="1"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          stockForm.get('quantityAdded')?.invalid &&
+                          stockForm.get('quantityAdded')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        stockForm.get('quantityAdded')?.hasError('required') &&
+                        stockForm.get('quantityAdded')?.touched
+                      "
+                    >
+                      Quantity is required.
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        stockForm.get('quantityAdded')?.hasError('min') &&
+                        stockForm.get('quantityAdded')?.touched
+                      "
+                    >
+                      Quantity must be at least 1.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="unitCost" class="col-form-label col-lg-2"
+                    >Unit Cost</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="unitCost"
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          stockForm.get('unitCost')?.invalid &&
+                          stockForm.get('unitCost')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        stockForm.get('unitCost')?.hasError('required') &&
+                        stockForm.get('unitCost')?.touched
+                      "
+                    >
+                      Unit cost is required.
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        stockForm.get('unitCost')?.hasError('min') &&
+                        stockForm.get('unitCost')?.touched
+                      "
+                    >
+                      Unit cost must be positive.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="expiryDate" class="col-form-label col-lg-2"
+                    >Expiry Date</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="expiryDate"
+                      type="date"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="batchNumber" class="col-form-label col-lg-2"
+                    >Batch Number</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="batchNumber"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="branchId" class="col-form-label col-lg-2"
+                    >Branch</label
+                  >
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="branchId"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          stockForm.get('branchId')?.invalid &&
+                          stockForm.get('branchId')?.touched
+                      }"
+                    >
+                      <option value="">Select Branch</option>
+                      <!-- Options would be populated from a branches service -->
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        stockForm.get('branchId')?.hasError('required') &&
+                        stockForm.get('branchId')?.touched
+                      "
+                    >
+                      Branch is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="approvedById" class="col-form-label col-lg-2"
+                    >Approved By</label
+                  >
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="approvedById"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          stockForm.get('approvedById')?.invalid &&
+                          stockForm.get('approvedById')?.touched
+                      }"
+                    >
+                      <option value="">Select Approver</option>
+                      <!-- Options would be populated from a users service -->
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        stockForm.get('approvedById')?.hasError('required') &&
+                        stockForm.get('approvedById')?.touched
+                      "
+                    >
+                      Approver is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Stock' : 'Create Stock' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
