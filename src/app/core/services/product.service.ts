@@ -1,23 +1,52 @@
+// src/app/core/services/product.service.ts
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from "src/environments/environment";
-
 import { Product } from "../models/product.models";
+import { BaseService } from "./base.service";
 
 @Injectable({ providedIn: "root" })
-export class ProductService {
-  constructor(private http: HttpClient) {}
+export class ProductService extends BaseService {
+  constructor(protected override http: HttpClient) {
+    super(http);
+  }
 
   getAll() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const token = currentUser?.accessToken;
+    return this.get<Product[]>("products");
+  }
 
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
+  getById(id: string) {
+    return this.get<Product>(`products/${id}`);
+  }
 
-    return this.http.get<Product[]>(`${environment.apiUrl}/products`, {
-      headers,
-    });
+  getByBarcode(barcode: string) {
+    return this.get<Product>(`products/barcode/${barcode}`);
+  }
+
+  create(product: Partial<Product>) {
+    return this.post("products", product);
+  }
+
+  update(id: string, product: Partial<Product>) {
+    return this.put(`products/${id}`, product);
+  }
+
+  remove(id: string) {
+    return this.delete(`products/${id}`);
+  }
+
+  getByCategory(categoryId: string) {
+    return this.get<Product[]>(`products/category/${categoryId}`);
+  }
+
+  search(name: string) {
+    return this.get<Product[]>(`products/search?name=${name}`);
+  }
+
+  getLowStock() {
+    return this.get<Product[]>("products/low-stock");
+  }
+
+  getExpiring() {
+    return this.get<Product[]>("products/expiring");
   }
 }
