@@ -1,38 +1,37 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// src/app/pages/categories/categories.module.ts
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { DndModule } from 'ngx-drag-drop';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
+import { DndModule } from "ngx-drag-drop";
 
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { ModalModule } from "ngx-bootstrap/modal";
+import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 
-import { TasksRoutingModule } from './categories-routing.module';
-import { UIModule } from '../../shared/ui/ui.module';
+import { UIModule } from "../../shared/ui/ui.module";
+import { ListComponent } from "./list/list.component";
+import { CategoriesRoutingModule } from "./categories-routing.module";
+import {CreateOrUpdateCategoryComponent} from "./create-or-update/create-or-update.component";
 
-import { ListComponent } from './list/list.component';
-import { CreatecategoryComponent } from './createcategory/createcategory.component';
-// import { KanbanboardComponent } from './kanbanboard/kanbanboard.component';
-// import { CreatetaskComponent } from './createtask/createtask.component';
 
 @NgModule({
-  declarations: [ListComponent, CreatecategoryComponent],
+  declarations: [ListComponent, CreateOrUpdateCategoryComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TasksRoutingModule,
+    CategoriesRoutingModule,
     UIModule,
     NgApexchartsModule,
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
     CKEditorModule,
     DndModule,
-    BsDropdownModule.forRoot()
-  ]
+    BsDropdownModule.forRoot(),
+  ],
 })
-export class CategoriesModule { }
+export class CategoriesModule {}
