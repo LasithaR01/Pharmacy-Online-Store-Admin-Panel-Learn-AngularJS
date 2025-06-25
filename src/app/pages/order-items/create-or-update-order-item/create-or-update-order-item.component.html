@@ -1,0 +1,181 @@
+<!-- src/app/order-items/create-or-update-order-item/create-or-update-order-item.component.html -->
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Order Item' : 'Create Order Item'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Order Item' : 'Create New Order Item' }}</h4>
+          <form
+            [formGroup]="orderItemForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="orderId" class="col-form-label col-lg-2"
+                    >Order ID</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="orderId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          orderItemForm.get('orderId')?.invalid &&
+                          orderItemForm.get('orderId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        orderItemForm.get('orderId')?.hasError('required') &&
+                        orderItemForm.get('orderId')?.touched
+                      "
+                    >
+                      Order ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Product ID</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="productId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          orderItemForm.get('productId')?.invalid &&
+                          orderItemForm.get('productId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        orderItemForm.get('productId')?.hasError('required') &&
+                        orderItemForm.get('productId')?.touched
+                      "
+                    >
+                      Product ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Quantity</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="quantity"
+                      type="number"
+                      min="1"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          orderItemForm.get('quantity')?.invalid &&
+                          orderItemForm.get('quantity')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        orderItemForm.get('quantity')?.hasError('required') &&
+                        orderItemForm.get('quantity')?.touched
+                      "
+                    >
+                      Quantity is required.
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        orderItemForm.get('quantity')?.hasError('min') &&
+                        orderItemForm.get('quantity')?.touched
+                      "
+                    >
+                      Quantity must be at least 1.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Price</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="price"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          orderItemForm.get('price')?.invalid &&
+                          orderItemForm.get('price')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        orderItemForm.get('price')?.hasError('required') &&
+                        orderItemForm.get('price')?.touched
+                      "
+                    >
+                      Price is required.
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        orderItemForm.get('price')?.hasError('min') &&
+                        orderItemForm.get('price')?.touched
+                      "
+                    >
+                      Price must be positive.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Discount Amount</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="discountAmount"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          orderItemForm.get('discountAmount')?.invalid &&
+                          orderItemForm.get('discountAmount')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        orderItemForm.get('discountAmount')?.hasError('min') &&
+                        orderItemForm.get('discountAmount')?.touched
+                      "
+                    >
+                      Discount must be positive.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Order Item' : 'Create Order Item' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
