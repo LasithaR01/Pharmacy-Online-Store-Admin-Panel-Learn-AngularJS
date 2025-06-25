@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateBranchComponent } from './create-branch.component';
+import { CreateBranchComponent } from './create-or-update-branch.component';
 
 describe('CreateBranchComponent', () => {
   let component: CreateBranchComponent;

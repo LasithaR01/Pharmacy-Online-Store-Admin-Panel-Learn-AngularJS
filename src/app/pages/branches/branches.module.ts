@@ -14,7 +14,7 @@ import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { UIModule } from "../../shared/ui/ui.module";
 import { ListComponent } from "./list/list.component";
 import { BranchesRoutingModule } from "./branches-routing.module";
-import { CreateOrUpdateBranchComponent } from './create-or-update-branch/create-branch.component';
+import { CreateOrUpdateBranchComponent } from './create-or-update-branch/create-or-update-branch.component';
 
 @NgModule({
   declarations: [ListComponent, CreateOrUpdateBranchComponent],

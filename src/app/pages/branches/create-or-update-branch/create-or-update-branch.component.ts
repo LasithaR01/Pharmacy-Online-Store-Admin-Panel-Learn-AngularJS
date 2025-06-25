@@ -7,8 +7,8 @@ import { BranchService } from "src/app/core/services/branch.service";
 
 @Component({
   selector: "app-create-branch",
-  templateUrl: "./create-branch.component.html",
-  styleUrls: ["./create-branch.component.scss"],
+  templateUrl: "./create-or-update-branch.component.html",
+  styleUrls: ["./create-or-update-branch.component.scss"],
 })
 export class CreateOrUpdateBranchComponent implements OnInit {
   @Input() isEditMode: boolean = false;
