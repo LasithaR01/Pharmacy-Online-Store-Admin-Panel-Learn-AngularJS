@@ -1,0 +1,161 @@
+<!-- src/app/notifications/create-or-update-notification/create-or-update-notification.component.html -->
+
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Notification' : 'Create Notification'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Notification' : 'Create New Notification' }}</h4>
+          <form
+            [formGroup]="notificationForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="userId" class="col-form-label col-lg-2"
+                    >User ID</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="userId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          notificationForm.get('userId')?.invalid &&
+                          notificationForm.get('userId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        notificationForm.get('userId')?.hasError('required') &&
+                        notificationForm.get('userId')?.touched
+                      "
+                    >
+                      User ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Title</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="title"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          notificationForm.get('title')?.invalid &&
+                          notificationForm.get('title')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        notificationForm.get('title')?.hasError('required') &&
+                        notificationForm.get('title')?.touched
+                      "
+                    >
+                      Title is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Message</label>
+                  <div class="col-lg-10">
+                    <ckeditor
+                      [editor]="Editor"
+                      formControlName="message"
+                      [ngClass]="{
+                        'is-invalid':
+                          notificationForm.get('message')?.invalid &&
+                          notificationForm.get('message')?.touched
+                      }"
+                    ></ckeditor>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        notificationForm.get('message')?.hasError('required') &&
+                        notificationForm.get('message')?.touched
+                      "
+                    >
+                      Message is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Type</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="notificationType"
+                      class="form-select"
+                      [ngClass]="{
+                        'is-invalid':
+                          notificationForm.get('notificationType')?.invalid &&
+                          notificationForm.get('notificationType')?.touched
+                      }"
+                    >
+                      <option *ngFor="let type of notificationTypes" [value]="type">{{ type }}</option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        notificationForm.get('notificationType')?.hasError('required') &&
+                        notificationForm.get('notificationType')?.touched
+                      "
+                    >
+                      Notification type is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Related ID</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="relatedId"
+                      type="number"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-4" *ngIf="isEditMode">
+                  <label class="col-form-label col-lg-2">Read Status</label>
+                  <div class="col-lg-10">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="isRead"
+                        id="isReadCheck"
+                      />
+                      <label class="form-check-label" for="isReadCheck">
+                        Mark as read
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Notification' : 'Create Notification' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
