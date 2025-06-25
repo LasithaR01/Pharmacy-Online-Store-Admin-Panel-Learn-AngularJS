@@ -1,28 +1,28 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+// src/app/pages/categories/categories-routing.module.ts
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { ListComponent } from './list/list.component';
-import { CreatecategoryComponent } from './createcategory/createcategory.component';
-// import { KanbanboardComponent } from './kanbanboard/kanbanboard.component';
-// import { CreatetaskComponent } from './createtask/createtask.component';
+import { ListComponent } from "./list/list.component";
+import {CreateOrUpdateCategoryComponent} from "./create-or-update/create-or-update.component";
+
 
 const routes: Routes = [
-    {
-        path: 'list',
-        component: ListComponent
-    },
-    // {
-    //     path: 'kanban',
-    //     component: KanbanboardComponent
-    // },
-    {
-        path: 'create',
-        component: CreatecategoryComponent
-    }
+  {
+    path: "list",
+    component: ListComponent,
+  },
+  {
+    path: "create",
+    component: CreateOrUpdateCategoryComponent,
+  },
+  {
+    path: "update/:id",
+    component: CreateOrUpdateCategoryComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class TasksRoutingModule { }
+export class CategoriesRoutingModule {}

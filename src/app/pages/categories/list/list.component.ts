@@ -1,5 +1,8 @@
+// src/app/pages/categories/list/list.component.ts
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 import { ModalDirective } from "ngx-bootstrap/modal";
+import { ToastrService } from "ngx-toastr";
 import { Category } from "src/app/core/models/category.models";
 import { CategoryService } from "src/app/core/services/category.service";
 
@@ -8,16 +11,20 @@ import { CategoryService } from "src/app/core/services/category.service";
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.scss"],
 })
-
 export class ListComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
   categories: Category[] = [];
-  @ViewChild("removeCategoryModal", { static: false })
-  removeCategoryModal?: ModalDirective;
+
+  @ViewChild("removeItemModal", { static: false })
+  removeItemModal?: ModalDirective;
   deletId: any;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    public categoryService: CategoryService,
+    public router: Router,
+    public toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.breadCrumbItems = [
@@ -25,42 +32,51 @@ export class ListComponent implements OnInit {
       { label: "Categories", active: true },
     ];
 
+    this.loadCategories();
+  }
+
+  loadCategories() {
     this.categoryService.getAll().subscribe({
       next: (data) => {
         this.categories = data;
-        console.log("Categories loaded:", this.categories);
       },
       error: (err) => {
         console.error("Failed to load categories", err);
+        this.toastr.error("Failed to load categories");
       },
     });
-
-    console.log("cat: ", this.categories);
   }
 
-  // Delete Data
-  deleteModal(id: any) {
-    this.deletId = id;
-    this.removeCategoryModal.show();
-  }
-
-  deleteCategory() {
-    this.categoryService.delete(this.deletId).subscribe({
-      next: () => {
-        console.log("Category deleted successfully");
-        // Optionally refresh the list
+  searchCategories(name: string) {
+    this.categoryService.search(name).subscribe({
+      next: (data) => {
+        this.categories = data;
       },
       error: (err) => {
-        console.error("Failed to delete category", err);
+        this.toastr.error("Failed to search categories");
       },
     });
-
-    this.removeCategoryModal.hide();
   }
 
-  editModal(i: number) {
-
+  edit(id: string): void {
+    this.router.navigate([`/categories/update`, id]);
   }
 
+  showDeleteModal(id: string): void {
+    this.deletId = id;
+    this.removeItemModal?.show();
+  }
 
+  delete(): void {
+    this.categoryService.remove(this.deletId).subscribe({
+      next: () => {
+        this.toastr.success("Category deleted successfully!", "Success");
+        this.loadCategories();
+      },
+      error: () => {
+        this.toastr.error("Error deleting category");
+      },
+    });
+    this.removeItemModal?.hide();
+  }
 }

@@ -1,46 +1,41 @@
+// src/app/core/services/category.service.ts
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from "src/environments/environment";
-
 import { Category } from "../models/category.models";
+import { BaseService } from "./base.service";
 
 @Injectable({ providedIn: "root" })
-export class CategoryService {
-  constructor(private http: HttpClient) {}
+export class CategoryService extends BaseService {
+  constructor(protected override http: HttpClient) {
+    super(http);
+  }
 
   getAll() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const token = currentUser?.accessToken;
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
-    return this.http.get<Category[]>(`${environment.apiUrl}/categories`, {
-      headers,
-    });
+    return this.get<Category[]>("categories");
   }
 
-  create(category: { name: string; description: string }) {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const token = currentUser?.accessToken;
-  
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-  
-    return this.http.post(`${environment.apiUrl}/categories`, category, { headers });
+  getById(id: string) {
+    return this.get<Category>(`categories/${id}`);
   }
 
-  delete(categoryId: number) {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const token = currentUser?.accessToken;
-  
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-  
-    return this.http.delete(`${environment.apiUrl}/categories/${categoryId}`, { headers });
+  create(category: Partial<Category>) {
+    return this.post("categories", category);
   }
-  
+
+  update(id: string, category: Partial<Category>) {
+    return this.put(`categories/${id}`, category);
+  }
+
+  remove(id: string) {
+    return this.delete(`categories/${id}`);
+  }
+
+  getChildren(parentId: string) {
+    return this.get<Category[]>(`categories/${parentId}/children`);
+  }
+
+  search(name: string) {
+    // @ts-ignore
+    return this.get<Category[]>("categories/search", { params: { name } });
+  }
 }
