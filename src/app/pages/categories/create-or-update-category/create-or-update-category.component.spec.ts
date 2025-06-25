@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateOrUpdateComponent } from './create-or-update.component';
+import { CreateOrUpdateComponent } from './create-or-update-category.component';
 
 describe('CreateOrUpdateComponent', () => {
   let component: CreateOrUpdateComponent;

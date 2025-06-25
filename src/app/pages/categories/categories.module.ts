@@ -15,7 +15,7 @@ import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { UIModule } from "../../shared/ui/ui.module";
 import { ListComponent } from "./list/list.component";
 import { CategoriesRoutingModule } from "./categories-routing.module";
-import {CreateOrUpdateCategoryComponent} from "./create-or-update/create-or-update.component";
+import {CreateOrUpdateCategoryComponent} from "./create-or-update-category/create-or-update-category.component";
 
 
 @NgModule({

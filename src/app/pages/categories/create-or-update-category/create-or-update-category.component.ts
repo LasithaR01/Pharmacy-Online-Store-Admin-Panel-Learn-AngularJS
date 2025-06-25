@@ -1,4 +1,4 @@
-// src/app/pages/categories/create-or-update/create-or-update.component.ts
+// src/app/pages/categories/create-or-update-category-branch/create-or-update-category-branch.component.ts
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -8,9 +8,9 @@ import { CategoryService } from "src/app/core/services/category.service";
 import { Category } from "src/app/core/models/category.models";
 
 @Component({
-  selector: "app-create-or-update-category",
-  templateUrl: "./create-or-update.component.html",
-  styleUrls: ["./create-or-update.component.scss"],
+  selector: "app-create-or-update-category-branch-category",
+  templateUrl: "./create-or-update-category.component.html",
+  styleUrls: ["./create-or-update-category.component.scss"],
 })
 export class CreateOrUpdateCategoryComponent implements OnInit {
   @Input() isEditMode: boolean = false;

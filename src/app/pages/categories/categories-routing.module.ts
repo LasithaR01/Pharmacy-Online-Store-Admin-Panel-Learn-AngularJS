@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { ListComponent } from "./list/list.component";
-import {CreateOrUpdateCategoryComponent} from "./create-or-update/create-or-update.component";
+import {CreateOrUpdateCategoryComponent} from "./create-or-update-category/create-or-update-category.component";
 
 
 const routes: Routes = [
