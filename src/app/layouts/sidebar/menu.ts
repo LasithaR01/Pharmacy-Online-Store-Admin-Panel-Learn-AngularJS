@@ -101,6 +101,12 @@ export const MENU: MenuItem[] = [
         link: "/products/list",
         parentId: 13,
       },
+            {
+        id: 14,
+        label: "Create Product",
+        link: "/products/create",
+        parentId: 13,
+      },
     ],
   },
   {
