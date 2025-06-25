@@ -1,0 +1,175 @@
+<!-- src/app/orders/create-or-update-order/create-or-update-order.component.html -->
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Order' : 'Create Order'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Order' : 'Create New Order' }}</h4>
+          <form
+            [formGroup]="orderForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="userId" class="col-form-label col-lg-2">User ID</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="userId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          orderForm.get('userId')?.invalid &&
+                          orderForm.get('userId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        orderForm.get('userId')?.hasError('required') &&
+                        orderForm.get('userId')?.touched
+                      "
+                    >
+                      User ID is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="branchId" class="col-form-label col-lg-2">Branch ID</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="branchId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          orderForm.get('branchId')?.invalid &&
+                          orderForm.get('branchId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        orderForm.get('branchId')?.hasError('required') &&
+                        orderForm.get('branchId')?.touched
+                      "
+                    >
+                      Branch ID is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Order Date</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="orderDate"
+                      type="datetime-local"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          orderForm.get('orderDate')?.invalid &&
+                          orderForm.get('orderDate')?.touched
+                      }"
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Total Amount</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="totalAmount"
+                      type="number"
+                      step="0.01"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          orderForm.get('totalAmount')?.invalid &&
+                          orderForm.get('totalAmount')?.touched
+                      }"
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Status</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="status"
+                      class="form-select"
+                    >
+                      <option *ngFor="let status of OrderStatus | keyvalue" [value]="status.key">
+                        {{ status.value }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Payment Method</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="paymentMethod"
+                      class="form-select"
+                    >
+                      <option [value]="null">Select Payment Method</option>
+                      <option *ngFor="let method of PaymentMethod | keyvalue" [value]="method.key">
+                        {{ method.value }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Payment Status</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="paymentStatus"
+                      class="form-select"
+                    >
+                      <option *ngFor="let status of PaymentStatus | keyvalue" [value]="status.key">
+                        {{ status.value }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Notes</label>
+                  <div class="col-lg-10">
+                    <textarea
+                      formControlName="notes"
+                      class="form-control"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary me-2">
+                  {{ isEditMode ? 'Update Order' : 'Create Order' }}
+                </button>
+                <button *ngIf="isEditMode" type="button" class="btn btn-success" (click)="onCheckout()">
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
