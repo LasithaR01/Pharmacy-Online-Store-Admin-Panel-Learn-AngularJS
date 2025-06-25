@@ -205,6 +205,25 @@ export const MENU: MenuItem[] = [
     ],
   },
   {
+    id: 13,
+    label: "Notification",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Notification list",
+        link: "/notifications/list",
+        parentId: 13,
+      },
+            {
+        id: 14,
+        label: "Notification Item",
+        link: "/notifications/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
     id: 9,
     label: "MENUITEMS.APPS.TEXT",
     isTitle: true,
