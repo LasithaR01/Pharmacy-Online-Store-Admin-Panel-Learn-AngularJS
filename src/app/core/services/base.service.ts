@@ -1,39 +1,66 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from "src/environments/environment";
+// src/app/core/services/base.service.ts
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 export abstract class BaseService {
   protected baseUrl = environment.apiUrl;
 
   constructor(protected http: HttpClient) {}
 
+  /**
+   * Returns auth headers with Bearer token
+   */
   protected get authHeaders(): HttpHeaders {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     const token = currentUser?.accessToken;
     return new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
   }
 
-  protected get<T>(url: string) {
+  /**
+   * GET request with auth
+   */
+  protected get<T>(url: string): Observable<T> {
     return this.http.get<T>(`${this.baseUrl}/${url}`, {
       headers: this.authHeaders,
     });
   }
 
-  protected post<T>(url: string, body: any) {
+  /**
+   * POST request with auth
+   */
+  protected post<T>(url: string, body: any): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}/${url}`, body, {
       headers: this.authHeaders,
     });
   }
 
-  protected put<T>(url: string, body: any) {
+  /**
+   * PUT request with auth
+   */
+  protected put<T>(url: string, body: any): Observable<T> {
     return this.http.put<T>(`${this.baseUrl}/${url}`, body, {
       headers: this.authHeaders,
     });
   }
 
-  protected delete<T>(url: string) {
+  /**
+   * DELETE request with auth
+   */
+  protected delete<T>(url: string): Observable<T> {
     return this.http.delete<T>(`${this.baseUrl}/${url}`, {
+      headers: this.authHeaders,
+    });
+  }
+
+  /**
+   * PATCH request with auth
+   */
+  protected patch<T>(url: string, body: any): Observable<T> {
+    return this.http.patch<T>(`${this.baseUrl}/${url}`, body, {
       headers: this.authHeaders,
     });
   }
