@@ -21,23 +21,27 @@ export class ListComponent implements OnInit {
 
   constructor(
     private branchService: BranchService,
-    private router: Router,
+    public router: Router,  // Changed to public to access in template
     public toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.breadCrumbItems = [
       { label: "Home" },
-      { label: "Categories", active: true },
+      { label: "Branches", active: true },  // Changed from "Categories" to "Branches"
     ];
 
+    this.loadBranches();
+  }
+
+  loadBranches() {
     this.branchService.getAll().subscribe({
       next: (data) => {
         this.branches = data;
-        console.log("Categories loaded:", this.branches);
       },
       error: (err) => {
-        console.error("Failed to load categories", err);
+        console.error("Failed to load branches", err);
+        this.toastr.error("Failed to load branches");
       },
     });
   }
@@ -48,19 +52,19 @@ export class ListComponent implements OnInit {
 
   showDeleteModal(id: string): void {
     this.deletId = id;
-    this.removeItemModal.show();
+    this.removeItemModal?.show();
   }
 
   delete(): void {
     this.branchService.remove(this.deletId).subscribe({
       next: () => {
         this.toastr.success("Branch deleted successfully!", "Success");
-        // Optionally: refresh your list here
+        this.loadBranches();  // Refresh the list after deletion
       },
       error: () => {
         this.toastr.error("Error deleting branch");
       },
     });
-    this.removeItemModal.hide();
+    this.removeItemModal?.hide();
   }
 }
