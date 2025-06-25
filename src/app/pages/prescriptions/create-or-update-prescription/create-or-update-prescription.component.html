@@ -1,0 +1,178 @@
+<!-- src/app/prescriptions/create-or-update-prescription/create-or-update-prescription.component.html -->
+
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Prescription' : 'Create Prescription'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Prescription' : 'Create New Prescription' }}</h4>
+          <form
+            [formGroup]="prescriptionForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="userId" class="col-form-label col-lg-2">Patient ID</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="userId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          prescriptionForm.get('userId')?.invalid &&
+                          prescriptionForm.get('userId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        prescriptionForm.get('userId')?.hasError('required') &&
+                        prescriptionForm.get('userId')?.touched
+                      "
+                    >
+                      Patient ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Doctor Name</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="doctorName"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          prescriptionForm.get('doctorName')?.invalid &&
+                          prescriptionForm.get('doctorName')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        prescriptionForm.get('doctorName')?.hasError('required') &&
+                        prescriptionForm.get('doctorName')?.touched
+                      "
+                    >
+                      Doctor name is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Doctor Contact</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="doctorContact"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          prescriptionForm.get('doctorContact')?.invalid &&
+                          prescriptionForm.get('doctorContact')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        prescriptionForm.get('doctorContact')?.hasError('required') &&
+                        prescriptionForm.get('doctorContact')?.touched
+                      "
+                    >
+                      Doctor contact is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Prescription Date</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="prescriptionDate"
+                      type="date"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          prescriptionForm.get('prescriptionDate')?.invalid &&
+                          prescriptionForm.get('prescriptionDate')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        prescriptionForm.get('prescriptionDate')?.hasError('required') &&
+                        prescriptionForm.get('prescriptionDate')?.touched
+                      "
+                    >
+                      Prescription date is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Status</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="status"
+                      class="form-select"
+                      [ngClass]="{
+                        'is-invalid':
+                          prescriptionForm.get('status')?.invalid &&
+                          prescriptionForm.get('status')?.touched
+                      }"
+                    >
+                      <option *ngFor="let status of statusOptions" [value]="status">{{status}}</option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        prescriptionForm.get('status')?.hasError('required') &&
+                        prescriptionForm.get('status')?.touched
+                      "
+                    >
+                      Status is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Notes</label>
+                  <div class="col-lg-10">
+                    <textarea
+                      formControlName="notes"
+                      class="form-control"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Document URL</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="documentUrl"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Prescription' : 'Create Prescription' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
