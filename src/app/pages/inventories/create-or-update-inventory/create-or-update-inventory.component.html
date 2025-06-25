@@ -1,0 +1,173 @@
+<!-- src/app/inventories/create-or-update/create-or-update-inventory.component.html -->
+
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Inventory' : 'Create Inventory'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Inventory' : 'Create New Inventory' }}</h4>
+          <form
+            [formGroup]="inventoryForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="productId" class="col-form-label col-lg-2"
+                    >Product ID</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="productId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          inventoryForm.get('productId')?.invalid &&
+                          inventoryForm.get('productId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        inventoryForm.get('productId')?.hasError('required') &&
+                        inventoryForm.get('productId')?.touched
+                      "
+                    >
+                      Product ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Branch ID</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="branchId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          inventoryForm.get('branchId')?.invalid &&
+                          inventoryForm.get('branchId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        inventoryForm.get('branchId')?.hasError('required') &&
+                        inventoryForm.get('branchId')?.touched
+                      "
+                    >
+                      Branch ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Shelf Location</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="shelfLocation"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Stock Level</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="stockLevel"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          inventoryForm.get('stockLevel')?.invalid &&
+                          inventoryForm.get('stockLevel')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        inventoryForm.get('stockLevel')?.hasError('required') &&
+                        inventoryForm.get('stockLevel')?.touched
+                      "
+                    >
+                      Stock Level is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Minimum Stock Level</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="minimumStockLevel"
+                      type="number"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Maximum Stock Level</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="maximumStockLevel"
+                      type="number"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Expiry Alert</label>
+                  <div class="col-lg-10">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="expiryAlert"
+                        id="expiryAlert"
+                      />
+                      <label class="form-check-label" for="expiryAlert">
+                        Enable expiry alert
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Low Stock Alert</label>
+                  <div class="col-lg-10">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="lowStockAlert"
+                        id="lowStockAlert"
+                      />
+                      <label class="form-check-label" for="lowStockAlert">
+                        Enable low stock alert
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Inventory' : 'Create Inventory' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
