@@ -186,6 +186,25 @@ export const MENU: MenuItem[] = [
     ],
   },
   {
+    id: 13,
+    label: "Prescription",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Prescription list",
+        link: "/prescriptions/list",
+        parentId: 13,
+      },
+            {
+        id: 14,
+        label: "Prescription Item",
+        link: "/prescriptions/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
     id: 9,
     label: "MENUITEMS.APPS.TEXT",
     isTitle: true,
