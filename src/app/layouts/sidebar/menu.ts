@@ -262,6 +262,25 @@ export const MENU: MenuItem[] = [
     ],
   },
   {
+    id: 13,
+    label: "Product Alternative",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Product Alternative",
+        link: "/product-alternatives/list",
+        parentId: 13,
+      },
+            {
+        id: 14,
+        label: "Create Product Alternative Item",
+        link: "/product-alternatives/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
     id: 9,
     label: "MENUITEMS.APPS.TEXT",
     isTitle: true,
