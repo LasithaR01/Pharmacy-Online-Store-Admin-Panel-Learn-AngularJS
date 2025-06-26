@@ -1,0 +1,158 @@
+<!-- src/app/restock-requests/create-or-update-restock-request/create-or-update-restock-request.component.html -->
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Restock Request' : 'Create Restock Request'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Request' : 'Create New Request' }}</h4>
+          <form
+            [formGroup]="requestForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="productId" class="col-form-label col-lg-2"
+                    >Product</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="productId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          requestForm.get('productId')?.invalid &&
+                          requestForm.get('productId')?.touched
+                      }"
+                      placeholder="Enter product ID"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        requestForm.get('productId')?.hasError('required') &&
+                        requestForm.get('productId')?.touched
+                      "
+                    >
+                      Product is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Branch</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="branchId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          requestForm.get('branchId')?.invalid &&
+                          requestForm.get('branchId')?.touched
+                      }"
+                      placeholder="Enter branch ID"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        requestForm.get('branchId')?.hasError('required') &&
+                        requestForm.get('branchId')?.touched
+                      "
+                    >
+                      Branch is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Quantity</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="quantity"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          requestForm.get('quantity')?.invalid &&
+                          requestForm.get('quantity')?.touched
+                      }"
+                      placeholder="Enter quantity"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        requestForm.get('quantity')?.hasError('required') &&
+                        requestForm.get('quantity')?.touched
+                      "
+                    >
+                      Quantity is required.
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        requestForm.get('quantity')?.hasError('min') &&
+                        requestForm.get('quantity')?.touched
+                      "
+                    >
+                      Quantity must be at least 1.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4" *ngIf="isEditMode">
+                  <label class="col-form-label col-lg-2">Status</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="status"
+                      class="form-select"
+                    >
+                      <option [value]="RestockStatus.PENDING">Pending</option>
+                      <option [value]="RestockStatus.APPROVED">Approved</option>
+                      <option [value]="RestockStatus.REJECTED">Rejected</option>
+                      <option [value]="RestockStatus.FULFILLED">Fulfilled</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Supplier</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="supplierId"
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter supplier ID (optional)"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Notes</label>
+                  <div class="col-lg-10">
+                    <textarea
+                      formControlName="notes"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Enter any additional notes (optional)"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Request' : 'Create Request' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
