@@ -281,6 +281,25 @@ export const MENU: MenuItem[] = [
     ],
   },
   {
+    id: 13,
+    label: "Drug Interaction",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Drug Interaction",
+        link: "/drug-interactions/list",
+        parentId: 13,
+      },
+            {
+        id: 14,
+        label: "Create Drug Interaction Item",
+        link: "/drug-interactions/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
     id: 9,
     label: "MENUITEMS.APPS.TEXT",
     isTitle: true,
