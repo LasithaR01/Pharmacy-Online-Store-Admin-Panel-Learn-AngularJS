@@ -242,6 +242,25 @@ export const MENU: MenuItem[] = [
       },
     ],
   },
+    {
+    id: 13,
+    label: "Restock Request",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Restock Request",
+        link: "/restock-requests/list",
+        parentId: 13,
+      },
+            {
+        id: 14,
+        label: "Create Restock Request Item",
+        link: "/restock-requests/create",
+        parentId: 13,
+      },
+    ],
+  },
   {
     id: 9,
     label: "MENUITEMS.APPS.TEXT",
