@@ -1,0 +1,160 @@
+<!-- src/app/drug-interactions/create-or-update-drug-interaction/create-or-update-drug-interaction.component.html -->
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Drug Interaction' : 'Create Drug Interaction'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Drug Interaction' : 'Create New Drug Interaction' }}</h4>
+          <form
+            [formGroup]="interactionForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="productId" class="col-form-label col-lg-2"
+                    >Product ID</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="productId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          interactionForm.get('productId')?.invalid &&
+                          interactionForm.get('productId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        interactionForm.get('productId')?.hasError('required') &&
+                        interactionForm.get('productId')?.touched
+                      "
+                    >
+                      Product ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label for="interactsWithId" class="col-form-label col-lg-2"
+                    >Interacts With ID</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="interactsWithId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          interactionForm.get('interactsWithId')?.invalid &&
+                          interactionForm.get('interactsWithId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        interactionForm.get('interactsWithId')?.hasError('required') &&
+                        interactionForm.get('interactsWithId')?.touched
+                      "
+                    >
+                      Interacts With ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Severity</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="severity"
+                      class="form-select"
+                      [ngClass]="{
+                        'is-invalid':
+                          interactionForm.get('severity')?.invalid &&
+                          interactionForm.get('severity')?.touched
+                      }"
+                    >
+                      <option value="">Select Severity</option>
+                      <option *ngFor="let severity of severityOptions" [value]="severity">
+                        {{ severity }}
+                      </option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        interactionForm.get('severity')?.hasError('required') &&
+                        interactionForm.get('severity')?.touched
+                      "
+                    >
+                      Severity is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Description</label>
+                  <div class="col-lg-10">
+                    <textarea
+                      formControlName="description"
+                      class="form-control"
+                      rows="3"
+                      [ngClass]="{
+                        'is-invalid':
+                          interactionForm.get('description')?.invalid &&
+                          interactionForm.get('description')?.touched
+                      }"
+                    ></textarea>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        interactionForm.get('description')?.hasError('required') &&
+                        interactionForm.get('description')?.touched
+                      "
+                    >
+                      Description is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Clinical Management</label>
+                  <div class="col-lg-10">
+                    <textarea
+                      formControlName="clinicalManagement"
+                      class="form-control"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Evidence Level</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="evidenceLevel"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Interaction' : 'Create Interaction' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
