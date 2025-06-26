@@ -1,0 +1,168 @@
+<!-- src/app/alerts/list/list.component.html -->
+
+<div class="container-fluid">
+  <app-page-title
+    title="Alerts"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-sm-4">
+              <div class="search-box me-2 mb-2 d-inline-block">
+                <div class="position-relative">
+                  <input
+                    type="text"
+                    class="form-control"
+                    autocomplete="off"
+                    id="searchTableList"
+                    placeholder="Search..."
+                    [(ngModel)]="searchTerm"
+                    (keyup)="applyFilters()"
+                  />
+                  <i class="bx bx-search-alt search-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="text-sm-end">
+                <button
+                  type="button"
+                  class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"
+                  (click)="resolveMultiple()"
+                >
+                  <i class="mdi mdi-check-all me-1"></i> Resolve Selected
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <select class="form-select" [(ngModel)]="selectedStatus" (change)="applyFilters()">
+                <option value="ALL">All Statuses</option>
+                <option [value]="AlertStatus.ACTIVE">Active</option>
+                <option [value]="AlertStatus.RESOLVED">Resolved</option>
+                <option [value]="AlertStatus.REOPENED">Reopened</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" [(ngModel)]="selectedType" (change)="applyFilters()">
+                <option value="ALL">All Types</option>
+                <option *ngFor="let type of alertTypes" [value]="type">{{ type }}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="criticalOnly"
+                  [(ngModel)]="showCriticalOnly"
+                  (change)="applyFilters()"
+                />
+                <label class="form-check-label" for="criticalOnly">Critical Only</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table align-middle table-nowrap dt-responsive nowrap w-100 table-check">
+              <thead class="table-light">
+                <tr>
+                  <th class="align-middle">ID</th>
+                  <th class="align-middle">Type</th>
+                  <th class="align-middle">Message</th>
+                  <th class="align-middle">Product</th>
+                  <th class="align-middle">Branch</th>
+                  <th class="align-middle">Status</th>
+                  <th class="align-middle">Created At</th>
+                  <th class="align-middle">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let alert of filteredAlerts" [class.table-danger]="alert.critical">
+                  <td>{{ alert.id }}</td>
+                  <td>
+                    <span class="badge bg-{{ getAlertTypeClass(alert.alertType) }}">
+                      {{ alert.alertType }}
+                    </span>
+                  </td>
+                  <td>{{ alert.message }}</td>
+                  <td>{{ alert.productName || 'N/A' }}</td>
+                  <td>{{ alert.branchName || 'N/A' }}</td>
+                  <td>
+                    <span class="badge" [ngClass]="{
+                      'bg-success': alert.status === AlertStatus.RESOLVED,
+                      'bg-warning': alert.status === AlertStatus.REOPENED,
+                      'bg-danger': alert.status === AlertStatus.ACTIVE && alert.critical,
+                      'bg-info': alert.status === AlertStatus.ACTIVE && !alert.critical
+                    }">
+                      {{ alert.status }}
+                    </span>
+                  </td>
+                  <td>{{ alert.createdAt | date:'medium' }}</td>
+                  <td>
+                    <div class="d-flex gap-3">
+                      <a
+                        href="javascript:void(0);"
+                        class="text-success"
+                        *ngIf="!alert.resolved"
+                        (click)="showResolveModal(alert.id)"
+                      >
+                        <i class="mdi mdi-check-circle font-size-18" title="Resolve"></i>
+                      </a>
+                      <a
+                        href="javascript:void(0);"
+                        class="text-danger"
+                        *ngIf="alert.resolved"
+                      >
+                        <i class="mdi mdi-alert-circle font-size-18" title="Reopen"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="filteredAlerts.length === 0">
+                  <td colspan="8" class="text-center">No alerts found</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Resolve Modal -->
+<div
+  bsModal
+  #resolveModal="bs-modal"
+  class="modal fade"
+  id="resolveModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Resolve Alert</h5>
+        <button type="button" class="btn-close" (click)="resolveModal.hide()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to resolve this alert?</p>
+        <div class="mb-3">
+          <label for="resolvedById" class="form-label">Resolved By (User ID)</label>
+          <input type="number" class="form-control" id="resolvedById" [(ngModel)]="resolvedById" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="resolveModal.hide()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="resolve(resolvedById)">Resolve</button>
+      </div>
+    </div>
+  </div>
+</div>

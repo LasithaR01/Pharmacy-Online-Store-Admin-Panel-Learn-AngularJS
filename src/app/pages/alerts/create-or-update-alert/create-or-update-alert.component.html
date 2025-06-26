@@ -1,0 +1,172 @@
+<!-- src/app/alerts/create-or-update-alert/create-or-update-alert.component.html -->
+
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Alert' : 'Create Alert'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Alert' : 'Create New Alert' }}</h4>
+          <form
+            [formGroup]="alertForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="productId" class="col-form-label col-lg-2">Product ID</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="productId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          alertForm.get('productId')?.invalid &&
+                          alertForm.get('productId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        alertForm.get('productId')?.hasError('required') &&
+                        alertForm.get('productId')?.touched
+                      "
+                    >
+                      Product ID is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="branchId" class="col-form-label col-lg-2">Branch ID</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="branchId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          alertForm.get('branchId')?.invalid &&
+                          alertForm.get('branchId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        alertForm.get('branchId')?.hasError('required') &&
+                        alertForm.get('branchId')?.touched
+                      "
+                    >
+                      Branch ID is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="alertType" class="col-form-label col-lg-2">Alert Type</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="alertType"
+                      class="form-select"
+                      [ngClass]="{
+                        'is-invalid':
+                          alertForm.get('alertType')?.invalid &&
+                          alertForm.get('alertType')?.touched
+                      }"
+                    >
+                      <option value="">Select Type</option>
+                      <option *ngFor="let type of alertTypes" [value]="type">{{ type }}</option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        alertForm.get('alertType')?.hasError('required') &&
+                        alertForm.get('alertType')?.touched
+                      "
+                    >
+                      Alert Type is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="message" class="col-form-label col-lg-2">Message</label>
+                  <div class="col-lg-10">
+                    <textarea
+                      formControlName="message"
+                      class="form-control"
+                      rows="3"
+                      [ngClass]="{
+                        'is-invalid':
+                          alertForm.get('message')?.invalid &&
+                          alertForm.get('message')?.touched
+                      }"
+                    ></textarea>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        alertForm.get('message')?.hasError('required') &&
+                        alertForm.get('message')?.touched
+                      "
+                    >
+                      Message is required.
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        alertForm.get('message')?.hasError('maxlength') &&
+                        alertForm.get('message')?.touched
+                      "
+                    >
+                      Message should not exceed 500 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="triggeredById" class="col-form-label col-lg-2">Triggered By (User ID)</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="triggeredById"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          alertForm.get('triggeredById')?.invalid &&
+                          alertForm.get('triggeredById')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        alertForm.get('triggeredById')?.hasError('required') &&
+                        alertForm.get('triggeredById')?.touched
+                      "
+                    >
+                      User ID is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Alert' : 'Create Alert' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
