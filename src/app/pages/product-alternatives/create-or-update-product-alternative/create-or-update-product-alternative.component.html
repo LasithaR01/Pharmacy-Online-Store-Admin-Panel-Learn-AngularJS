@@ -1,0 +1,98 @@
+<!-- src/app/product-alternatives/create-or-update-product-alternative/create-or-update-product-alternative.component.html -->
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Product Alternative' : 'Create Product Alternative'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Product Alternative' : 'Create New Product Alternative' }}</h4>
+          <form
+            [formGroup]="alternativeForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="productId" class="col-form-label col-lg-2"
+                    >Product ID</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="productId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          alternativeForm.get('productId')?.invalid &&
+                          alternativeForm.get('productId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        alternativeForm.get('productId')?.hasError('required') &&
+                        alternativeForm.get('productId')?.touched
+                      "
+                    >
+                      Product ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label for="alternativeProductId" class="col-form-label col-lg-2"
+                    >Alternative Product ID</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="alternativeProductId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          alternativeForm.get('alternativeProductId')?.invalid &&
+                          alternativeForm.get('alternativeProductId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        alternativeForm.get('alternativeProductId')?.hasError('required') &&
+                        alternativeForm.get('alternativeProductId')?.touched
+                      "
+                    >
+                      Alternative Product ID is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Reason</label>
+                  <div class="col-lg-10">
+                    <textarea
+                      formControlName="reason"
+                      class="form-control"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Alternative' : 'Create Alternative' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
