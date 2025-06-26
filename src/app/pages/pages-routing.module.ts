@@ -45,6 +45,7 @@ const routes: Routes = [
   { path: 'notifications', loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule) },
   { path: 'alerts', loadChildren: () => import('./alerts/alerts.module').then(m => m.AlertsModule) },
   { path: 'restock-requests', loadChildren: () => import('./restock-requests/restock-requests.module').then(m => m.RestockRequestsModule) },
+  { path: 'product-alternatives', loadChildren: () => import('./product-alternatives/product-alternatives.module').then(m => m.ProductAlternativesModule) },
 
 ];
 
