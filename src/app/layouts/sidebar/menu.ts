@@ -198,7 +198,7 @@ export const MENU: MenuItem[] = [
       },
             {
         id: 14,
-        label: "Prescription Item",
+        label: "Create Prescription Item",
         link: "/prescriptions/create",
         parentId: 13,
       },
@@ -217,8 +217,27 @@ export const MENU: MenuItem[] = [
       },
             {
         id: 14,
-        label: "Notification Item",
+        label: "Create Notification Item",
         link: "/notifications/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "Alert",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Alert list",
+        link: "/alerts/list",
+        parentId: 13,
+      },
+            {
+        id: 14,
+        label: "Create Alert Item",
+        link: "/alerts/create",
         parentId: 13,
       },
     ],
