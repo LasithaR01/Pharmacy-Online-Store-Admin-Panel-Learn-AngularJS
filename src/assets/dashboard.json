@@ -62,16 +62,16 @@
   }, {
     "icon": "bx bx-archive-in",
     "title": "Revenue",
-    "value": "$35, 723"
+    "value": "Rs. 35, 723"
   }, {
     "icon": "bx bx-purchase-tag-alt",
     "title": "Average Price",
-    "value": "$16.2"
+    "value": "Rs. 16.2"
   }],
 
   "sassEarning": [{
     "name": "This month",
-    "amount": "$2453.35",
+    "amount": "Rs. 2453.35",
     "revenue": "0.4",
     "time": "From previous period",
     "month": "Last month",

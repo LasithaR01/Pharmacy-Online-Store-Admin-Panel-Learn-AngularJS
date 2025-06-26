@@ -154,11 +154,11 @@ const statData = [{
 }, {
     icon: 'bx bx-archive-in',
     title: 'Revenue',
-    value: '$35, 723'
+    value: 'Rs. 35, 723'
 }, {
     icon: 'bx bx-purchase-tag-alt',
     title: 'Average Price',
-    value: '$16.2'
+    value: 'Rs. 16.2'
 }];
 
 export { emailSentBarChart, monthlyEarningChart, transactions, statData };
