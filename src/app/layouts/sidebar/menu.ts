@@ -1,47 +1,47 @@
 import { MenuItem } from "./menu.model";
 
 export const MENU: MenuItem[] = [
+  // {
+  //   id: 1,
+  //   label: "",
+  //   isTitle: true,
+  // },
   {
     id: 1,
-    label: "MENUITEMS.MENU.TEXT",
-    isTitle: true,
-  },
-  {
-    id: 2,
-    label: "MENUITEMS.DASHBOARDS.TEXT",
+    label: "Dashboard",
     icon: "bx-home-circle",
-    subItems: [
-      {
-        id: 3,
-        label: "MENUITEMS.DASHBOARDS.LIST.DEFAULT",
-        link: "/dashboard",
-        parentId: 2,
-      },
-      {
-        id: 4,
-        label: "MENUITEMS.DASHBOARDS.LIST.SAAS",
-        link: "/dashboards/saas",
-        parentId: 2,
-      },
-      {
-        id: 5,
-        label: "MENUITEMS.DASHBOARDS.LIST.CRYPTO",
-        link: "/dashboards/crypto",
-        parentId: 2,
-      },
-      {
-        id: 6,
-        label: "MENUITEMS.DASHBOARDS.LIST.BLOG",
-        link: "/dashboards/blog",
-        parentId: 2,
-      },
-      {
-        id: 7,
-        label: "MENUITEMS.DASHBOARDS.LIST.JOBS",
-        link: "/dashboards/jobs",
-        parentId: 2,
-      },
-    ],
+    // subItems: [
+    //   {
+    //     id: 3,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.DEFAULT",
+    //     link: "/dashboard",
+    //     parentId: 2,
+    //   },
+    //   {
+    //     id: 4,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.SAAS",
+    //     link: "/dashboards/saas",
+    //     parentId: 2,
+    //   },
+    //   {
+    //     id: 5,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.CRYPTO",
+    //     link: "/dashboards/crypto",
+    //     parentId: 2,
+    //   },
+    //   {
+    //     id: 6,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.BLOG",
+    //     link: "/dashboards/blog",
+    //     parentId: 2,
+    //   },
+    //   {
+    //     id: 7,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.JOBS",
+    //     link: "/dashboards/jobs",
+    //     parentId: 2,
+    //   },
+    // ],
   },
   {
     id: 8,
@@ -50,6 +50,49 @@ export const MENU: MenuItem[] = [
   {
     id: 9,
     label: "Product Management",
+    isTitle: true,
+  },
+  {
+    id: 13,
+    label: "Product",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Product list",
+        link: "/products/list",
+        parentId: 13,
+      },
+            {
+        id: 14,
+        label: "Create Product",
+        link: "/products/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "Product Alternative",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Product Alternative",
+        link: "/product-alternatives/list",
+        parentId: 13,
+      },
+            {
+        id: 14,
+        label: "Create Product Alternative Item",
+        link: "/product-alternatives/create",
+        parentId: 13,
+      },
+    ],
+  },
+    {
+    id: 9,
+    label: "Branch Management",
     isTitle: true,
   },
   {
@@ -72,6 +115,11 @@ export const MENU: MenuItem[] = [
     ],
   },
   {
+    id: 9,
+    label: "Category Management",
+    isTitle: true,
+  },
+  {
     id: 13,
     label: "Category",
     icon: "bx-store",
@@ -90,24 +138,10 @@ export const MENU: MenuItem[] = [
       },
     ],
   },
-  {
-    id: 13,
-    label: "Product",
-    icon: "bx-store",
-    subItems: [
-      {
-        id: 14,
-        label: "Product list",
-        link: "/products/list",
-        parentId: 13,
-      },
-            {
-        id: 14,
-        label: "Create Product",
-        link: "/products/create",
-        parentId: 13,
-      },
-    ],
+    {
+    id: 9,
+    label: "Inventory Management",
+    isTitle: true,
   },
     {
     id: 13,
@@ -129,6 +163,11 @@ export const MENU: MenuItem[] = [
     ],
   },
   {
+    id: 9,
+    label: "Stock Management",
+    isTitle: true,
+  },
+  {
     id: 13,
     label: "Stock",
     icon: "bx-store",
@@ -146,6 +185,30 @@ export const MENU: MenuItem[] = [
         parentId: 13,
       },
     ],
+  },
+   {
+    id: 13,
+    label: "Restock Request",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Restock Request",
+        link: "/restock-requests/list",
+        parentId: 13,
+      },
+            {
+        id: 14,
+        label: "Create Restock Request Item",
+        link: "/restock-requests/create",
+        parentId: 13,
+      },
+    ],
+  },
+    {
+    id: 9,
+    label: "Order Management",
+    isTitle: true,
   },
   {
     id: 13,
@@ -186,6 +249,11 @@ export const MENU: MenuItem[] = [
     ],
   },
   {
+    id: 9,
+    label: "Prescription Management",
+    isTitle: true,
+  },
+  {
     id: 13,
     label: "Prescription",
     icon: "bx-store",
@@ -203,6 +271,11 @@ export const MENU: MenuItem[] = [
         parentId: 13,
       },
     ],
+  },
+  {
+    id: 9,
+    label: "Notification Management",
+    isTitle: true,
   },
   {
     id: 13,
@@ -243,42 +316,9 @@ export const MENU: MenuItem[] = [
     ],
   },
     {
-    id: 13,
-    label: "Restock Request",
-    icon: "bx-store",
-    subItems: [
-      {
-        id: 14,
-        label: "Restock Request",
-        link: "/restock-requests/list",
-        parentId: 13,
-      },
-            {
-        id: 14,
-        label: "Create Restock Request Item",
-        link: "/restock-requests/create",
-        parentId: 13,
-      },
-    ],
-  },
-  {
-    id: 13,
-    label: "Product Alternative",
-    icon: "bx-store",
-    subItems: [
-      {
-        id: 14,
-        label: "Product Alternative",
-        link: "/product-alternatives/list",
-        parentId: 13,
-      },
-            {
-        id: 14,
-        label: "Create Product Alternative Item",
-        link: "/product-alternatives/create",
-        parentId: 13,
-      },
-    ],
+    id: 9,
+    label: "Drug Interaction Management",
+    isTitle: true,
   },
   {
     id: 13,
