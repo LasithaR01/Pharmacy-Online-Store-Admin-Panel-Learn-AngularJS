@@ -1,0 +1,116 @@
+<!-- src/app/pages/suppliers/create-or-update-supplier/create-or-update-supplier.component.html -->
+<div class="container-fluid">
+  <app-page-title
+    [title]="isEditMode ? 'Update Supplier' : 'Create Supplier'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Supplier' : 'Create New Supplier' }}</h4>
+          <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+            <div class="row mb-4">
+              <label class="col-form-label col-lg-2">User</label>
+              <div class="col-lg-10">
+                <select
+                  formControlName="userId"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      supplierForm.get('userId')?.invalid &&
+                      supplierForm.get('userId')?.touched
+                  }"
+                >
+                  <option value="">Select User</option>
+                  <option *ngFor="let user of users" [value]="user.id">
+                    {{ user.name }} ({{ user.email }})
+                  </option>
+                </select>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    supplierForm.get('userId')?.hasError('required') &&
+                    supplierForm.get('userId')?.touched
+                  "
+                >
+                  User is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <label class="col-form-label col-lg-2">Company Name</label>
+              <div class="col-lg-10">
+                <input
+                  formControlName="companyName"
+                  type="text"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      supplierForm.get('companyName')?.invalid &&
+                      supplierForm.get('companyName')?.touched
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    supplierForm.get('companyName')?.hasError('required') &&
+                    supplierForm.get('companyName')?.touched
+                  "
+                >
+                  Company name is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <label class="col-form-label col-lg-2">Address</label>
+              <div class="col-lg-10">
+                <textarea
+                  formControlName="address"
+                  class="form-control"
+                  rows="3"
+                  [ngClass]="{
+                    'is-invalid':
+                      supplierForm.get('address')?.invalid &&
+                      supplierForm.get('address')?.touched
+                  }"
+                ></textarea>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    supplierForm.get('address')?.hasError('required') &&
+                    supplierForm.get('address')?.touched
+                  "
+                >
+                  Address is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <label class="col-form-label col-lg-2">Tax ID</label>
+              <div class="col-lg-10">
+                <input
+                  formControlName="taxId"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Supplier' : 'Create Supplier' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
