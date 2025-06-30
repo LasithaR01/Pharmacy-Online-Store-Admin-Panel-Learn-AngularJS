@@ -1,0 +1,169 @@
+<!-- src/app/employees/create-or-update-employee/create-or-update-employee.component.html -->
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Employee' : 'Create Employee'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Employee' : 'Create New Employee' }}</h4>
+          <form
+            [formGroup]="employeeForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="user" class="col-form-label col-lg-2">User</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="userId"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          employeeForm.get('userId')?.invalid &&
+                          employeeForm.get('userId')?.touched
+                      }"
+                    >
+                      <option value="">Select User</option>
+                      <option *ngFor="let user of users" [value]="user.id">
+                        {{ user.name }} ({{ user.email }})
+                      </option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        employeeForm.get('userId')?.hasError('required') &&
+                        employeeForm.get('userId')?.touched
+                      "
+                    >
+                      User is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Branch</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="branchId"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          employeeForm.get('branchId')?.invalid &&
+                          employeeForm.get('branchId')?.touched
+                      }"
+                    >
+                      <option value="">Select Branch</option>
+                      <option *ngFor="let branch of branches" [value]="branch.id">
+                        {{ branch.name }} ({{ branch.location }})
+                      </option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        employeeForm.get('branchId')?.hasError('required') &&
+                        employeeForm.get('branchId')?.touched
+                      "
+                    >
+                      Branch is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Position</label>
+                  <div class="col-lg-10">
+                    <select
+                      formControlName="position"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          employeeForm.get('position')?.invalid &&
+                          employeeForm.get('position')?.touched
+                      }"
+                    >
+                      <option value="">Select Position</option>
+                      <option *ngFor="let position of positions" [value]="position">
+                        {{ position }}
+                      </option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        employeeForm.get('position')?.hasError('required') &&
+                        employeeForm.get('position')?.touched
+                      "
+                    >
+                      Position is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Salary</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="salary"
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          employeeForm.get('salary')?.invalid &&
+                          employeeForm.get('salary')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="(employeeForm.get('salary')?.hasError('required') ||
+                            employeeForm.get('salary')?.hasError('min')) &&
+                            employeeForm.get('salary')?.touched"
+                    >
+                      Valid salary is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Hire Date</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="hireDate"
+                      type="date"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          employeeForm.get('hireDate')?.invalid &&
+                          employeeForm.get('hireDate')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        employeeForm.get('hireDate')?.hasError('required') &&
+                        employeeForm.get('hireDate')?.touched
+                      "
+                    >
+                      Hire date is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
