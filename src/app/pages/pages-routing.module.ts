@@ -49,6 +49,8 @@ const routes: Routes = [
   { path: 'drug-interactions', loadChildren: () => import('./drug-interactions/drug-interactions.module').then(m => m.DrugInteractionsModule) },
   { path: 'employees', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule) },
   { path: 'suppliers', loadChildren: () => import('./suppliers/suppliers.module').then(m => m.SuppliersModule) },
+  { path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
+
 
 
  ];
