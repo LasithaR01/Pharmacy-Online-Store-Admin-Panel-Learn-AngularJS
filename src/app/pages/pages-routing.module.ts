@@ -48,6 +48,8 @@ const routes: Routes = [
   { path: 'product-alternatives', loadChildren: () => import('./product-alternatives/product-alternatives.module').then(m => m.ProductAlternativesModule) },
   { path: 'drug-interactions', loadChildren: () => import('./drug-interactions/drug-interactions.module').then(m => m.DrugInteractionsModule) },
   { path: 'employees', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule) },
+  { path: 'suppliers', loadChildren: () => import('./suppliers/suppliers.module').then(m => m.SuppliersModule) },
+
 
  ];
 
