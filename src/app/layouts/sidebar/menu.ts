@@ -47,68 +47,6 @@ export const MENU: MenuItem[] = [
     id: 8,
     isLayout: true,
 },
-{
-    id: 9,
-    label: "User Management",
-    isTitle: true,
-  },
-  {
-    id: 13,
-    label: "Employee",
-    icon: "bx-store",
-    subItems: [
-      {
-        id: 14,
-        label: "Employee list",
-        link: "/employees/list",
-        parentId: 13,
-      },
-            {
-        id: 14,
-        label: "Employee Product",
-        link: "/employees/create",
-        parentId: 13,
-      },
-    ],
-  },
-   {
-    id: 13,
-    label: "Supplier",
-    icon: "bx-store",
-    subItems: [
-      {
-        id: 14,
-        label: "Supplier list",
-        link: "/suppliers/list",
-        parentId: 13,
-      },
-            {
-        id: 14,
-        label: "Supplier Product",
-        link: "/suppliers/create",
-        parentId: 13,
-      },
-    ],
-  },
-  {
-    id: 13,
-    label: "Customer",
-    icon: "bx-store",
-    subItems: [
-      {
-        id: 14,
-        label: "Customer list",
-        link: "/customers/list",
-        parentId: 13,
-      },
-            {
-        id: 14,
-        label: "Customer Product",
-        link: "/customers/create",
-        parentId: 13,
-      },
-    ],
-  },
   {
     id: 9,
     label: "User Management",
