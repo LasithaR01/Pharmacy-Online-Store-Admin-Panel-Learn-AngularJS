@@ -71,6 +71,8 @@ export class CreateOrUpdateRestockRequestComponent implements OnInit {
     });
 
     this.loadSuppliers();
+    this.loadBranches();
+    this.loadProducts();
   }
 
   loadBranches() {
@@ -128,6 +130,8 @@ export class CreateOrUpdateRestockRequestComponent implements OnInit {
     if (this.requestForm.invalid) return;
 
     const requestData = this.requestForm.value;
+
+    console.log('requestData: ', requestData)
 
     if (this.isEditMode && this.requestId) {
       this.restockRequestService.update(this.requestId, requestData).subscribe({

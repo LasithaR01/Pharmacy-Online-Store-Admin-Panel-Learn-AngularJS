@@ -22,6 +22,29 @@
             <div data-repeater-list="outer-group" class="outer">
               <div data-repeater-item class="outer">
                 <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Product</label>
+                  <div class="col-lg-10">
+                    <select formControlName="productId" class="form-control">
+                      <option [value]="null">No Product</option>
+                      <option
+                        *ngFor="let product of products"
+                        [value]="product.id"
+                      >
+                        {{ product.name }}
+                      </option>
+                    </select>
+                  </div>
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="
+                      requestForm.get('productId')?.hasError('required') &&
+                      requestForm.get('productId')?.touched
+                    "
+                  >
+                    Product is required.
+                  </div>
+                </div>
+                <!-- <div class="row mb-4">
                   <label for="productId" class="col-form-label col-lg-2"
                     >Product</label
                   >
@@ -47,8 +70,22 @@
                       Product is required.
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Branch</label>
+                  <div class="col-lg-10">
+                    <select formControlName="branchId" class="form-control">
+                      <option [value]="null">No Branch</option>
+                      <option
+                        *ngFor="let branch of branches"
+                        [value]="branch.id"
+                      >
+                        {{ branch.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <!-- <div class="row mb-4">
                   <label class="col-form-label col-lg-2">Branch</label>
                   <div class="col-lg-10">
                     <input
@@ -72,7 +109,7 @@
                       Branch is required.
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="row mb-4">
                   <label class="col-form-label col-lg-2">Quantity</label>
                   <div class="col-lg-10">
