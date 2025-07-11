@@ -1,35 +1,49 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { BaseService } from "./base.service";
-import { Customer } from "../models/customer.models";
+// src/app/core/services/customer.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Customer } from '../models/customer.models';
+import { BaseService } from './base.service';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class CustomerService extends BaseService {
   constructor(protected override http: HttpClient) {
     super(http);
   }
 
-  getAll() {
-    return this.get<Customer[]>("customers");
+  getAll(): Observable<Customer[]> {
+    return this.get<Customer[]>('customers');
   }
 
-  getById(id: string) {
+  getById(id: number): Observable<Customer> {
     return this.get<Customer>(`customers/${id}`);
   }
 
-  getByPhoneNumber(phoneNumber: string) {
-    return this.get<Customer>(`customers/${phoneNumber}`);
+  getByUserId(userId: number): Observable<Customer> {
+    return this.get<Customer>(`customers/user/${userId}`);
   }
 
-  create(branch: Partial<Customer>) {
-    return this.post("customers", branch);
+  create(customer: Partial<Customer>): Observable<Customer> {
+    return this.post('customers', customer);
   }
 
-  update(id: string, branch: Partial<Customer>) {
-    return this.put(`customers/${id}`, branch);
+  update(id: number, customer: Partial<Customer>): Observable<Customer> {
+    return this.put(`customers/${id}`, customer);
   }
 
-  remove(id: string) {
-    return this.delete(`customers/${id}`);
+  remove(id: number): Observable<void> {
+    return this.delete<void>(`customers/${id}`);
+  }
+
+  getByLoyaltyPointsRange(min: number, max: number): Observable<Customer[]> {
+    return this.get<Customer[]>(`customers/loyalty?minPoints=${min}&maxPoints=${max}`);
+  }
+
+  addLoyaltyPoints(id: number, points: number): Observable<Customer> {
+    return this.post(`customers/${id}/loyalty/add`, { points });
+  }
+
+  redeemLoyaltyPoints(id: number, points: number): Observable<Customer> {
+    return this.post(`customers/${id}/loyalty/redeem`, { points });
   }
 }

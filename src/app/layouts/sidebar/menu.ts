@@ -1,56 +1,119 @@
 import { MenuItem } from "./menu.model";
 
 export const MENU: MenuItem[] = [
+  // {
+  //   id: 1,
+  //   label: "",
+  //   isTitle: true,
+  // },
   {
     id: 1,
-    label: "MENUITEMS.MENU.TEXT",
-    isTitle: true,
-  },
-  {
-    id: 2,
-    label: "MENUITEMS.DASHBOARDS.TEXT",
+    label: "Dashboard",
     icon: "bx-home-circle",
-    subItems: [
-      {
-        id: 3,
-        label: "MENUITEMS.DASHBOARDS.LIST.DEFAULT",
-        link: "/dashboard",
-        parentId: 2,
-      },
-      {
-        id: 4,
-        label: "MENUITEMS.DASHBOARDS.LIST.SAAS",
-        link: "/dashboards/saas",
-        parentId: 2,
-      },
-      {
-        id: 5,
-        label: "MENUITEMS.DASHBOARDS.LIST.CRYPTO",
-        link: "/dashboards/crypto",
-        parentId: 2,
-      },
-      {
-        id: 6,
-        label: "MENUITEMS.DASHBOARDS.LIST.BLOG",
-        link: "/dashboards/blog",
-        parentId: 2,
-      },
-      {
-        id: 7,
-        label: "MENUITEMS.DASHBOARDS.LIST.JOBS",
-        link: "/dashboards/jobs",
-        parentId: 2,
-      },
-    ],
+    // subItems: [
+    //   {
+    //     id: 3,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.DEFAULT",
+    //     link: "/dashboard",
+    //     parentId: 2,
+    //   },
+    //   {
+    //     id: 4,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.SAAS",
+    //     link: "/dashboards/saas",
+    //     parentId: 2,
+    //   },
+    //   {
+    //     id: 5,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.CRYPTO",
+    //     link: "/dashboards/crypto",
+    //     parentId: 2,
+    //   },
+    //   {
+    //     id: 6,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.BLOG",
+    //     link: "/dashboards/blog",
+    //     parentId: 2,
+    //   },
+    //   {
+    //     id: 7,
+    //     label: "MENUITEMS.DASHBOARDS.LIST.JOBS",
+    //     link: "/dashboards/jobs",
+    //     parentId: 2,
+    //   },
+    // ],
   },
   {
     id: 8,
     isLayout: true,
-  },
+},
   {
     id: 9,
+    label: "User Management",
+    isTitle: true,
+},
+{
+    id: 13,
+    label: "Employee",
+    icon: "bx-user-circle",
+    subItems: [
+        {
+            id: 14,
+            label: "Employee list",
+            link: "/employees/list",
+            parentId: 13,
+        },
+        {
+            id: 15,
+            label: "Create Employee",
+            link: "/employees/create",
+            parentId: 13,
+        },
+    ],
+},
+{
+    id: 16,
+    label: "Supplier",
+    icon: "bxs-truck",
+    subItems: [
+        {
+            id: 17,
+            label: "Supplier list",
+            link: "/suppliers/list",
+            parentId: 16,
+        },
+        {
+            id: 18,
+            label: "Create Supplier",
+            link: "/suppliers/create",
+            parentId: 16,
+        },
+    ],
+},
+{
+    id: 19,
+    label: "Customer",
+    icon: "bx-user",
+    subItems: [
+        {
+            id: 20,
+            label: "Customer list",
+            link: "/customers/list",
+            parentId: 19,
+        },
+        {
+            id: 21,
+            label: "Create Customer",
+            link: "/customers/create",
+            parentId: 19,
+        },
+    ],
+},
+{
+    id: 22,
     label: "Product Management",
     isTitle: true,
+<<<<<<< HEAD
   },
   {
     id: 10,
@@ -111,9 +174,15 @@ export const MENU: MenuItem[] = [
   },
   {
     id: 13,
+=======
+},
+{
+    id: 23,
+>>>>>>> main
     label: "Product",
-    icon: "bx-store",
+    icon: "bx-package",
     subItems: [
+<<<<<<< HEAD
       {
         id: 14,
         label: "Product list",
@@ -288,9 +357,28 @@ export const MENU: MenuItem[] = [
   },
   {
     id: 13,
+=======
+        {
+            id: 24,
+            label: "Product list",
+            link: "/products/list",
+            parentId: 23,
+        },
+        {
+            id: 25,
+            label: "Create Product",
+            link: "/products/create",
+            parentId: 23,
+        },
+    ],
+},
+{
+    id: 26,
+>>>>>>> main
     label: "Product Alternative",
-    icon: "bx-store",
+    icon: "bx-transfer",
     subItems: [
+<<<<<<< HEAD
       {
         id: 14,
         label: "Product Alternative",
@@ -303,13 +391,258 @@ export const MENU: MenuItem[] = [
         link: "/product-alternatives/create",
         parentId: 13,
       },
+=======
+        {
+            id: 27,
+            label: "Product Alternatives",
+            link: "/product-alternatives/list",
+            parentId: 26,
+        },
+        {
+            id: 28,
+            label: "Create Alternative",
+            link: "/product-alternatives/create",
+            parentId: 26,
+        },
+>>>>>>> main
     ],
-  },
-  {
-    id: 13,
-    label: "Drug Interaction",
-    icon: "bx-store",
+},
+{
+    id: 29,
+    label: "Branch Management",
+    isTitle: true,
+},
+{
+    id: 30,
+    label: "Branch",
+    icon: "bx-store-alt",
     subItems: [
+        {
+            id: 31,
+            label: "Branch list",
+            link: "/branches/list",
+            parentId: 30,
+        },
+        {
+            id: 32,
+            label: "Create Branch",
+            link: "/branches/create",
+            parentId: 30,
+        },
+    ],
+},
+{
+    id: 33,
+    label: "Category Management",
+    isTitle: true,
+},
+{
+    id: 34,
+    label: "Category",
+    icon: "bxs-folder-minus",
+    subItems: [
+        {
+            id: 35,
+            label: "Category list",
+            link: "/categories/list",
+            parentId: 34,
+        },
+        {
+            id: 36,
+            label: "Create Category",
+            link: "/categories/create",
+            parentId: 34,
+        },
+    ],
+},
+{
+    id: 37,
+    label: "Inventory Management",
+    isTitle: true,
+},
+{
+    id: 38,
+    label: "Inventory",
+    icon: "bx-archive",
+    subItems: [
+        {
+            id: 39,
+            label: "Inventory list",
+            link: "/inventories/list",
+            parentId: 38,
+        },
+        {
+            id: 40,
+            label: "Create Inventory",
+            link: "/inventories/create",
+            parentId: 38,
+        },
+    ],
+},
+{
+    id: 41,
+    label: "Stock Management",
+    isTitle: true,
+},
+{
+    id: 42,
+    label: "Stock",
+    icon: "bx-cube",
+    subItems: [
+        {
+            id: 43,
+            label: "Stock list",
+            link: "/stocks/list",
+            parentId: 42,
+        },
+        {
+            id: 44,
+            label: "Create Stock",
+            link: "/stocks/create",
+            parentId: 42,
+        },
+    ],
+},
+{
+    id: 45,
+    label: "Restock Request",
+    icon: "bxs-traffic-barrier",
+    subItems: [
+        {
+            id: 46,
+            label: "Restock Requests",
+            link: "/restock-requests/list",
+            parentId: 45,
+        },
+        {
+            id: 47,
+            label: "Create Request",
+            link: "/restock-requests/create",
+            parentId: 45,
+        },
+    ],
+},
+{
+    id: 48,
+    label: "Order Management",
+    isTitle: true,
+},
+{
+    id: 49,
+    label: "Order",
+    icon: "bx-cart",
+    subItems: [
+        {
+            id: 50,
+            label: "Order list",
+            link: "/orders/list",
+            parentId: 49,
+        },
+        {
+            id: 51,
+            label: "Create Order",
+            link: "/orders/create",
+            parentId: 49,
+        },
+    ],
+},
+{
+    id: 52,
+    label: "Order Item",
+    icon: "bx-list-ul",
+    subItems: [
+        {
+            id: 53,
+            label: "Order Items",
+            link: "/order-items/list",
+            parentId: 52,
+        },
+        {
+            id: 54,
+            label: "Create Item",
+            link: "/order-items/create",
+            parentId: 52,
+        },
+    ],
+},
+{
+    id: 55,
+    label: "Prescription Management",
+    isTitle: true,
+},
+{
+    id: 56,
+    label: "Prescription",
+    icon: "bx-file",
+    subItems: [
+        {
+            id: 57,
+            label: "Prescriptions",
+            link: "/prescriptions/list",
+            parentId: 56,
+        },
+        {
+            id: 58,
+            label: "Create Prescription",
+            link: "/prescriptions/create",
+            parentId: 56,
+        },
+    ],
+},
+{
+    id: 59,
+    label: "Notification Management",
+    isTitle: true,
+},
+{
+    id: 60,
+    label: "Notification",
+    icon: "bx-bell",
+    subItems: [
+        {
+            id: 61,
+            label: "Notifications",
+            link: "/notifications/list",
+            parentId: 60,
+        },
+        {
+            id: 62,
+            label: "Create Notification",
+            link: "/notifications/create",
+            parentId: 60,
+        },
+    ],
+},
+{
+    id: 63,
+    label: "Alert",
+    icon: "bxs-mobile",
+    subItems: [
+        {
+            id: 64,
+            label: "Alerts",
+            link: "/alerts/list",
+            parentId: 63,
+        },
+        {
+            id: 65,
+            label: "Create Alert",
+            link: "/alerts/create",
+            parentId: 63,
+        },
+    ],
+},
+{
+    id: 66,
+    label: "Drug Interaction Management",
+    isTitle: true,
+},
+{
+    id: 67,
+    label: "Drug Interaction",
+    icon: "bx-shield-alt-2",
+    subItems: [
+<<<<<<< HEAD
       {
         id: 14,
         label: "Drug Interaction",
@@ -329,6 +662,27 @@ export const MENU: MenuItem[] = [
     label: "MENUITEMS.APPS.TEXT",
     isTitle: true,
   },
+=======
+        {
+            id: 68,
+            label: "Interactions",
+            link: "/drug-interactions/list",
+            parentId: 67,
+        },
+        {
+            id: 69,
+            label: "Create Interaction",
+            link: "/drug-interactions/create",
+            parentId: 67,
+        },
+    ],
+}
+  // {
+  //   id: 9,
+  //   label: "MENUITEMS.APPS.TEXT",
+  //   isTitle: true,
+  // },
+>>>>>>> main
   // {
   //   id: 10,
   //   label: "MENUITEMS.CALENDAR.TEXT",

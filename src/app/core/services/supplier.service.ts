@@ -1,31 +1,33 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { BaseService } from "./base.service";
-import { Supplier } from "../models/supplier.models";
+// src/app/core/services/supplier.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Supplier } from '../models/supplier.models';
+import { BaseService } from './base.service';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class SupplierService extends BaseService {
   constructor(protected override http: HttpClient) {
     super(http);
   }
 
-  getAll() {
-    return this.get<Supplier[]>("suppliers");
+  getAll(): Observable<Supplier[]> {
+    return this.get<Supplier[]>('suppliers');
   }
 
-  getById(id: string) {
+  getById(id: number): Observable<Supplier> {
     return this.get<Supplier>(`suppliers/${id}`);
   }
 
-  create(branch: Partial<Supplier>) {
-    return this.post("suppliers", branch);
+  create(supplier: Partial<Supplier>): Observable<Supplier> {
+    return this.post('suppliers', supplier);
   }
 
-  update(id: string, branch: Partial<Supplier>) {
-    return this.put(`suppliers/${id}`, branch);
+  update(id: number, supplier: Partial<Supplier>): Observable<Supplier> {
+    return this.put(`suppliers/${id}`, supplier);
   }
 
-  remove(id: string) {
+  remove(id: number): Observable<void> {
     return this.delete(`suppliers/${id}`);
   }
 }

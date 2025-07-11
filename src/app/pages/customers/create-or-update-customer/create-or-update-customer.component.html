@@ -1,0 +1,145 @@
+<!-- src/app/customers/create-or-update-customer/create-or-update-customer.component.html -->
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title
+    [title]="isEditMode ? 'Update Customer' : 'Create Customer'"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Customer' : 'Create New Customer' }}</h4>
+          <form
+            [formGroup]="customerForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="userId" class="col-form-label col-lg-2">User ID</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="userId"
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          customerForm.get('userId')?.invalid &&
+                          customerForm.get('userId')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        customerForm.get('userId')?.hasError('required') &&
+                        customerForm.get('userId')?.touched
+                      "
+                    >
+                      User ID is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Address</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="address"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          customerForm.get('address')?.invalid &&
+                          customerForm.get('address')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        customerForm.get('address')?.hasError('required') &&
+                        customerForm.get('address')?.touched
+                      "
+                    >
+                      Address is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Date of Birth</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="dateOfBirth"
+                      type="date"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          customerForm.get('dateOfBirth')?.invalid &&
+                          customerForm.get('dateOfBirth')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        customerForm.get('dateOfBirth')?.hasError('required') &&
+                        customerForm.get('dateOfBirth')?.touched
+                      "
+                    >
+                      Date of Birth is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Loyalty Points</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="loyaltyPoints"
+                      type="number"
+                      min="0"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          customerForm.get('loyaltyPoints')?.invalid &&
+                          customerForm.get('loyaltyPoints')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        customerForm.get('loyaltyPoints')?.hasError('required') &&
+                        customerForm.get('loyaltyPoints')?.touched
+                      "
+                    >
+                      Loyalty Points is required.
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        customerForm.get('loyaltyPoints')?.hasError('min') &&
+                        customerForm.get('loyaltyPoints')?.touched
+                      "
+                    >
+                      Loyalty Points cannot be negative.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">
+                  {{ isEditMode ? 'Update Customer' : 'Create Customer' }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

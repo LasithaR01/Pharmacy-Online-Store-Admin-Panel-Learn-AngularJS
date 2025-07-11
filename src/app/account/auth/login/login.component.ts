@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       // email: ['admin@themesbrand.com', [Validators.required, Validators.email]],
       // password: ['123456', [Validators.required]],
-      username: ['kethaka', Validators.required],
-      password: ['password', Validators.required]
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
 
     // reset login status
