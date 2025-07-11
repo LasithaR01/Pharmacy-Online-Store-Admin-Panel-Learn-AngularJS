@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ToastrService } from "ngx-toastr";
+import { Category } from "src/app/core/models/category.models";
+import { CategoryService } from "src/app/core/services/category.service";
 import { ProductService } from "src/app/core/services/product.service";
 
 @Component({
@@ -18,12 +20,14 @@ export class CreateOrUpdateProductComponent implements OnInit {
   breadCrumbItems: Array<{}>;
   public Editor = ClassicEditor;
   productForm: FormGroup;
+  categories: Category[] = [];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
+    private categoryService: CategoryService,
     public toastr: ToastrService
   ) {}
 
@@ -41,8 +45,8 @@ export class CreateOrUpdateProductComponent implements OnInit {
       stockQuantity: [0, [Validators.required, Validators.min(0)]],
       reorderLevel: [0, [Validators.min(0)]],
       expiryDate: [""],
-      batchNumber: [""],
-      barcode: [""],
+      batchNumber: ["", Validators.required],
+      barcode: ["", Validators.required],
       isPrescriptionRequired: [false],
       categoryId: [null],
     });
@@ -53,6 +57,19 @@ export class CreateOrUpdateProductComponent implements OnInit {
         this.isEditMode = true;
         this.loadProduct();
       }
+    });
+
+    this.loadCategories();
+  }
+
+  loadCategories() {
+    this.categoryService.getAll().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      },
+      error: () => {
+        this.toastr.error("Error loading categories");
+      },
     });
   }
 
@@ -97,7 +114,24 @@ export class CreateOrUpdateProductComponent implements OnInit {
           this.router.navigate(["/products/list"]);
           this.productForm.reset();
         },
-        error: () => {
+        error: (error) => {
+          // console.log('FULL HttpErrorResponse object:', error); // important!
+          // console.log('error.error:', error.error);              // the body from the backend
+          // console.log('error.error.validationErrors:', error.error?.validationErrors); // check if defined
+
+          // if (error.status === 400 && error.error?.validationErrors) {
+          //   const validationErrors = error.error.validationErrors;
+          //   console.log('validationErrors: ', validationErrors)
+
+          //   Object.keys(validationErrors).forEach((field) => {
+          //     const formControl = this.productForm.get(field);
+          //     if (formControl) {
+          //       formControl.setErrors({
+          //         serverError: validationErrors[field],
+          //       });
+          //     }
+          //   });
+          // }
           this.toastr.error("Error creating product!", "Error");
         },
       });

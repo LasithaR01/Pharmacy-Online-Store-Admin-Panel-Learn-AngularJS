@@ -11,11 +11,13 @@ import { UIModule } from '../../shared/ui/ui.module';
 import { ListComponent } from './list/list.component';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { CreateOrUpdateOrderComponent } from './create-or-update-order/create-or-update-order.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
     ListComponent,
-    CreateOrUpdateOrderComponent
+    CreateOrUpdateOrderComponent,
+    OrderDetailComponent
   ],
   imports: [
     CommonModule,

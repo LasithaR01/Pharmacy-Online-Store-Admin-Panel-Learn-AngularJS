@@ -92,6 +92,25 @@ export const MENU: MenuItem[] = [
   },
   {
     id: 13,
+    label: "Supplier",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Supplier list",
+        link: "/suppliers/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Supplier",
+        link: "/suppliers/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
     label: "Product",
     icon: "bx-store",
     subItems: [
@@ -101,7 +120,7 @@ export const MENU: MenuItem[] = [
         link: "/products/list",
         parentId: 13,
       },
-            {
+      {
         id: 14,
         label: "Create Product",
         link: "/products/create",
@@ -109,7 +128,7 @@ export const MENU: MenuItem[] = [
       },
     ],
   },
-    {
+  {
     id: 13,
     label: "Inventory",
     icon: "bx-store",
@@ -120,7 +139,7 @@ export const MENU: MenuItem[] = [
         link: "/inventories/list",
         parentId: 13,
       },
-            {
+      {
         id: 14,
         label: "Create Inventory",
         link: "/inventories/create",
@@ -139,7 +158,7 @@ export const MENU: MenuItem[] = [
         link: "/stocks/list",
         parentId: 13,
       },
-            {
+      {
         id: 14,
         label: "Create Stock",
         link: "/stocks/create",
@@ -158,33 +177,39 @@ export const MENU: MenuItem[] = [
         link: "/orders/list",
         parentId: 13,
       },
-            {
-        id: 14,
-        label: "Create Order",
-        link: "/orders/create",
-        parentId: 13,
-      },
+      // {
+      //   id: 14,
+      //   label: "Create Order",
+      //   link: "/orders/create",
+      //   parentId: 13,
+      // },
+      // {
+      //   id: 14,
+      //   label: "Create Customer Order",
+      //   link: "/orders/createOrder",
+      //   parentId: 13,
+      // },
     ],
   },
-  {
-    id: 13,
-    label: "Order Item",
-    icon: "bx-store",
-    subItems: [
-      {
-        id: 14,
-        label: "Order Item list",
-        link: "/order-items/list",
-        parentId: 13,
-      },
-            {
-        id: 14,
-        label: "Create Order Item",
-        link: "/order-items/create",
-        parentId: 13,
-      },
-    ],
-  },
+  // {
+  //   id: 13,
+  //   label: "Order Item",
+  //   icon: "bx-store",
+  //   subItems: [
+  //     {
+  //       id: 14,
+  //       label: "Order Item list",
+  //       link: "/order-items/list",
+  //       parentId: 13,
+  //     },
+  //     {
+  //       id: 14,
+  //       label: "Create Order Item",
+  //       link: "/order-items/create",
+  //       parentId: 13,
+  //     },
+  //   ],
+  // },
   {
     id: 13,
     label: "Prescription",
@@ -196,7 +221,7 @@ export const MENU: MenuItem[] = [
         link: "/prescriptions/list",
         parentId: 13,
       },
-            {
+      {
         id: 14,
         label: "Create Prescription Item",
         link: "/prescriptions/create",
@@ -215,7 +240,7 @@ export const MENU: MenuItem[] = [
         link: "/notifications/list",
         parentId: 13,
       },
-            {
+      {
         id: 14,
         label: "Create Notification Item",
         link: "/notifications/create",
@@ -234,7 +259,7 @@ export const MENU: MenuItem[] = [
         link: "/alerts/list",
         parentId: 13,
       },
-            {
+      {
         id: 14,
         label: "Create Alert Item",
         link: "/alerts/create",
@@ -242,7 +267,7 @@ export const MENU: MenuItem[] = [
       },
     ],
   },
-    {
+  {
     id: 13,
     label: "Restock Request",
     icon: "bx-store",
@@ -253,7 +278,7 @@ export const MENU: MenuItem[] = [
         link: "/restock-requests/list",
         parentId: 13,
       },
-            {
+      {
         id: 14,
         label: "Create Restock Request Item",
         link: "/restock-requests/create",
@@ -272,7 +297,7 @@ export const MENU: MenuItem[] = [
         link: "/product-alternatives/list",
         parentId: 13,
       },
-            {
+      {
         id: 14,
         label: "Create Product Alternative Item",
         link: "/product-alternatives/create",
@@ -291,7 +316,7 @@ export const MENU: MenuItem[] = [
         link: "/drug-interactions/list",
         parentId: 13,
       },
-            {
+      {
         id: 14,
         label: "Create Drug Interaction Item",
         link: "/drug-interactions/create",
@@ -299,11 +324,11 @@ export const MENU: MenuItem[] = [
       },
     ],
   },
-  // {
-  //   id: 9,
-  //   label: "MENUITEMS.APPS.TEXT",
-  //   isTitle: true,
-  // },
+  {
+    id: 9,
+    label: "MENUITEMS.APPS.TEXT",
+    isTitle: true,
+  },
   // {
   //   id: 10,
   //   label: "MENUITEMS.CALENDAR.TEXT",
@@ -322,61 +347,74 @@ export const MENU: MenuItem[] = [
   //   icon: "bx-file",
   //   link: "/filemanager",
   // },
-  // {
-  //   id: 13,
-  //   label: "MENUITEMS.ECOMMERCE.TEXT",
-  //   icon: "bx-store",
-  //   subItems: [
-  //     {
-  //       id: 14,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTS",
-  //       link: "/ecommerce/products",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 15,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTDETAIL",
-  //       link: "/ecommerce/product-detail/1",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 16,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.ORDERS",
-  //       link: "/ecommerce/orders",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 17,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.CUSTOMERS",
-  //       link: "/ecommerce/customers",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 18,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.CART",
-  //       link: "/ecommerce/cart",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 19,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.CHECKOUT",
-  //       link: "/ecommerce/checkout",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 20,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.SHOPS",
-  //       link: "/ecommerce/shops",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 21,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.ADDPRODUCT",
-  //       link: "/ecommerce/add-product",
-  //       parentId: 13,
-  //     },
-  //   ],
-  // },
+  {
+    id: 13,
+    label: "MENUITEMS.ECOMMERCE.TEXT",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTS",
+        link: "/ecommerce/products",
+        parentId: 13,
+      },
+      // {
+      //   id: 15,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTDETAIL",
+      //   link: "/ecommerce/product-detail/1",
+      //   parentId: 13,
+      // },
+      // {
+      //   id: 16,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.ORDERS",
+      //   link: "/ecommerce/orders",
+      //   parentId: 13,
+      // },
+      // {
+      //   id: 17,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.CUSTOMERS",
+      //   link: "/ecommerce/customers",
+      //   parentId: 13,
+      // },
+      {
+        id: 18,
+        label: "MENUITEMS.ECOMMERCE.LIST.CART",
+        link: "/ecommerce/cart",
+        parentId: 13,
+      },
+      {
+        id: 19,
+        label: "MENUITEMS.ECOMMERCE.LIST.CHECKOUT",
+        link: "/ecommerce/checkout",
+        parentId: 13,
+      },
+      // {
+      //   id: 20,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.SHOPS",
+      //   link: "/ecommerce/shops",
+      //   parentId: 13,
+      // },
+      // {
+      //   id: 21,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.ADDPRODUCT",
+      //   link: "/ecommerce/add-product",
+      //   parentId: 13,
+      // },
+    ],
+  },
+  {
+    id: 13,
+    label: "Reports",
+    icon: "bxs-bar-chart-alt-2",
+    subItems: [
+      {
+        id: 14,
+        label: "Low Stock Report",
+        link: "/ecommerce/products",
+        parentId: 13,
+      },
+    ],
+  },
   // {
   //   id: 22,
   //   label: "MENUITEMS.CRYPTO.TEXT",

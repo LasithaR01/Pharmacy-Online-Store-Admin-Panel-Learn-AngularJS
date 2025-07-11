@@ -9,11 +9,16 @@ import { CartComponent } from './cart/cart.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { CustomersComponent } from './customers/customers.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ProductsNewComponent } from './productsNew/products.component';
 
 const routes: Routes = [
     {
-        path: 'products',
+        path: 'products-old',
         component: ProductsComponent
+    },
+    {
+        path: 'products',
+        component: ProductsNewComponent
     },
     {
         path: 'product-detail/:id',

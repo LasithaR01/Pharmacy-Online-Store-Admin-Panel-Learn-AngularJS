@@ -44,6 +44,7 @@
                 <tr>
                   <th class="align-middle">ID</th>
                   <th class="align-middle">Name</th>
+                  <th class="align-middle">Category</th>
                   <th class="align-middle">Price</th>
                   <th class="align-middle">Stock</th>
                   <th class="align-middle">Barcode</th>
@@ -54,7 +55,8 @@
                 <tr *ngFor="let product of filteredProducts">
                   <td>{{ product.id }}</td>
                   <td>{{ product.name }}</td>
-                  <td>{{ product.price | currency }}</td>
+                  <td>{{ product.categoryName }}</td>
+                  <td>Rs. {{ product.price }}</td>
                   <td>{{ product.stockQuantity }}</td>
                   <td>{{ product.barcode }}</td>
                   <td>

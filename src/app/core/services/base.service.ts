@@ -35,6 +35,7 @@ export abstract class BaseService {
   protected post<T>(url: string, body: any): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}/${url}`, body, {
       headers: this.authHeaders,
+      responseType: 'json',
     });
   }
 

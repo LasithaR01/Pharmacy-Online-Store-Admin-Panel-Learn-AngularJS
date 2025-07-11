@@ -21,6 +21,7 @@ export class productModel {
     price?: number;
     manufacture_name?: string;
     manufacture_brand?: string;
+    barcode?: string;
 }
 
 // tslint:disable-next-line: class-name

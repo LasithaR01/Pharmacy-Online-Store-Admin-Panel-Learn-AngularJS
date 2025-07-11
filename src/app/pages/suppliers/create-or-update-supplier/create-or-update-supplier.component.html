@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <!-- start page title -->
   <app-page-title
-    [title]="isEditMode ? 'Update Branch' : 'Create Branch'"
+    [title]="isEditMode ? 'Update Supplier' : 'Create Supplier'"
     [breadcrumbItems]="breadCrumbItems"
   ></app-page-title>
   <!-- end page title -->
@@ -11,7 +11,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title mb-4">
-            {{ isEditMode ? "Update Branch" : "Create New Branch" }}
+            {{ isEditMode ? "Update Supplier" : "Create New Supplier" }}
           </h4>
           <form
             [formGroup]="branchForm"
@@ -22,55 +22,55 @@
               <div data-repeater-item class="outer">
                 <div class="row mb-4">
                   <label for="taskname" class="col-form-label col-lg-2"
-                    >Name</label
+                    >Company Name</label
                   >
                   <div class="col-lg-10">
                     <input
-                      formControlName="name"
+                      formControlName="companyName"
                       type="text"
                       class="form-control"
                       [ngClass]="{
                         'is-invalid':
-                          branchForm.get('name')?.invalid &&
-                          branchForm.get('name')?.touched
+                          branchForm.get('companyName')?.invalid &&
+                          branchForm.get('companyName')?.touched
                       }"
                     />
                     <div
                       class="invalid-feedback"
                       *ngIf="
-                        branchForm.get('name')?.hasError('required') &&
-                        branchForm.get('name')?.touched
+                        branchForm.get('companyName')?.hasError('required') &&
+                        branchForm.get('companyName')?.touched
                       "
                     >
-                      Name is required.
+                      Company Name is required.
                     </div>
                   </div>
                 </div>
                 <div class="row mb-4">
-                  <label class="col-form-label col-lg-2">Location</label>
+                  <label class="col-form-label col-lg-2">Address</label>
                   <div class="col-lg-10">
                     <input
-                      formControlName="location"
+                      formControlName="address"
                       type="text"
                       class="form-control"
                       [ngClass]="{
                         'is-invalid':
-                          branchForm.get('location')?.invalid &&
-                          branchForm.get('location')?.touched
+                          branchForm.get('address')?.invalid &&
+                          branchForm.get('address')?.touched
                       }"
                     />
                     <div
                       class="invalid-feedback"
                       *ngIf="
-                        branchForm.get('location')?.hasError('required') &&
-                        branchForm.get('location')?.touched
+                        branchForm.get('address')?.hasError('required') &&
+                        branchForm.get('address')?.touched
                       "
                     >
-                      Location is required.
+                      Address is required.
                     </div>
                   </div>
                 </div>
-                <div class="row mb-4">
+                <!-- <div class="row mb-4">
                   <label class="col-form-label col-lg-2">Contact No.</label>
                   <div class="col-lg-10">
                     <input
@@ -93,8 +93,8 @@
                       Contact Number is required.
                     </div>
                   </div>
-                </div>
-                <div class="row mb-4">
+                </div> -->
+                <!-- <div class="row mb-4">
                   <label class="col-form-label col-lg-2">Opening Hours</label>
                   <div class="col-lg-10">
                     <input
@@ -117,13 +117,13 @@
                       Opening Hours is required.
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="row justify-content-end">
               <div class="col-lg-10">
                 <button type="submit" class="btn btn-primary">
-                  {{ isEditMode ? "Update Branch" : "Create Branch" }}
+                  {{ isEditMode ? "Update Supplier" : "Create Supplier" }}
                 </button>
               </div>
             </div>

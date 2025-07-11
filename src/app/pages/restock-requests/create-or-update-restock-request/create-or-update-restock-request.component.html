@@ -11,7 +11,9 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Request' : 'Create New Request' }}</h4>
+          <h4 class="card-title mb-4">
+            {{ isEditMode ? "Update Request" : "Create New Request" }}
+          </h4>
           <form
             [formGroup]="requestForm"
             (ngSubmit)="onSubmit()"
@@ -108,18 +110,17 @@
                 <div class="row mb-4" *ngIf="isEditMode">
                   <label class="col-form-label col-lg-2">Status</label>
                   <div class="col-lg-10">
-                    <select
-                      formControlName="status"
-                      class="form-select"
-                    >
+                    <select formControlName="status" class="form-select">
                       <option [value]="RestockStatus.PENDING">Pending</option>
                       <option [value]="RestockStatus.APPROVED">Approved</option>
                       <option [value]="RestockStatus.REJECTED">Rejected</option>
-                      <option [value]="RestockStatus.FULFILLED">Fulfilled</option>
+                      <option [value]="RestockStatus.FULFILLED">
+                        Fulfilled
+                      </option>
                     </select>
                   </div>
                 </div>
-                <div class="row mb-4">
+                <!-- <div class="row mb-4">
                   <label class="col-form-label col-lg-2">Supplier</label>
                   <div class="col-lg-10">
                     <input
@@ -128,6 +129,20 @@
                       class="form-control"
                       placeholder="Enter supplier ID (optional)"
                     />
+                  </div>
+                </div> -->
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Supplier</label>
+                  <div class="col-lg-10">
+                    <select formControlName="supplierId" class="form-control">
+                      <option [value]="null">No Supplier</option>
+                      <option
+                        *ngFor="let supplier of suppliers"
+                        [value]="supplier.id"
+                      >
+                        {{ supplier.companyName }}
+                      </option>
+                    </select>
                   </div>
                 </div>
                 <div class="row mb-4">
@@ -146,7 +161,7 @@
             <div class="row justify-content-end">
               <div class="col-lg-10">
                 <button type="submit" class="btn btn-primary">
-                  {{ isEditMode ? 'Update Request' : 'Create Request' }}
+                  {{ isEditMode ? "Update Request" : "Create Request" }}
                 </button>
               </div>
             </div>
