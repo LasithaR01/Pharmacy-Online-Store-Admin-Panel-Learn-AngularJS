@@ -15,7 +15,7 @@ export class SupplierService extends BaseService {
     return this.get<Supplier[]>('suppliers');
   }
 
-  getById(id: number): Observable<Supplier> {
+  getById(id: string): Observable<Supplier> {
     return this.get<Supplier>(`suppliers/${id}`);
   }
 
@@ -23,7 +23,7 @@ export class SupplierService extends BaseService {
     return this.post('suppliers', supplier);
   }
 
-  update(id: number, supplier: Partial<Supplier>): Observable<Supplier> {
+  update(id: string, supplier: Partial<Supplier>): Observable<Supplier> {
     return this.put(`suppliers/${id}`, supplier);
   }
 
