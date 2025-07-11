@@ -46,366 +46,581 @@ export const MENU: MenuItem[] = [
   {
     id: 8,
     isLayout: true,
-},
+  },
   {
     id: 9,
     label: "User Management",
     isTitle: true,
-},
-{
+  },
+  {
     id: 13,
     label: "Employee",
     icon: "bx-user-circle",
     subItems: [
-        {
-            id: 14,
-            label: "Employee list",
-            link: "/employees/list",
-            parentId: 13,
-        },
-        {
-            id: 15,
-            label: "Create Employee",
-            link: "/employees/create",
-            parentId: 13,
-        },
+      {
+        id: 14,
+        label: "Employee list",
+        link: "/employees/list",
+        parentId: 13,
+      },
+      {
+        id: 15,
+        label: "Create Employee",
+        link: "/employees/create",
+        parentId: 13,
+      },
     ],
-},
-{
+  },
+  {
     id: 16,
     label: "Supplier",
     icon: "bxs-truck",
     subItems: [
-        {
-            id: 17,
-            label: "Supplier list",
-            link: "/suppliers/list",
-            parentId: 16,
-        },
-        {
-            id: 18,
-            label: "Create Supplier",
-            link: "/suppliers/create",
-            parentId: 16,
-        },
+      {
+        id: 17,
+        label: "Supplier list",
+        link: "/suppliers/list",
+        parentId: 16,
+      },
+      {
+        id: 18,
+        label: "Create Supplier",
+        link: "/suppliers/create",
+        parentId: 16,
+      },
     ],
-},
-{
+  },
+  {
     id: 19,
     label: "Customer",
     icon: "bx-user",
     subItems: [
-        {
-            id: 20,
-            label: "Customer list",
-            link: "/customers/list",
-            parentId: 19,
-        },
-        {
-            id: 21,
-            label: "Create Customer",
-            link: "/customers/create",
-            parentId: 19,
-        },
+      {
+        id: 20,
+        label: "Customer list",
+        link: "/customers/list",
+        parentId: 19,
+      },
+      {
+        id: 21,
+        label: "Create Customer",
+        link: "/customers/create",
+        parentId: 19,
+      },
     ],
-},
-{
+  },
+  {
     id: 22,
     label: "Product Management",
     isTitle: true,
-},
-{
-    id: 23,
+  },
+  {
+    id: 10,
+    label: "Branch",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 11,
+        label: "Branch list",
+        link: "/branches/list",
+        parentId: 10,
+      },
+      {
+        id: 12,
+        label: "Create Branch",
+        link: "/branches/create",
+        parentId: 10,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "Category",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Category list",
+        link: "/categories/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Category",
+        link: "/categories/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "Supplier",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Supplier list",
+        link: "/suppliers/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Supplier",
+        link: "/suppliers/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
     label: "Product",
     icon: "bx-package",
     subItems: [
-        {
-            id: 24,
-            label: "Product list",
-            link: "/products/list",
-            parentId: 23,
-        },
-        {
-            id: 25,
-            label: "Create Product",
-            link: "/products/create",
-            parentId: 23,
-        },
+      {
+        id: 14,
+        label: "Product list",
+        link: "/products/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Product",
+        link: "/products/create",
+        parentId: 13,
+      },
     ],
-},
-{
-    id: 26,
+  },
+  {
+    id: 13,
+    label: "Inventory",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Inventory list",
+        link: "/inventories/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Inventory",
+        link: "/inventories/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "Stock",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Stock list",
+        link: "/stocks/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Stock",
+        link: "/stocks/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "Order",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Order list",
+        link: "/orders/list",
+        parentId: 13,
+      },
+      // {
+      //   id: 14,
+      //   label: "Create Order",
+      //   link: "/orders/create",
+      //   parentId: 13,
+      // },
+      // {
+      //   id: 14,
+      //   label: "Create Customer Order",
+      //   link: "/orders/createOrder",
+      //   parentId: 13,
+      // },
+    ],
+  },
+  // {
+  //   id: 13,
+  //   label: "Order Item",
+  //   icon: "bx-store",
+  //   subItems: [
+  //     {
+  //       id: 14,
+  //       label: "Order Item list",
+  //       link: "/order-items/list",
+  //       parentId: 13,
+  //     },
+  //     {
+  //       id: 14,
+  //       label: "Create Order Item",
+  //       link: "/order-items/create",
+  //       parentId: 13,
+  //     },
+  //   ],
+  // },
+  {
+    id: 13,
+    label: "Prescription",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Prescription list",
+        link: "/prescriptions/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Prescription Item",
+        link: "/prescriptions/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "Notification",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Notification list",
+        link: "/notifications/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Notification Item",
+        link: "/notifications/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "Alert",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Alert list",
+        link: "/alerts/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Alert Item",
+        link: "/alerts/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "Restock Request",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "Restock Request",
+        link: "/restock-requests/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Restock Request Item",
+        link: "/restock-requests/create",
+        parentId: 13,
+      },
+    ],
+  },
+  {
+    id: 13,
     label: "Product Alternative",
     icon: "bx-transfer",
     subItems: [
-        {
-            id: 27,
-            label: "Product Alternatives",
-            link: "/product-alternatives/list",
-            parentId: 26,
-        },
-        {
-            id: 28,
-            label: "Create Alternative",
-            link: "/product-alternatives/create",
-            parentId: 26,
-        },
+      {
+        id: 14,
+        label: "Product Alternative",
+        link: "/product-alternatives/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Product Alternative Item",
+        link: "/product-alternatives/create",
+        parentId: 13,
+      },
     ],
-},
-{
+  },
+  {
     id: 29,
     label: "Branch Management",
     isTitle: true,
-},
-{
+  },
+  {
     id: 30,
     label: "Branch",
     icon: "bx-store-alt",
     subItems: [
-        {
-            id: 31,
-            label: "Branch list",
-            link: "/branches/list",
-            parentId: 30,
-        },
-        {
-            id: 32,
-            label: "Create Branch",
-            link: "/branches/create",
-            parentId: 30,
-        },
+      {
+        id: 31,
+        label: "Branch list",
+        link: "/branches/list",
+        parentId: 30,
+      },
+      {
+        id: 32,
+        label: "Create Branch",
+        link: "/branches/create",
+        parentId: 30,
+      },
     ],
-},
-{
+  },
+  {
     id: 33,
     label: "Category Management",
     isTitle: true,
-},
-{
+  },
+  {
     id: 34,
     label: "Category",
     icon: "bxs-folder-minus",
     subItems: [
-        {
-            id: 35,
-            label: "Category list",
-            link: "/categories/list",
-            parentId: 34,
-        },
-        {
-            id: 36,
-            label: "Create Category",
-            link: "/categories/create",
-            parentId: 34,
-        },
+      {
+        id: 35,
+        label: "Category list",
+        link: "/categories/list",
+        parentId: 34,
+      },
+      {
+        id: 36,
+        label: "Create Category",
+        link: "/categories/create",
+        parentId: 34,
+      },
     ],
-},
-{
+  },
+  {
     id: 37,
     label: "Inventory Management",
     isTitle: true,
-},
-{
+  },
+  {
     id: 38,
     label: "Inventory",
     icon: "bx-archive",
     subItems: [
-        {
-            id: 39,
-            label: "Inventory list",
-            link: "/inventories/list",
-            parentId: 38,
-        },
-        {
-            id: 40,
-            label: "Create Inventory",
-            link: "/inventories/create",
-            parentId: 38,
-        },
+      {
+        id: 39,
+        label: "Inventory list",
+        link: "/inventories/list",
+        parentId: 38,
+      },
+      {
+        id: 40,
+        label: "Create Inventory",
+        link: "/inventories/create",
+        parentId: 38,
+      },
     ],
-},
-{
+  },
+  {
     id: 41,
     label: "Stock Management",
     isTitle: true,
-},
-{
+  },
+  {
     id: 42,
     label: "Stock",
     icon: "bx-cube",
     subItems: [
-        {
-            id: 43,
-            label: "Stock list",
-            link: "/stocks/list",
-            parentId: 42,
-        },
-        {
-            id: 44,
-            label: "Create Stock",
-            link: "/stocks/create",
-            parentId: 42,
-        },
+      {
+        id: 43,
+        label: "Stock list",
+        link: "/stocks/list",
+        parentId: 42,
+      },
+      {
+        id: 44,
+        label: "Create Stock",
+        link: "/stocks/create",
+        parentId: 42,
+      },
     ],
-},
-{
+  },
+  {
     id: 45,
     label: "Restock Request",
     icon: "bxs-traffic-barrier",
     subItems: [
-        {
-            id: 46,
-            label: "Restock Requests",
-            link: "/restock-requests/list",
-            parentId: 45,
-        },
-        {
-            id: 47,
-            label: "Create Request",
-            link: "/restock-requests/create",
-            parentId: 45,
-        },
+      {
+        id: 46,
+        label: "Restock Requests",
+        link: "/restock-requests/list",
+        parentId: 45,
+      },
+      {
+        id: 47,
+        label: "Create Request",
+        link: "/restock-requests/create",
+        parentId: 45,
+      },
     ],
-},
-{
+  },
+  {
     id: 48,
     label: "Order Management",
     isTitle: true,
-},
-{
+  },
+  {
     id: 49,
     label: "Order",
     icon: "bx-cart",
     subItems: [
-        {
-            id: 50,
-            label: "Order list",
-            link: "/orders/list",
-            parentId: 49,
-        },
-        {
-            id: 51,
-            label: "Create Order",
-            link: "/orders/create",
-            parentId: 49,
-        },
+      {
+        id: 50,
+        label: "Order list",
+        link: "/orders/list",
+        parentId: 49,
+      },
+      {
+        id: 51,
+        label: "Create Order",
+        link: "/orders/create",
+        parentId: 49,
+      },
     ],
-},
-{
+  },
+  {
     id: 52,
     label: "Order Item",
     icon: "bx-list-ul",
     subItems: [
-        {
-            id: 53,
-            label: "Order Items",
-            link: "/order-items/list",
-            parentId: 52,
-        },
-        {
-            id: 54,
-            label: "Create Item",
-            link: "/order-items/create",
-            parentId: 52,
-        },
+      {
+        id: 53,
+        label: "Order Items",
+        link: "/order-items/list",
+        parentId: 52,
+      },
+      {
+        id: 54,
+        label: "Create Item",
+        link: "/order-items/create",
+        parentId: 52,
+      },
     ],
-},
-{
+  },
+  {
     id: 55,
     label: "Prescription Management",
     isTitle: true,
-},
-{
+  },
+  {
     id: 56,
     label: "Prescription",
     icon: "bx-file",
     subItems: [
-        {
-            id: 57,
-            label: "Prescriptions",
-            link: "/prescriptions/list",
-            parentId: 56,
-        },
-        {
-            id: 58,
-            label: "Create Prescription",
-            link: "/prescriptions/create",
-            parentId: 56,
-        },
+      {
+        id: 57,
+        label: "Prescriptions",
+        link: "/prescriptions/list",
+        parentId: 56,
+      },
+      {
+        id: 58,
+        label: "Create Prescription",
+        link: "/prescriptions/create",
+        parentId: 56,
+      },
     ],
-},
-{
+  },
+  {
     id: 59,
     label: "Notification Management",
     isTitle: true,
-},
-{
+  },
+  {
     id: 60,
     label: "Notification",
     icon: "bx-bell",
     subItems: [
-        {
-            id: 61,
-            label: "Notifications",
-            link: "/notifications/list",
-            parentId: 60,
-        },
-        {
-            id: 62,
-            label: "Create Notification",
-            link: "/notifications/create",
-            parentId: 60,
-        },
+      {
+        id: 61,
+        label: "Notifications",
+        link: "/notifications/list",
+        parentId: 60,
+      },
+      {
+        id: 62,
+        label: "Create Notification",
+        link: "/notifications/create",
+        parentId: 60,
+      },
     ],
-},
-{
+  },
+  {
     id: 63,
     label: "Alert",
     icon: "bxs-mobile",
     subItems: [
-        {
-            id: 64,
-            label: "Alerts",
-            link: "/alerts/list",
-            parentId: 63,
-        },
-        {
-            id: 65,
-            label: "Create Alert",
-            link: "/alerts/create",
-            parentId: 63,
-        },
+      {
+        id: 64,
+        label: "Alerts",
+        link: "/alerts/list",
+        parentId: 63,
+      },
+      {
+        id: 65,
+        label: "Create Alert",
+        link: "/alerts/create",
+        parentId: 63,
+      },
     ],
-},
-{
+  },
+  {
     id: 66,
     label: "Drug Interaction Management",
     isTitle: true,
-},
-{
+  },
+  {
     id: 67,
     label: "Drug Interaction",
     icon: "bx-shield-alt-2",
     subItems: [
-        {
-            id: 68,
-            label: "Interactions",
-            link: "/drug-interactions/list",
-            parentId: 67,
-        },
-        {
-            id: 69,
-            label: "Create Interaction",
-            link: "/drug-interactions/create",
-            parentId: 67,
-        },
+      {
+        id: 14,
+        label: "Drug Interaction",
+        link: "/drug-interactions/list",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Create Drug Interaction Item",
+        link: "/drug-interactions/create",
+        parentId: 13,
+      },
     ],
-}
-  // {
-  //   id: 9,
-  //   label: "MENUITEMS.APPS.TEXT",
-  //   isTitle: true,
-  // },
+  },
+  {
+    id: 9,
+    label: "MENUITEMS.APPS.TEXT",
+    isTitle: true,
+  },
   // {
   //   id: 10,
   //   label: "MENUITEMS.CALENDAR.TEXT",
@@ -424,61 +639,74 @@ export const MENU: MenuItem[] = [
   //   icon: "bx-file",
   //   link: "/filemanager",
   // },
-  // {
-  //   id: 13,
-  //   label: "MENUITEMS.ECOMMERCE.TEXT",
-  //   icon: "bx-store",
-  //   subItems: [
-  //     {
-  //       id: 14,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTS",
-  //       link: "/ecommerce/products",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 15,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTDETAIL",
-  //       link: "/ecommerce/product-detail/1",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 16,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.ORDERS",
-  //       link: "/ecommerce/orders",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 17,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.CUSTOMERS",
-  //       link: "/ecommerce/customers",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 18,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.CART",
-  //       link: "/ecommerce/cart",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 19,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.CHECKOUT",
-  //       link: "/ecommerce/checkout",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 20,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.SHOPS",
-  //       link: "/ecommerce/shops",
-  //       parentId: 13,
-  //     },
-  //     {
-  //       id: 21,
-  //       label: "MENUITEMS.ECOMMERCE.LIST.ADDPRODUCT",
-  //       link: "/ecommerce/add-product",
-  //       parentId: 13,
-  //     },
-  //   ],
-  // },
+  {
+    id: 13,
+    label: "MENUITEMS.ECOMMERCE.TEXT",
+    icon: "bx-store",
+    subItems: [
+      {
+        id: 14,
+        label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTS",
+        link: "/ecommerce/products",
+        parentId: 13,
+      },
+      // {
+      //   id: 15,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTDETAIL",
+      //   link: "/ecommerce/product-detail/1",
+      //   parentId: 13,
+      // },
+      // {
+      //   id: 16,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.ORDERS",
+      //   link: "/ecommerce/orders",
+      //   parentId: 13,
+      // },
+      // {
+      //   id: 17,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.CUSTOMERS",
+      //   link: "/ecommerce/customers",
+      //   parentId: 13,
+      // },
+      {
+        id: 18,
+        label: "MENUITEMS.ECOMMERCE.LIST.CART",
+        link: "/ecommerce/cart",
+        parentId: 13,
+      },
+      {
+        id: 19,
+        label: "MENUITEMS.ECOMMERCE.LIST.CHECKOUT",
+        link: "/ecommerce/checkout",
+        parentId: 13,
+      },
+      // {
+      //   id: 20,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.SHOPS",
+      //   link: "/ecommerce/shops",
+      //   parentId: 13,
+      // },
+      // {
+      //   id: 21,
+      //   label: "MENUITEMS.ECOMMERCE.LIST.ADDPRODUCT",
+      //   link: "/ecommerce/add-product",
+      //   parentId: 13,
+      // },
+    ],
+  },
+  {
+    id: 13,
+    label: "Reports",
+    icon: "bxs-bar-chart-alt-2",
+    subItems: [
+      {
+        id: 14,
+        label: "Low Stock Report",
+        link: "/ecommerce/products",
+        parentId: 13,
+      },
+    ],
+  },
   // {
   //   id: 22,
   //   label: "MENUITEMS.CRYPTO.TEXT",

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateOrUpdateSupplierComponent } from './create-or-update-supplier.component';
+import { CreateBranchComponent } from './create-or-update-supplier.component';
 
-describe('CreateOrUpdateSupplierComponent', () => {
-  let component: CreateOrUpdateSupplierComponent;
-  let fixture: ComponentFixture<CreateOrUpdateSupplierComponent>;
+describe('CreateBranchComponent', () => {
+  let component: CreateBranchComponent;
+  let fixture: ComponentFixture<CreateBranchComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CreateOrUpdateSupplierComponent]
+      declarations: [CreateBranchComponent]
     });
-    fixture = TestBed.createComponent(CreateOrUpdateSupplierComponent);
+    fixture = TestBed.createComponent(CreateBranchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

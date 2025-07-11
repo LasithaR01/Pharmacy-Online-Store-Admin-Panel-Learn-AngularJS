@@ -44,8 +44,8 @@
               <thead class="table-light">
                 <tr>
                   <th class="align-middle">ID</th>
-                  <th class="align-middle">User</th>
-                  <th class="align-middle">Branch</th>
+                  <th class="align-middle">Customer</th>
+                  <!-- <th class="align-middle">Branch</th> -->
                   <th class="align-middle">Order Date</th>
                   <th class="align-middle">Total</th>
                   <th class="align-middle">Status</th>
@@ -56,10 +56,10 @@
               <tbody>
                 <tr *ngFor="let order of filteredOrders">
                   <td>{{ order.id }}</td>
-                  <td>{{ order.userName }}</td>
-                  <td>{{ order.branchName }}</td>
+                  <td>{{ order.customerName }}</td>
+                  <!-- <td>{{ order.branchName }}</td> -->
                   <td>{{ order.orderDate | date:'medium' }}</td>
-                  <td>{{ order.totalAmount | currency }}</td>
+                  <td>Rs. {{ order.totalAmount }}</td>
                   <td>
                     <span [class]="getStatusClass(order.status)">{{ order.status }}</span>
                   </td>

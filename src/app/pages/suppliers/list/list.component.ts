@@ -1,15 +1,14 @@
-// src/app/pages/suppliers/list/list.component.ts
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { ModalDirective } from 'ngx-bootstrap/modal';
-import { ToastrService } from 'ngx-toastr';
-import { Supplier } from 'src/app/core/models/supplier.models';
-import { SupplierService } from 'src/app/core/services/supplier.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
+import { ModalDirective } from "ngx-bootstrap/modal";
+import { ToastrService } from "ngx-toastr";
+import { Supplier } from "src/app/core/models/supplier.models";
+import { SupplierService } from "src/app/core/services/supplier.service";
 
 @Component({
-  selector: 'app-supplier-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: "app-list",
+  templateUrl: "./list.component.html",
+  styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
   breadCrumbItems: Array<{}>;
@@ -19,7 +18,7 @@ export class ListComponent implements OnInit {
 
   @ViewChild("removeItemModal", { static: false })
   removeItemModal?: ModalDirective;
-  deleteId: any;
+  deletId: any;
 
   constructor(
     private supplierService: SupplierService,
@@ -29,8 +28,8 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.breadCrumbItems = [
-      { label: "Dashboard" },
-      { label: "Suppliers", active: true },
+      { label: "Home" },
+      { label: "Branches", active: true },
     ];
 
     this.loadSuppliers();
@@ -43,8 +42,8 @@ export class ListComponent implements OnInit {
         this.filteredSuppliers = [...this.suppliers];
       },
       error: (err) => {
-        console.error("Failed to load suppliers", err);
-        this.toastr.error("Failed to load suppliers");
+        console.error("Failed to load branches", err);
+        this.toastr.error("Failed to load branches");
       },
     });
   }
@@ -56,25 +55,24 @@ export class ListComponent implements OnInit {
     }
 
     const term = this.searchTerm.toLowerCase();
-    this.filteredSuppliers = this.suppliers.filter(supplier =>
-      supplier.companyName.toLowerCase().includes(term) ||
-      (supplier.address && supplier.address.toLowerCase().includes(term)) ||
-      (supplier.userEmail && supplier.userEmail.toLowerCase().includes(term)) ||
-      (supplier.taxId && supplier.taxId.toLowerCase().includes(term))
-    );
+    // this.filteredSuppliers = this.suppliers.filter(supplier =>
+    //   supplier.name.toLowerCase().includes(term) ||
+    //   (supplier.id && branch.location.toLowerCase().includes(term)) ||
+    //   (branch.contactNumber && branch.contactNumber.toLowerCase().includes(term))
+    // );
   }
 
-  edit(id: number): void {
-    this.router.navigate(['/suppliers/update', id]);
+  edit(id: string): void {
+    this.router.navigate([`/suppliers/update`, id]);
   }
 
-  showDeleteModal(id: number): void {
-    this.deleteId = id;
+  showDeleteModal(id: string): void {
+    this.deletId = id;
     this.removeItemModal?.show();
   }
 
   delete(): void {
-    this.supplierService.remove(this.deleteId).subscribe({
+    this.supplierService.remove(this.deletId).subscribe({
       next: () => {
         this.toastr.success("Supplier deleted successfully!", "Success");
         this.loadSuppliers();

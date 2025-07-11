@@ -1,110 +1,129 @@
-<!-- src/app/pages/suppliers/create-or-update-supplier/create-or-update-supplier.component.html -->
 <div class="container-fluid">
+  <!-- start page title -->
   <app-page-title
     [title]="isEditMode ? 'Update Supplier' : 'Create Supplier'"
     [breadcrumbItems]="breadCrumbItems"
   ></app-page-title>
+  <!-- end page title -->
 
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Supplier' : 'Create New Supplier' }}</h4>
-          <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
-            <div class="row mb-4">
-              <label class="col-form-label col-lg-2">User</label>
-              <div class="col-lg-10">
-                <select
-                  formControlName="userId"
-                  class="form-control"
-                  [ngClass]="{
-                    'is-invalid':
-                      supplierForm.get('userId')?.invalid &&
-                      supplierForm.get('userId')?.touched
-                  }"
-                >
-                  <option value="">Select User</option>
-                  <option *ngFor="let user of users" [value]="user.id">
-                    {{ user.name }} ({{ user.email }})
-                  </option>
-                </select>
-                <div
-                  class="invalid-feedback"
-                  *ngIf="
-                    supplierForm.get('userId')?.hasError('required') &&
-                    supplierForm.get('userId')?.touched
-                  "
-                >
-                  User is required.
+          <h4 class="card-title mb-4">
+            {{ isEditMode ? "Update Supplier" : "Create New Supplier" }}
+          </h4>
+          <form
+            [formGroup]="branchForm"
+            (ngSubmit)="onSubmit()"
+            class="outer-repeater"
+          >
+            <div data-repeater-list="outer-group" class="outer">
+              <div data-repeater-item class="outer">
+                <div class="row mb-4">
+                  <label for="taskname" class="col-form-label col-lg-2"
+                    >Company Name</label
+                  >
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="companyName"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          branchForm.get('companyName')?.invalid &&
+                          branchForm.get('companyName')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        branchForm.get('companyName')?.hasError('required') &&
+                        branchForm.get('companyName')?.touched
+                      "
+                    >
+                      Company Name is required.
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="row mb-4">
-              <label class="col-form-label col-lg-2">Company Name</label>
-              <div class="col-lg-10">
-                <input
-                  formControlName="companyName"
-                  type="text"
-                  class="form-control"
-                  [ngClass]="{
-                    'is-invalid':
-                      supplierForm.get('companyName')?.invalid &&
-                      supplierForm.get('companyName')?.touched
-                  }"
-                />
-                <div
-                  class="invalid-feedback"
-                  *ngIf="
-                    supplierForm.get('companyName')?.hasError('required') &&
-                    supplierForm.get('companyName')?.touched
-                  "
-                >
-                  Company name is required.
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Address</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="address"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          branchForm.get('address')?.invalid &&
+                          branchForm.get('address')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        branchForm.get('address')?.hasError('required') &&
+                        branchForm.get('address')?.touched
+                      "
+                    >
+                      Address is required.
+                    </div>
+                  </div>
                 </div>
+                <!-- <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Contact No.</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="contactNumber"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          branchForm.get('contactNumber')?.invalid &&
+                          branchForm.get('contactNumber')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        branchForm.get('contactNumber')?.hasError('required') &&
+                        branchForm.get('contactNumber')?.touched
+                      "
+                    >
+                      Contact Number is required.
+                    </div>
+                  </div>
+                </div> -->
+                <!-- <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Opening Hours</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="openingHours"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          branchForm.get('openingHours')?.invalid &&
+                          branchForm.get('openingHours')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        branchForm.get('openingHours')?.hasError('required') &&
+                        branchForm.get('openingHours')?.touched
+                      "
+                    >
+                      Opening Hours is required.
+                    </div>
+                  </div>
+                </div> -->
               </div>
             </div>
-
-            <div class="row mb-4">
-              <label class="col-form-label col-lg-2">Address</label>
-              <div class="col-lg-10">
-                <textarea
-                  formControlName="address"
-                  class="form-control"
-                  rows="3"
-                  [ngClass]="{
-                    'is-invalid':
-                      supplierForm.get('address')?.invalid &&
-                      supplierForm.get('address')?.touched
-                  }"
-                ></textarea>
-                <div
-                  class="invalid-feedback"
-                  *ngIf="
-                    supplierForm.get('address')?.hasError('required') &&
-                    supplierForm.get('address')?.touched
-                  "
-                >
-                  Address is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="row mb-4">
-              <label class="col-form-label col-lg-2">Tax ID</label>
-              <div class="col-lg-10">
-                <input
-                  formControlName="taxId"
-                  type="text"
-                  class="form-control"
-                />
-              </div>
-            </div>
-
             <div class="row justify-content-end">
               <div class="col-lg-10">
                 <button type="submit" class="btn btn-primary">
-                  {{ isEditMode ? 'Update Supplier' : 'Create Supplier' }}
+                  {{ isEditMode ? "Update Supplier" : "Create Supplier" }}
                 </button>
               </div>
             </div>

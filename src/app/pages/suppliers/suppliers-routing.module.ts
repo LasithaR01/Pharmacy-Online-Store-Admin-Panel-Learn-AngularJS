@@ -1,20 +1,20 @@
-// src/app/pages/suppliers/suppliers-routing.module.ts
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ListComponent } from './list/list.component';
-import { CreateOrUpdateSupplierComponent } from './create-or-update-supplier/create-or-update-supplier.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+
+import { ListComponent } from "./list/list.component";
+import { CreateOrUpdateSupplierComponent } from "./create-or-update-supplier/create-or-update-supplier.component";
 
 const routes: Routes = [
   {
-    path: 'list',
+    path: "list",
     component: ListComponent,
   },
   {
-    path: 'create',
+    path: "create",
     component: CreateOrUpdateSupplierComponent,
   },
-  {
-    path: 'update/:id',
+    {
+    path: "update/:id",
     component: CreateOrUpdateSupplierComponent,
   },
 ];

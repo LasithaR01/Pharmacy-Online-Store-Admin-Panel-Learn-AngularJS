@@ -5,6 +5,8 @@ export class Customer {
   address: string;
   dateOfBirth: Date;
   loyaltyPoints: number;
+  name: string;
+  phoneNumber: string;
   createdAt: Date;
 
   // Additional display fields

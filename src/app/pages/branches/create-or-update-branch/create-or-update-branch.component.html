@@ -10,7 +10,9 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Branch' : 'Create New Branch' }}</h4>
+          <h4 class="card-title mb-4">
+            {{ isEditMode ? "Update Branch" : "Create New Branch" }}
+          </h4>
           <form
             [formGroup]="branchForm"
             (ngSubmit)="onSubmit()"
@@ -51,7 +53,21 @@
                       formControlName="location"
                       type="text"
                       class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          branchForm.get('location')?.invalid &&
+                          branchForm.get('location')?.touched
+                      }"
                     />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        branchForm.get('location')?.hasError('required') &&
+                        branchForm.get('location')?.touched
+                      "
+                    >
+                      Location is required.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-4">
@@ -61,7 +77,21 @@
                       formControlName="contactNumber"
                       type="text"
                       class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          branchForm.get('contactNumber')?.invalid &&
+                          branchForm.get('contactNumber')?.touched
+                      }"
                     />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        branchForm.get('contactNumber')?.hasError('required') &&
+                        branchForm.get('contactNumber')?.touched
+                      "
+                    >
+                      Contact Number is required.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-4">
@@ -71,7 +101,21 @@
                       formControlName="openingHours"
                       type="text"
                       class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          branchForm.get('openingHours')?.invalid &&
+                          branchForm.get('openingHours')?.touched
+                      }"
                     />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        branchForm.get('openingHours')?.hasError('required') &&
+                        branchForm.get('openingHours')?.touched
+                      "
+                    >
+                      Opening Hours is required.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -79,7 +123,7 @@
             <div class="row justify-content-end">
               <div class="col-lg-10">
                 <button type="submit" class="btn btn-primary">
-                  {{ isEditMode ? 'Update Branch' : 'Create Branch' }}
+                  {{ isEditMode ? "Update Branch" : "Create Branch" }}
                 </button>
               </div>
             </div>

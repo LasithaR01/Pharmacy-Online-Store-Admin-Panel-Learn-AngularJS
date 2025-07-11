@@ -1,114 +1,98 @@
-// src/app/pages/suppliers/create-or-update-supplier/create-or-update-supplier.component.ts
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { SupplierService } from 'src/app/core/services/supplier.service';
-import { UserService } from 'src/app/core/services/user.service';
+import { Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { ToastrService } from "ngx-toastr";
+import { BranchService } from "src/app/core/services/branch.service";
+import { SupplierService } from "src/app/core/services/supplier.service";
 
 @Component({
-  selector: 'app-create-or-update-supplier',
-  templateUrl: './create-or-update-supplier.component.html',
-  styleUrls: ['./create-or-update-supplier.component.scss']
+  selector: "app-create-branch",
+  templateUrl: "./create-or-update-supplier.component.html",
+  styleUrls: ["./create-or-update-supplier.component.scss"],
 })
 export class CreateOrUpdateSupplierComponent implements OnInit {
   @Input() isEditMode: boolean = false;
-  supplierId: number | null = null;
+  branchId: string | null = null;
 
+  // bread crumb items
   breadCrumbItems: Array<{}>;
-  supplierForm: FormGroup;
-  users: any[] = [];
+  public Editor = ClassicEditor;
+  branchForm: FormGroup;
+  description: string = "";
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private supplierService: SupplierService,
-    private userService: UserService,
     public toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.breadCrumbItems = [
       { label: "Dashboard" },
-      { label: this.isEditMode ? "Update Supplier" : "Create Supplier", active: true },
+      { label: "Create Branch", active: true },
     ];
 
-    this.supplierForm = this.fb.group({
-      userId: ["", Validators.required],
+    this.branchForm = this.fb.group({
       companyName: ["", Validators.required],
       address: ["", Validators.required],
-      taxId: [""]
     });
 
-    this.loadUsers();
-
     this.route.paramMap.subscribe((params) => {
-      this.supplierId = Number(params.get("id"));
-      if (this.supplierId) {
+      this.branchId = params.get("id");
+      if (this.branchId) {
         this.isEditMode = true;
-        this.loadSupplier();
+        this.loadBranch();
       }
     });
   }
 
-  loadUsers() {
-    this.userService.getAllUsers().subscribe({
-      next: (users) => {
-        this.users = users;
+  loadBranch() {
+    this.supplierService.getById(this.branchId!).subscribe({
+      next: (branch) => {
+        this.branchForm.patchValue(branch);
       },
       error: () => {
-        this.toastr.error("Error loading users");
+        this.toastr.error("Error loading branch");
       },
     });
   }
 
-  loadSupplier() {
-    this.supplierService.getById(this.supplierId!).subscribe({
-      next: (supplier) => {
-        this.supplierForm.patchValue({
-          userId: supplier.userId,
-          companyName: supplier.companyName,
-          address: supplier.address,
-          taxId: supplier.taxId
-        });
-      },
-      error: () => {
-        this.toastr.error("Error loading supplier");
-      },
-    });
+  onDescriptionChange(event: any) {
+    const data = event.editor.getData();
+    this.branchForm.patchValue({ description: data });
   }
 
   onSubmit(): void {
-    Object.values(this.supplierForm.controls).forEach((control) => {
+    // Mark all controls as touched to show validation
+    Object.values(this.branchForm.controls).forEach((control) => {
       control.markAsTouched();
     });
 
-    if (this.supplierForm.invalid) return;
-
-    const formData = this.supplierForm.value;
-
-    if (this.isEditMode && this.supplierId) {
+    if (this.branchForm.invalid) return;
+    if (this.isEditMode && this.branchId) {
       this.supplierService
-        .update(this.supplierId, formData)
+        .update(this.branchId, this.branchForm.value)
         .subscribe({
           next: () => {
             this.toastr.success("Supplier updated successfully!", "Success");
             this.router.navigate(["/suppliers/list"]);
           },
           error: () => {
-            this.toastr.error("Error updating supplier!", "Error");
+            this.toastr.error("Error updating branch!", "Error");
           },
         });
     } else {
-      this.supplierService.create(formData).subscribe({
+      this.supplierService.create(this.branchForm.value).subscribe({
         next: () => {
           this.toastr.success("Supplier created successfully!", "Success");
           this.router.navigate(["/suppliers/list"]);
-          this.supplierForm.reset();
+          this.branchForm.reset();
         },
         error: () => {
-          this.toastr.error("Error creating supplier!", "Error");
+          this.toastr.error("Error creating branch!", "Error");
         },
       });
     }

@@ -19,11 +19,14 @@ export class Order {
 }
 
 export class OrderItem {
-  id: number;
-  orderId: number;
+  // id: number;
+  // orderId: number;
   productId: number;
   quantity: number;
   price: number;
+  discountAmount: number;
+  productBarcode: string;
+  totalPrice: number;
   productName: string;
 }
 

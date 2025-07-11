@@ -3,8 +3,17 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import { RestockRequest, RestockStatus } from "src/app/core/models/restock-request.models";
+import { Branch } from "src/app/core/models/branch.models";
+import { Product } from "src/app/core/models/product.models";
+import {
+  RestockRequest,
+  RestockStatus,
+} from "src/app/core/models/restock-request.models";
+import { Supplier } from "src/app/core/models/supplier.models";
+import { BranchService } from "src/app/core/services/branch.service";
+import { ProductService } from "src/app/core/services/product.service";
 import { RestockRequestService } from "src/app/core/services/restock-request.service";
+import { SupplierService } from "src/app/core/services/supplier.service";
 
 @Component({
   selector: "app-create-or-update-restock-request",
@@ -19,19 +28,28 @@ export class CreateOrUpdateRestockRequestComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
   requestForm: FormGroup;
+  suppliers: Supplier[] = [];
+  branches: Branch[] = [];
+  products: Product[] = [];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private restockRequestService: RestockRequestService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public supplierService: SupplierService,
+    public branchService: BranchService,
+    public productService: ProductService
   ) {}
 
   ngOnInit(): void {
     this.breadCrumbItems = [
       { label: "Dashboard" },
-      { label: this.isEditMode ? "Update Request" : "Create Request", active: true },
+      {
+        label: this.isEditMode ? "Update Request" : "Create Request",
+        active: true,
+      },
     ];
 
     this.requestForm = this.fb.group({
@@ -50,6 +68,43 @@ export class CreateOrUpdateRestockRequestComponent implements OnInit {
         this.isEditMode = true;
         this.loadRequest();
       }
+    });
+
+    this.loadSuppliers();
+    this.loadBranches();
+    this.loadProducts();
+  }
+
+  loadBranches() {
+    this.branchService.getAll().subscribe({
+      next: (branches) => {
+        this.branches = branches;
+      },
+      error: () => {
+        this.toastr.error("Error loading branches");
+      },
+    });
+  }
+
+  loadProducts() {
+    this.productService.getAll().subscribe({
+      next: (products) => {
+        this.products = products;
+      },
+      error: () => {
+        this.toastr.error("Error loading products");
+      },
+    });
+  }
+
+  loadSuppliers() {
+    this.supplierService.getAll().subscribe({
+      next: (suppliers) => {
+        this.suppliers = suppliers;
+      },
+      error: () => {
+        this.toastr.error("Error loading suppliers");
+      },
     });
   }
 
@@ -75,6 +130,8 @@ export class CreateOrUpdateRestockRequestComponent implements OnInit {
     if (this.requestForm.invalid) return;
 
     const requestData = this.requestForm.value;
+
+    console.log('requestData: ', requestData)
 
     if (this.isEditMode && this.requestId) {
       this.restockRequestService.update(this.requestId, requestData).subscribe({
