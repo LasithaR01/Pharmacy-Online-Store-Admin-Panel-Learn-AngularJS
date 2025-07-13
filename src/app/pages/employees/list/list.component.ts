@@ -57,7 +57,7 @@ export class ListComponent implements OnInit {
 
     const term = this.searchTerm.toLowerCase();
     this.filteredEmployees = this.employees.filter(employee =>
-      (employee.userName && employee.userName.toLowerCase().includes(term)) ||
+      (employee.username && employee.username.toLowerCase().includes(term)) ||
       (employee.position && employee.position.toLowerCase().includes(term)) ||
       (employee.branchName && employee.branchName.toLowerCase().includes(term))
     );

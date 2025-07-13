@@ -11,7 +11,9 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Stock' : 'Create New Stock Entry' }}</h4>
+          <h4 class="card-title mb-4">
+            {{ isEditMode ? "Update Stock" : "Create New Stock Entry" }}
+          </h4>
           <form
             [formGroup]="stockForm"
             (ngSubmit)="onSubmit()"
@@ -27,14 +29,11 @@
                     <select
                       formControlName="productId"
                       class="form-control"
-                      [ngClass]="{
-                        'is-invalid':
-                          stockForm.get('productId')?.invalid &&
-                          stockForm.get('productId')?.touched
-                      }"
                     >
-                      <option value="">Select Product</option>
-                      <!-- Options would be populated from a products service -->
+                      <option [value]="null">No Product</option>
+                      <option *ngFor="let product of products" [value]="product.id">
+                        {{ product.name }}
+                      </option>
                     </select>
                     <div
                       class="invalid-feedback"
@@ -56,14 +55,11 @@
                     <select
                       formControlName="supplierId"
                       class="form-control"
-                      [ngClass]="{
-                        'is-invalid':
-                          stockForm.get('supplierId')?.invalid &&
-                          stockForm.get('supplierId')?.touched
-                      }"
                     >
-                      <option value="">Select Supplier</option>
-                      <!-- Options would be populated from a suppliers service -->
+                      <option [value]="null">No Supplier</option>
+                      <option *ngFor="let supplier of suppliers" [value]="supplier.id">
+                        {{ supplier.companyName }}
+                      </option>
                     </select>
                     <div
                       class="invalid-feedback"
@@ -186,14 +182,11 @@
                     <select
                       formControlName="branchId"
                       class="form-control"
-                      [ngClass]="{
-                        'is-invalid':
-                          stockForm.get('branchId')?.invalid &&
-                          stockForm.get('branchId')?.touched
-                      }"
                     >
-                      <option value="">Select Branch</option>
-                      <!-- Options would be populated from a branches service -->
+                      <option [value]="null">No Branch</option>
+                      <option *ngFor="let branch of branches" [value]="branch.id">
+                        {{ branch.name }}
+                      </option>
                     </select>
                     <div
                       class="invalid-feedback"
@@ -240,7 +233,7 @@
             <div class="row justify-content-end">
               <div class="col-lg-10">
                 <button type="submit" class="btn btn-primary">
-                  {{ isEditMode ? 'Update Stock' : 'Create Stock' }}
+                  {{ isEditMode ? "Update Stock" : "Create Stock" }}
                 </button>
               </div>
             </div>
