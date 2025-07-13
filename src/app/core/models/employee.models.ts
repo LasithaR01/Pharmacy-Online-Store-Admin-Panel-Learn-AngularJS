@@ -9,8 +9,10 @@ export class Employee {
   createdAt: Date;
 
   // Additional display fields
-  userName?: string;
-  userEmail?: string;
+  username?: string;
+  email?: string;
+  name?: string;
+  phoneNumber?: string;
   branchName?: string;
   branchLocation?: string;
 }

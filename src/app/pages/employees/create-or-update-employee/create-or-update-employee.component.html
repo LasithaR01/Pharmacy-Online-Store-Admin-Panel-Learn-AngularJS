@@ -11,7 +11,9 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">{{ isEditMode ? 'Update Employee' : 'Create New Employee' }}</h4>
+          <h4 class="card-title mb-4">
+            {{ isEditMode ? "Update Employee" : "Create New Employee" }}
+          </h4>
           <form
             [formGroup]="employeeForm"
             (ngSubmit)="onSubmit()"
@@ -20,30 +22,122 @@
             <div data-repeater-list="outer-group" class="outer">
               <div data-repeater-item class="outer">
                 <div class="row mb-4">
-                  <label for="user" class="col-form-label col-lg-2">User</label>
+                  <label class="col-form-label col-lg-2">Username</label>
                   <div class="col-lg-10">
-                    <select
-                      formControlName="userId"
+                    <input
+                      formControlName="username"
+                      type="text"
                       class="form-control"
                       [ngClass]="{
                         'is-invalid':
-                          employeeForm.get('userId')?.invalid &&
-                          employeeForm.get('userId')?.touched
+                          employeeForm.get('username')?.invalid &&
+                          employeeForm.get('username')?.touched
                       }"
-                    >
-                      <option value="">Select User</option>
-                      <option *ngFor="let user of users" [value]="user.id">
-                        {{ user.name }} ({{ user.email }})
-                      </option>
-                    </select>
+                    />
                     <div
                       class="invalid-feedback"
                       *ngIf="
-                        employeeForm.get('userId')?.hasError('required') &&
-                        employeeForm.get('userId')?.touched
+                        employeeForm.get('username')?.hasError('required') &&
+                        employeeForm.get('username')?.touched
                       "
                     >
-                      User is required.
+                      Username is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Email</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="email"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          employeeForm.get('email')?.invalid &&
+                          employeeForm.get('email')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        employeeForm.get('email')?.hasError('required') &&
+                        employeeForm.get('email')?.touched
+                      "
+                    >
+                      Email is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Password</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="password"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          employeeForm.get('password')?.invalid &&
+                          employeeForm.get('password')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        employeeForm.get('password')?.hasError('required') &&
+                        employeeForm.get('password')?.touched
+                      "
+                    >
+                      Password is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">PhoneNumber</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="phoneNumber"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          employeeForm.get('phoneNumber')?.invalid &&
+                          employeeForm.get('phoneNumber')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        employeeForm.get('phoneNumber')?.hasError('required') &&
+                        employeeForm.get('phoneNumber')?.touched
+                      "
+                    >
+                      PhoneNumber is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label class="col-form-label col-lg-2">Name</label>
+                  <div class="col-lg-10">
+                    <input
+                      formControlName="name"
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid':
+                          employeeForm.get('name')?.invalid &&
+                          employeeForm.get('name')?.touched
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        employeeForm.get('name')?.hasError('required') &&
+                        employeeForm.get('name')?.touched
+                      "
+                    >
+                      Name is required.
                     </div>
                   </div>
                 </div>
@@ -60,7 +154,10 @@
                       }"
                     >
                       <option value="">Select Branch</option>
-                      <option *ngFor="let branch of branches" [value]="branch.id">
+                      <option
+                        *ngFor="let branch of branches"
+                        [value]="branch.id"
+                      >
                         {{ branch.name }} ({{ branch.location }})
                       </option>
                     </select>
@@ -88,7 +185,10 @@
                       }"
                     >
                       <option value="">Select Position</option>
-                      <option *ngFor="let position of positions" [value]="position">
+                      <option
+                        *ngFor="let position of positions"
+                        [value]="position"
+                      >
                         {{ position }}
                       </option>
                     </select>
@@ -120,9 +220,11 @@
                     />
                     <div
                       class="invalid-feedback"
-                      *ngIf="(employeeForm.get('salary')?.hasError('required') ||
-                            employeeForm.get('salary')?.hasError('min')) &&
-                            employeeForm.get('salary')?.touched"
+                      *ngIf="
+                        (employeeForm.get('salary')?.hasError('required') ||
+                          employeeForm.get('salary')?.hasError('min')) &&
+                        employeeForm.get('salary')?.touched
+                      "
                     >
                       Valid salary is required.
                     </div>
@@ -157,7 +259,7 @@
             <div class="row justify-content-end">
               <div class="col-lg-10">
                 <button type="submit" class="btn btn-primary">
-                  {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
+                  {{ isEditMode ? "Update Employee" : "Create Employee" }}
                 </button>
               </div>
             </div>

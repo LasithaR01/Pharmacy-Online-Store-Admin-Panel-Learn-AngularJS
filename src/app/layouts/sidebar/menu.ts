@@ -152,25 +152,25 @@ export const MENU: MenuItem[] = [
       },
     ],
   },
-  {
-    id: 13,
-    label: "Supplier",
-    icon: "bx-store",
-    subItems: [
-      {
-        id: 14,
-        label: "Supplier list",
-        link: "/suppliers/list",
-        parentId: 13,
-      },
-      {
-        id: 14,
-        label: "Create Supplier",
-        link: "/suppliers/create",
-        parentId: 13,
-      },
-    ],
-  },
+  // {
+  //   id: 13,
+  //   label: "Supplier",
+  //   icon: "bx-store",
+  //   subItems: [
+  //     {
+  //       id: 14,
+  //       label: "Supplier list",
+  //       link: "/suppliers/list",
+  //       parentId: 13,
+  //     },
+  //     {
+  //       id: 14,
+  //       label: "Create Supplier",
+  //       link: "/suppliers/create",
+  //       parentId: 13,
+  //     },
+  //   ],
+  // },
   {
     id: 13,
     label: "Product",
