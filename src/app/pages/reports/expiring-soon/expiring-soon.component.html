@@ -1,7 +1,7 @@
-<!-- src/app/employees/list/list.component.html -->
+<!-- src/app/stocks/list/list.component.html -->
 <div class="container-fluid">
   <app-page-title
-    title="Employees"
+    title="Expiring Soon Products"
     [breadcrumbItems]="breadCrumbItems"
   ></app-page-title>
 
@@ -31,54 +31,63 @@
                 <button
                   type="button"
                   class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"
-                  (click)="router.navigate(['/employees/create'])"
+                  (click)="downloadReport()"
                 >
-                  <i class="mdi mdi-plus me-1"></i> New Employee
+                  <i class="mdi mdi-plus me-1"></i> Download
                 </button>
               </div>
             </div>
           </div>
 
           <div class="table-responsive mb-0">
-            <table class="table align-middle table-nowrap dt-responsive nowrap w-100 table-check">
+            <table
+              class="table align-middle table-nowrap dt-responsive nowrap w-100 table-check"
+            >
               <thead class="table-light">
                 <tr>
                   <th class="align-middle">ID</th>
-                  <th class="align-middle">Name</th>
-                  <th class="align-middle">Position</th>
-                  <th class="align-middle">Branch</th>
-                  <th class="align-middle">Salary</th>
-                  <th class="align-middle">Action</th>
+                  <th class="align-middle">Product</th>
+                  <th class="align-middle">Expiry Date</th>
+                  <th class="align-middle">Category</th>
+                  <th class="align-middle">Barcode</th>
+                  <th class="align-middle">Stock Qty</th>
+                  <!-- <th class="align-middle">Batch Number</th> -->
+                  <!-- <th class="align-middle">Branch</th>
+                  <th class="align-middle">Action</th> -->
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let employee of filteredEmployees">
-                  <td>{{ employee.id }}</td>
-                  <td>{{ employee.username }}</td>
-                  <td>{{ employee.position }}</td>
-                  <td>{{ employee.branchName }}</td>
-                  <td>Rs. {{ employee.salary }}</td>
+                <tr *ngFor="let stock of products">
+                  <td>{{ stock.id }}</td>
+                  <td>{{ stock.name }}</td>
+                  <td>{{ stock.expiryDate }}</td>
+                  <td>{{ stock.categoryName }}</td>
+                  <td>{{ stock.barcode }}</td>
+                  <td>{{ stock.stockQuantity }}</td>
+                  <!-- <td>{{ stock.branchName }}</td>
                   <td>
                     <div class="d-flex gap-3">
                       <a
                         href="javascript:void(0);"
                         class="text-success"
-                        (click)="edit(employee.id)"
+                        (click)="edit(stock.id)"
                       >
                         <i class="mdi mdi-pencil font-size-18"></i>
                       </a>
                       <a
                         href="javascript:void(0);"
                         class="text-danger"
-                        (click)="showDeleteModal(employee.id)"
+                        (click)="showDeleteModal(stock.id)"
                       >
                         <i class="mdi mdi-delete font-size-18"></i>
                       </a>
                     </div>
-                  </td>
+                  </td> -->
                 </tr>
-                <tr *ngIf="filteredEmployees.length === 0">
-                  <td colspan="6" class="text-center">No employees found</td>
+                <tr *ngIf="filteredProducts.length === 0">
+                  <td colspan="8" class="text-center">
+                    No low stock product entries found
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -114,15 +123,11 @@
           </div>
         </div>
         <p class="text-muted font-size-16 mb-4">
-          Are you sure you want to remove this employee?
+          Are you sure you want to remove this stock entry?
         </p>
 
         <div class="hstack gap-2 justify-content-center mb-0">
-          <button
-            type="button"
-            class="btn btn-danger"
-            (click)="delete()"
-          >
+          <button type="button" class="btn btn-danger" (click)="delete()">
             Remove Now
           </button>
           <button
