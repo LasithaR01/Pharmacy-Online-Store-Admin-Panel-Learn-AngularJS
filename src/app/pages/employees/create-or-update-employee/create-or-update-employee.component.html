@@ -69,7 +69,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4" *ngIf="!isEditMode">
                   <label class="col-form-label col-lg-2">Password</label>
                   <div class="col-lg-10">
                     <input
@@ -82,17 +82,18 @@
                           employeeForm.get('password')?.touched
                       }"
                     />
-                    <div
-                      class="invalid-feedback"
-                      *ngIf="
-                        employeeForm.get('password')?.hasError('required') &&
-                        employeeForm.get('password')?.touched
-                      "
-                    >
-                      Password is required.
-                    </div>
+                    <!-- <div
+      class="invalid-feedback"
+      *ngIf="
+        employeeForm.get('password')?.hasError('required') &&
+        employeeForm.get('password')?.touched
+      "
+    >
+      Password is required.
+    </div> -->
                   </div>
                 </div>
+
                 <div class="row mb-4">
                   <label class="col-form-label col-lg-2">PhoneNumber</label>
                   <div class="col-lg-10">
@@ -187,9 +188,9 @@
                       <option value="">Select Position</option>
                       <option
                         *ngFor="let position of positions"
-                        [value]="position"
+                        [value]="position.value"
                       >
-                        {{ position }}
+                        {{ position.label }}
                       </option>
                     </select>
                     <div

@@ -5,6 +5,7 @@ import { ToastrService } from "ngx-toastr";
 import { EmployeeService } from "src/app/core/services/employee.service";
 import { BranchService } from "src/app/core/services/branch.service";
 import { UserService } from "src/app/core/services/user.service";
+import { RoleOptions } from "src/app/core/enums";
 
 @Component({
   selector: "app-create-or-update-employee",
@@ -19,7 +20,7 @@ export class CreateOrUpdateEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   branches: any[] = [];
   users: any[] = [];
-  positions = ["Pharmacist", "Cashier", "Manager", "Technician"];
+  positions = RoleOptions;
 
   constructor(
     private fb: FormBuilder,
@@ -51,6 +52,14 @@ export class CreateOrUpdateEmployeeComponent implements OnInit {
       salary: ["", [Validators.required, Validators.min(0)]],
       hireDate: ["", Validators.required],
     });
+
+    // Add password field only in create mode
+    // if (!this.isEditMode) {
+    //   this.employeeForm.addControl(
+    //     "password",
+    //     this.fb.control("", Validators.required)
+    //   );
+    // }
 
     this.loadBranches();
     // this.loadUsers();

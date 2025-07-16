@@ -1,3 +1,4 @@
+import { RoleType } from "src/app/core/enums";
 import { MenuItem } from "./menu.model";
 
 export const MENU: MenuItem[] = [
@@ -10,6 +11,7 @@ export const MENU: MenuItem[] = [
     id: 1,
     label: "Dashboard",
     icon: "bx-home-circle",
+    roles: [RoleType.ROLE_ADMIN, RoleType.ROLE_PHARMACIST],
     // subItems: [
     //   {
     //     id: 3,
@@ -43,19 +45,21 @@ export const MENU: MenuItem[] = [
     //   },
     // ],
   },
-  {
-    id: 8,
-    isLayout: true,
-  },
+  // {
+  //   id: 8,
+  //   isLayout: true,
+  // },
   {
     id: 9,
     label: "User Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN, RoleType.ROLE_PHARMACIST],
   },
   {
     id: 13,
     label: "Employee",
     icon: "bx-user-circle",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -75,6 +79,7 @@ export const MENU: MenuItem[] = [
     id: 16,
     label: "Supplier",
     icon: "bxs-truck",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 17,
@@ -94,6 +99,8 @@ export const MENU: MenuItem[] = [
     id: 19,
     label: "Customer",
     icon: "bx-user",
+    roles: [RoleType.ROLE_ADMIN],
+
     subItems: [
       {
         id: 20,
@@ -113,11 +120,14 @@ export const MENU: MenuItem[] = [
     id: 22,
     label: "Product Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN],
   },
   {
     id: 10,
     label: "Branch",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
+
     subItems: [
       {
         id: 11,
@@ -137,6 +147,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Category",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -175,6 +186,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Product",
     icon: "bx-package",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -194,6 +206,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Inventory",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -213,6 +226,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Stock",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -232,6 +246,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Order",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -276,6 +291,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Prescription",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -295,6 +311,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Notification",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -314,6 +331,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Alert",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -333,6 +351,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Restock Request",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -352,6 +371,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Product Alternative",
     icon: "bx-transfer",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -371,11 +391,13 @@ export const MENU: MenuItem[] = [
     id: 29,
     label: "Branch Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN],
   },
   {
     id: 30,
     label: "Branch",
     icon: "bx-store-alt",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 31,
@@ -395,11 +417,13 @@ export const MENU: MenuItem[] = [
     id: 33,
     label: "Category Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN],
   },
   {
     id: 34,
     label: "Category",
     icon: "bxs-folder-minus",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 35,
@@ -419,11 +443,13 @@ export const MENU: MenuItem[] = [
     id: 37,
     label: "Inventory Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN],
   },
   {
     id: 38,
     label: "Inventory",
     icon: "bx-archive",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 39,
@@ -443,11 +469,13 @@ export const MENU: MenuItem[] = [
     id: 41,
     label: "Stock Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN],
   },
   {
     id: 42,
     label: "Stock",
     icon: "bx-cube",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 43,
@@ -467,6 +495,7 @@ export const MENU: MenuItem[] = [
     id: 45,
     label: "Restock Request",
     icon: "bxs-traffic-barrier",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 46,
@@ -486,11 +515,13 @@ export const MENU: MenuItem[] = [
     id: 48,
     label: "Order Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN],
   },
   {
     id: 49,
     label: "Order",
     icon: "bx-cart",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 50,
@@ -510,6 +541,7 @@ export const MENU: MenuItem[] = [
     id: 52,
     label: "Order Item",
     icon: "bx-list-ul",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 53,
@@ -529,11 +561,13 @@ export const MENU: MenuItem[] = [
     id: 55,
     label: "Prescription Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN],
   },
   {
     id: 56,
     label: "Prescription",
     icon: "bx-file",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 57,
@@ -553,11 +587,13 @@ export const MENU: MenuItem[] = [
     id: 59,
     label: "Notification Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN],
   },
   {
     id: 60,
     label: "Notification",
     icon: "bx-bell",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 61,
@@ -577,6 +613,7 @@ export const MENU: MenuItem[] = [
     id: 63,
     label: "Alert",
     icon: "bxs-mobile",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 64,
@@ -596,11 +633,13 @@ export const MENU: MenuItem[] = [
     id: 66,
     label: "Drug Interaction Management",
     isTitle: true,
+    roles: [RoleType.ROLE_ADMIN],
   },
   {
     id: 67,
     label: "Drug Interaction",
     icon: "bx-shield-alt-2",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -619,6 +658,7 @@ export const MENU: MenuItem[] = [
   {
     id: 9,
     label: "MENUITEMS.APPS.TEXT",
+    roles: [RoleType.ROLE_ADMIN],
     isTitle: true,
   },
   // {
@@ -643,6 +683,7 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "MENUITEMS.ECOMMERCE.TEXT",
     icon: "bx-store",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
@@ -698,11 +739,18 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Reports",
     icon: "bxs-bar-chart-alt-2",
+    roles: [RoleType.ROLE_ADMIN],
     subItems: [
       {
         id: 14,
-        label: "Low Stock Report",
-        link: "/ecommerce/products",
+        label: "Low Stock",
+        link: "/reports/low-stock",
+        parentId: 13,
+      },
+      {
+        id: 14,
+        label: "Expiring Soon",
+        link: "/reports/expiring-soon",
         parentId: 13,
       },
     ],

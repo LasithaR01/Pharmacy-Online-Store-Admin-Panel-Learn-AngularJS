@@ -1,34 +1,52 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Input, OnChanges } from '@angular/core';
-import MetisMenu from 'metismenujs';
-import { EventService } from '../../core/services/event.service';
-import { Router, NavigationEnd } from '@angular/router';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  ViewChild,
+  Input,
+  OnChanges,
+} from "@angular/core";
+import MetisMenu from "metismenujs";
+import { EventService } from "../../core/services/event.service";
+import { Router, NavigationEnd } from "@angular/router";
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
-import { MENU } from './menu';
-import { MenuItem } from './menu.model';
-import { TranslateService } from '@ngx-translate/core';
+import { MENU } from "./menu";
+import { MenuItem } from "./menu.model";
+import { TranslateService } from "@ngx-translate/core";
+import { AuthenticationService } from "src/app/core/services/auth.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  selector: "app-sidebar",
+  templateUrl: "./sidebar.component.html",
+  styleUrls: ["./sidebar.component.scss"],
 })
 
 /**
  * Sidebar component
  */
 export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
-  @ViewChild('componentRef') scrollRef;
+  @ViewChild("componentRef") scrollRef;
   @Input() isCondensed = false;
   menu: any;
   data: any;
+  currentUser: any;
 
   menuItems: MenuItem[] = [];
 
-  @ViewChild('sideMenu') sideMenu: ElementRef;
+  @ViewChild("sideMenu") sideMenu: ElementRef;
 
-  constructor(private eventService: EventService, private router: Router, public translate: TranslateService, private http: HttpClient) {
+  constructor(
+    private eventService: EventService,
+    private router: Router,
+    public translate: TranslateService,
+    private http: HttpClient,
+    private authService: AuthenticationService,
+    public toastr: ToastrService
+  ) {
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
         this._activateMenuDropdown();
@@ -38,7 +56,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnInit() {
-    this.initialize();
+    this.getCurrentLoggedUser();
     this._scrollElement();
   }
 
@@ -48,11 +66,11 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   toggleMenu(event) {
-    event.currentTarget.nextElementSibling.classList.toggle('mm-show');
+    event.currentTarget.nextElementSibling.classList.toggle("mm-show");
   }
 
   ngOnChanges() {
-    if (!this.isCondensed && this.sideMenu || this.isCondensed) {
+    if ((!this.isCondensed && this.sideMenu) || this.isCondensed) {
       setTimeout(() => {
         this.menu = new MetisMenu(this.sideMenu.nativeElement);
       });
@@ -63,11 +81,12 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   _scrollElement() {
     setTimeout(() => {
       if (document.getElementsByClassName("mm-active").length > 0) {
-        const currentPosition = document.getElementsByClassName("mm-active")[0]['offsetTop'];
+        const currentPosition =
+          document.getElementsByClassName("mm-active")[0]["offsetTop"];
         if (currentPosition > 500)
-        if(this.scrollRef.SimpleBar !== null)
-          this.scrollRef.SimpleBar.getScrollElement().scrollTop =
-            currentPosition + 300;
+          if (this.scrollRef.SimpleBar !== null)
+            this.scrollRef.SimpleBar.getScrollElement().scrollTop =
+              currentPosition + 300;
       }
     }, 300);
   }
@@ -86,60 +105,103 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
    * Activate the parent dropdown
    */
   _activateMenuDropdown() {
-    this._removeAllClass('mm-active');
-    this._removeAllClass('mm-show');
-    const links = document.getElementsByClassName('side-nav-link-ref');
+    this._removeAllClass("mm-active");
+    this._removeAllClass("mm-show");
+    const links = document.getElementsByClassName("side-nav-link-ref");
     let menuItemEl = null;
     // tslint:disable-next-line: prefer-for-of
     const paths = [];
     for (let i = 0; i < links.length; i++) {
-      paths.push(links[i]['pathname']);
+      paths.push(links[i]["pathname"]);
     }
     var itemIndex = paths.indexOf(window.location.pathname);
     if (itemIndex === -1) {
-      const strIndex = window.location.pathname.lastIndexOf('/');
+      const strIndex = window.location.pathname.lastIndexOf("/");
       const item = window.location.pathname.substr(0, strIndex).toString();
       menuItemEl = links[paths.indexOf(item)];
     } else {
       menuItemEl = links[itemIndex];
     }
     if (menuItemEl) {
-      menuItemEl.classList.add('active');
+      menuItemEl.classList.add("active");
       const parentEl = menuItemEl.parentElement;
       if (parentEl) {
-        parentEl.classList.add('mm-active');
-        const parent2El = parentEl.parentElement.closest('ul');
-        if (parent2El && parent2El.id !== 'side-menu') {
-          parent2El.classList.add('mm-show');
+        parentEl.classList.add("mm-active");
+        const parent2El = parentEl.parentElement.closest("ul");
+        if (parent2El && parent2El.id !== "side-menu") {
+          parent2El.classList.add("mm-show");
           const parent3El = parent2El.parentElement;
-          if (parent3El && parent3El.id !== 'side-menu') {
-            parent3El.classList.add('mm-active');
-            const childAnchor = parent3El.querySelector('.has-arrow');
-            const childDropdown = parent3El.querySelector('.has-dropdown');
-            if (childAnchor) { childAnchor.classList.add('mm-active'); }
-            if (childDropdown) { childDropdown.classList.add('mm-active'); }
+          if (parent3El && parent3El.id !== "side-menu") {
+            parent3El.classList.add("mm-active");
+            const childAnchor = parent3El.querySelector(".has-arrow");
+            const childDropdown = parent3El.querySelector(".has-dropdown");
+            if (childAnchor) {
+              childAnchor.classList.add("mm-active");
+            }
+            if (childDropdown) {
+              childDropdown.classList.add("mm-active");
+            }
             const parent4El = parent3El.parentElement;
-            if (parent4El && parent4El.id !== 'side-menu') {
-              parent4El.classList.add('mm-show');
+            if (parent4El && parent4El.id !== "side-menu") {
+              parent4El.classList.add("mm-show");
               const parent5El = parent4El.parentElement;
-              if (parent5El && parent5El.id !== 'side-menu') {
-                parent5El.classList.add('mm-active');
-                const childanchor = parent5El.querySelector('.is-parent');
-                if (childanchor && parent5El.id !== 'side-menu') { childanchor.classList.add('mm-active'); }
+              if (parent5El && parent5El.id !== "side-menu") {
+                parent5El.classList.add("mm-active");
+                const childanchor = parent5El.querySelector(".is-parent");
+                if (childanchor && parent5El.id !== "side-menu") {
+                  childanchor.classList.add("mm-active");
+                }
               }
             }
           }
         }
       }
     }
+  }
 
+  getCurrentLoggedUser() {
+    this.authService.me().subscribe({
+      next: (user) => {
+        this.currentUser = user;
+        this.initialize();
+      },
+      error: () => {
+        this.toastr.error("Error loading categories");
+      },
+    });
+  }
+
+  filterSidebarMenuByUserRole() {
+    const role = this.currentUser?.role;
+
+    if (!role) return [];
+
+    const filterItems = (items: MenuItem[]): MenuItem[] => {
+      return items
+        .filter((item) => {
+          // Allow item if no roles specified, or if the role matches
+          return !item.roles || item.roles.includes(role);
+        })
+        .map((item) => {
+          const newItem = { ...item };
+
+          // If subItems exist, filter them too
+          if (item.subItems) {
+            newItem.subItems = filterItems(item.subItems);
+          }
+
+          return newItem;
+        });
+    };
+
+    return filterItems(MENU);
   }
 
   /**
    * Initialize
    */
   initialize(): void {
-    this.menuItems = MENU;
+    this.menuItems = this.filterSidebarMenuByUserRole();
   }
 
   /**
