@@ -1,6 +1,6 @@
-// src/app/core/services/category.service.ts
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { Category } from "../models/category.models";
 import { BaseService } from "./base.service";
 
@@ -10,32 +10,53 @@ export class CategoryService extends BaseService {
     super(http);
   }
 
-  getAll() {
+  getAll(): Observable<Category[]> {
     return this.get<Category[]>("categories");
   }
 
-  getById(id: string) {
+  getById(id: string): Observable<Category> {
     return this.get<Category>(`categories/${id}`);
   }
 
-  create(category: Partial<Category>) {
+  create(category: Partial<Category>): Observable<Category> {
     return this.post("categories", category);
   }
 
-  update(id: string, category: Partial<Category>) {
+  update(id: string, category: Partial<Category>): Observable<Category> {
     return this.put(`categories/${id}`, category);
   }
 
-  remove(id: string) {
+  remove(id: string): Observable<void> {
     return this.delete(`categories/${id}`);
   }
 
-  getChildren(parentId: string) {
+  getChildren(parentId: string): Observable<Category[]> {
     return this.get<Category[]>(`categories/${parentId}/children`);
   }
 
-  search(name: string) {
-    // @ts-ignore
-    return this.get<Category[]>("categories/search", { params: { name } });
+  // search(name: string): Observable<Category[]> {
+  //   return this.get<Category[]>("categories/search", { params: { name } });
+  // }
+
+  // Image upload methods
+  createWithImage(formData: FormData): Observable<Category> {
+    return this.http.post<Category>(`${this.baseUrl}categories/with-image`, formData);
+  }
+
+  updateWithImage(id: string, formData: FormData): Observable<Category> {
+    return this.http.put<Category>(`${this.baseUrl}categories/${id}/with-image`, formData);
+  }
+
+  uploadImage(categoryId: string, image: File): Observable<{ imageUrl: string }> {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.http.post<{ imageUrl: string }>(
+      `${this.baseUrl}categories/${categoryId}/upload-image`,
+      formData
+    );
+  }
+
+  removeImage(categoryId: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}categories/${categoryId}/image`);
   }
 }

@@ -1,4 +1,3 @@
-// src/app/pages/categories/create-or-update-category-branch/create-or-update-category-branch.component.ts
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -21,6 +20,9 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
   public Editor = ClassicEditor;
   categoryForm: FormGroup;
   parentCategories: Category[] = [];
+  imagePreview: string | ArrayBuffer | null = null;
+  selectedFile: File | null = null;
+  currentImageUrl: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +42,7 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
       name: ["", Validators.required],
       description: [""],
       parentId: [null],
+      imageUrl: [""]
     });
 
     this.loadParentCategories();
@@ -68,11 +71,43 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
     this.categoryService.getById(this.categoryId!).subscribe({
       next: (category) => {
         this.categoryForm.patchValue(category);
+        this.currentImageUrl = category.imageUrl;
       },
       error: () => {
         this.toastr.error("Error loading category");
       },
     });
+  }
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      // Validate file type and size
+      if (!file.type.match('image.*')) {
+        this.toastr.error('Only image files are allowed!');
+        return;
+      }
+      if (file.size > 2097152) { // 2MB
+        this.toastr.error('File size should not exceed 2MB!');
+        return;
+      }
+
+      this.selectedFile = file;
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removeImage(): void {
+    this.imagePreview = null;
+    this.selectedFile = null;
+    this.currentImageUrl = null;
+    this.categoryForm.patchValue({ imageUrl: '' });
   }
 
   onSubmit(): void {
@@ -82,13 +117,19 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
 
     if (this.categoryForm.invalid) return;
 
-    const formValue = this.categoryForm.value;
-    if (formValue.parentId === '') {
-      formValue.parentId = null;
+    const formData = new FormData();
+    formData.append('name', this.categoryForm.value.name);
+    formData.append('description', this.categoryForm.value.description || '');
+    formData.append('parentId', this.categoryForm.value.parentId || '');
+
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    } else if (this.currentImageUrl) {
+      formData.append('imageUrl', this.currentImageUrl);
     }
 
     if (this.isEditMode && this.categoryId) {
-      this.categoryService.update(this.categoryId, formValue).subscribe({
+      this.categoryService.updateWithImage(this.categoryId, formData).subscribe({
         next: () => {
           this.toastr.success("Category updated successfully!", "Success");
           this.router.navigate(["/categories/list"]);
@@ -98,11 +139,13 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
         },
       });
     } else {
-      this.categoryService.create(formValue).subscribe({
+      this.categoryService.createWithImage(formData).subscribe({
         next: () => {
           this.toastr.success("Category created successfully!", "Success");
           this.router.navigate(["/categories/list"]);
           this.categoryForm.reset();
+          this.imagePreview = null;
+          this.selectedFile = null;
         },
         error: () => {
           this.toastr.error("Error creating category!", "Error");
