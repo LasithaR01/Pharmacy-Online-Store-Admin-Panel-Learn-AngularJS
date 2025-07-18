@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Product } from "../models/product.models";
 import { BaseService } from "./base.service";
+import {Observable} from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class ProductService extends BaseService {
@@ -48,5 +49,29 @@ export class ProductService extends BaseService {
 
   getExpiring() {
     return this.get<Product[]>("products/expiring");
+  }
+
+  createWithImage(formData: FormData): Observable<Product> {
+    return this.http.post<Product>(`${this.baseUrl}products/with-image`, formData);
+  }
+
+  updateWithImage(id: string, formData: FormData): Observable<Product> {
+    return this.http.put<Product>(`${this.baseUrl}products/${id}/with-image`, formData);
+  }
+
+  uploadImage(productId: string, image: File): Observable<{ imageUrl: string }> {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.http.post<{ imageUrl: string }>(
+      `${this.baseUrl}products/${productId}/upload-image`,
+      formData
+    );
+  }
+
+  removeImage(productId: string, imageUrl: string): Observable<void> {
+    return this.http.delete<void>(
+      `${this.baseUrl}products/${productId}/images`,
+      { body: { imageUrl } }
+    );
   }
 }
