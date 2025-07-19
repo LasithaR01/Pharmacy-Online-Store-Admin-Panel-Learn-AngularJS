@@ -14,6 +14,7 @@ import { Category } from "src/app/core/models/category.models";
 export class CreateOrUpdateCategoryComponent implements OnInit {
   @Input() isEditMode: boolean = false;
   categoryId: string | null = null;
+  selectedImageFile: File | null = null;
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -54,6 +55,13 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
         this.loadCategory();
       }
     });
+  }
+
+  onImageSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImageFile = file;
+    }
   }
 
   loadParentCategories() {
@@ -111,35 +119,35 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
   }
 
   onSubmit(): void {
-    Object.values(this.categoryForm.controls).forEach((control) => {
-      control.markAsTouched();
-    });
-
+    Object.values(this.categoryForm.controls).forEach((control) =>
+      control.markAsTouched()
+    );
     if (this.categoryForm.invalid) return;
 
-    const formData = new FormData();
-    formData.append('name', this.categoryForm.value.name);
-    formData.append('description', this.categoryForm.value.description || '');
-    formData.append('parentId', this.categoryForm.value.parentId || '');
+    const formValue = this.categoryForm.value;
+    if (formValue.parentId === "") formValue.parentId = null;
 
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile);
-    } else if (this.currentImageUrl) {
-      formData.append('imageUrl', this.currentImageUrl);
+    const formData = new FormData();
+    formData.append("name", formValue.name);
+    formData.append("description", formValue.description || "");
+    formData.append("parentId", formValue.parentId ?? "");
+
+    if (this.selectedImageFile) {
+      formData.append("imageFile", this.selectedImageFile);
     }
 
+    console.log('formData: ', formData)
+
     if (this.isEditMode && this.categoryId) {
-      this.categoryService.updateWithImage(this.categoryId, formData).subscribe({
+      this.categoryService.update(this.categoryId, formData).subscribe({
         next: () => {
           this.toastr.success("Category updated successfully!", "Success");
           this.router.navigate(["/categories/list"]);
         },
-        error: () => {
-          this.toastr.error("Error updating category!", "Error");
-        },
+        error: () => this.toastr.error("Error updating category!", "Error"),
       });
     } else {
-      this.categoryService.createWithImage(formData).subscribe({
+      this.categoryService.create(formData).subscribe({
         next: () => {
           this.toastr.success("Category created successfully!", "Success");
           this.router.navigate(["/categories/list"]);
@@ -147,9 +155,7 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
           this.imagePreview = null;
           this.selectedFile = null;
         },
-        error: () => {
-          this.toastr.error("Error creating category!", "Error");
-        },
+        error: () => this.toastr.error("Error creating category!", "Error"),
       });
     }
   }
