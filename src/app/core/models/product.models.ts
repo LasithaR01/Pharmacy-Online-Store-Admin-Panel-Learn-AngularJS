@@ -14,6 +14,7 @@ export class Product {
   stockQuantity: number;
   reorderLevel: number;
   expiryDate: Date;
+  imageUrl: string;
   batchNumber: string;
   barcode: string;
   isPrescriptionRequired: boolean;

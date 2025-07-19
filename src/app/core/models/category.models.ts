@@ -6,4 +6,5 @@ export class Category {
   parentId?: number;
   parent?: Category;
   children?: Category[];
+  imageUrl: string;
 }
