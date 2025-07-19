@@ -1,8 +1,8 @@
 // src/app/core/services/base.service.ts
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "src/environments/environment";
+import { Observable } from "rxjs";
 
 export abstract class BaseService {
   protected baseUrl = environment.apiUrl;
@@ -13,7 +13,7 @@ export abstract class BaseService {
    * Returns auth headers with Bearer token
    */
   protected get authHeaders(): HttpHeaders {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
     const token = currentUser?.accessToken;
     return new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -33,9 +33,18 @@ export abstract class BaseService {
    * POST request with auth
    */
   protected post<T>(url: string, body: any): Observable<T> {
+    const isFormData = body instanceof FormData;
+          console.log('isFormData: ', isFormData)
+
+    const headers = isFormData
+      ? this.authHeaders
+      : this.authHeaders.set("Content-Type", "application/json");
+
+      console.log('headers: ', headers)
+
     return this.http.post<T>(`${this.baseUrl}/${url}`, body, {
-      headers: this.authHeaders,
-      responseType: 'json',
+      headers,
+      responseType: "json",
     });
   }
 

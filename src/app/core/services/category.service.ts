@@ -18,11 +18,11 @@ export class CategoryService extends BaseService {
     return this.get<Category>(`categories/${id}`);
   }
 
-  create(category: Partial<Category>) {
+  create(category: Partial<Category> | FormData) {
     return this.post("categories", category);
   }
 
-  update(id: string, category: Partial<Category>) {
+  update(id: string, category: Partial<Category> | FormData) {
     return this.put(`categories/${id}`, category);
   }
 

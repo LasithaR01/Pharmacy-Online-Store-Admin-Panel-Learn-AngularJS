@@ -15,6 +15,7 @@ import { Category } from "src/app/core/models/category.models";
 export class CreateOrUpdateCategoryComponent implements OnInit {
   @Input() isEditMode: boolean = false;
   categoryId: string | null = null;
+  selectedImageFile: File | null = null;
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -53,6 +54,13 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
     });
   }
 
+  onImageSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImageFile = file;
+    }
+  }
+
   loadParentCategories() {
     this.categoryService.getAll().subscribe({
       next: (categories) => {
@@ -76,37 +84,41 @@ export class CreateOrUpdateCategoryComponent implements OnInit {
   }
 
   onSubmit(): void {
-    Object.values(this.categoryForm.controls).forEach((control) => {
-      control.markAsTouched();
-    });
-
+    Object.values(this.categoryForm.controls).forEach((control) =>
+      control.markAsTouched()
+    );
     if (this.categoryForm.invalid) return;
 
     const formValue = this.categoryForm.value;
-    if (formValue.parentId === '') {
-      formValue.parentId = null;
+    if (formValue.parentId === "") formValue.parentId = null;
+
+    const formData = new FormData();
+    formData.append("name", formValue.name);
+    formData.append("description", formValue.description || "");
+    formData.append("parentId", formValue.parentId ?? "");
+
+    if (this.selectedImageFile) {
+      formData.append("imageFile", this.selectedImageFile);
     }
 
+    console.log('formData: ', formData)
+
     if (this.isEditMode && this.categoryId) {
-      this.categoryService.update(this.categoryId, formValue).subscribe({
+      this.categoryService.update(this.categoryId, formData).subscribe({
         next: () => {
           this.toastr.success("Category updated successfully!", "Success");
           this.router.navigate(["/categories/list"]);
         },
-        error: () => {
-          this.toastr.error("Error updating category!", "Error");
-        },
+        error: () => this.toastr.error("Error updating category!", "Error"),
       });
     } else {
-      this.categoryService.create(formValue).subscribe({
+      this.categoryService.create(formData).subscribe({
         next: () => {
           this.toastr.success("Category created successfully!", "Success");
           this.router.navigate(["/categories/list"]);
           this.categoryForm.reset();
         },
-        error: () => {
-          this.toastr.error("Error creating category!", "Error");
-        },
+        error: () => this.toastr.error("Error creating category!", "Error"),
       });
     }
   }
